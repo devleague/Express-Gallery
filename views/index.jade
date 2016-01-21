@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+html(lang="en")
+head
+  meta(charset="UTF-8")
+  title Express-Gallery
+body
+  ul
+    each photo in gallery
+      li #{photo.description}
+        img(src=photo.link)
+        p By: #{photo.author}
