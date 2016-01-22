@@ -13,16 +13,23 @@ app.set('views', path.resolve(__dirname, 'views'));
 
 // to view a list of gallery photos
 app.get('/', function (req, res) {
-  db.Gallery.findAll()
+  db.Gallery.findAll({})
     .then(function (results) {
       res.render('index', {Galleries:results});
   });
 });
 
 // // to see a single gallery photo
-// app.get('/gallery/:id', function (req, res) {
-
-// });
+app.get('/gallery/:id', function (req, res) {
+  db.Gallery.find({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(function (results) {
+    res.render('single', {Galleries:results});
+  });
+});
 
 // // to see a "new photo" form
 // app.get('/gallery/new', function (req, res) {
