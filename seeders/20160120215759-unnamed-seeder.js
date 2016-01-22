@@ -1,26 +1,22 @@
 'use strict';
+var faker = require ('faker');
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    /*
-      Add altering commands here.
-      Return a promise to correctly handle asynchronicity.
+    var gallery = [];
 
-      Example:
-      return queryInterface.bulkInsert('Person', [{
-        name: 'John Doe',
-        isBetaMember: false
-      }], {});
-    */
+    for (var i = 0; i < 10; i++) {
+      gallery.push({
+        author: faker.internet.userName(),
+        link: faker.image.imageUrl(),
+        description: faker.lorem.sentence()
+      });
+    }
+    console.log(gallery.length);
+    return queryInterface.bulkInsert('Gallery', gallery, {});
   },
 
   down: function (queryInterface, Sequelize) {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkDelete('Person', null, {});
-    */
+    return queryInterface.bulkDelete('Gallery', null, {});
   }
 };

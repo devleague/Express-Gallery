@@ -8,16 +8,21 @@ app.set('views', path.resolve(__dirname, 'views'));
 
 // to view a list of gallery photos
 app.get('/', function (req, res) {
+  db.Gallery.findAll()
+    .then(function (gallery) {
+      res.json(gallery);
+  });
   // var data = {
   //   gallery: [
   //   {author: 'Jon', link: 'https://i.ytimg.com/vi/ohjvRgewjCc/maxresdefault.jpg', description: 'Kappa Kappa Kappa'},
   //   {author: 'Jon', link: 'https://i.ytimg.com/vi/ohjvRgewjCc/maxresdefault.jpg', description: 'Kappa Kappa Kappa'}
   //   ]
   // };
+  // db.Galleries.findAll({}).then(function (gallery) {
+  //   res.json(gallery);
+  // });
+  // res.send('hello');
   // res.render('index', data);
-  db.Galleries.findAll({}).then(function (gallery) {
-    res.json(gallery);
-  });
 });
 
 // // to see a single gallery photo
