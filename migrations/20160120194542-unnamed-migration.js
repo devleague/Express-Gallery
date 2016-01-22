@@ -2,7 +2,7 @@
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.createTable('Gallery', {
+    return queryInterface.createTable('Galleries', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -17,11 +17,19 @@ module.exports = {
       },
       description: {
         type: Sequelize.STRING
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
       }
     });
   },
 
   down: function (queryInterface, Sequelize) {
-    return queryInterface.dropTable('Gallery');
+    return queryInterface.dropTable('Galleries');
   }
 };

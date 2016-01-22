@@ -9,14 +9,16 @@ module.exports = {
       gallery.push({
         author: faker.internet.userName(),
         link: faker.image.imageUrl(),
-        description: faker.lorem.sentence()
+        description: faker.lorem.sentence(),
+        createdAt: new Date(),
+        updatedAt: new Date()
       });
     }
     console.log(gallery.length);
-    return queryInterface.bulkInsert('Gallery', gallery, {});
+    return queryInterface.bulkInsert('Galleries', gallery, {});
   },
 
   down: function (queryInterface, Sequelize) {
-    return queryInterface.bulkDelete('Gallery', null, {});
+    return queryInterface.bulkDelete('Galleries', null, {});
   }
 };
