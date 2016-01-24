@@ -1,0 +1,17 @@
+
+<!DOCTYPE html>
+html(lang="en")
+head
+  meta(charset="UTF-8")
+  title Express Gallery
+body
+  h1 New Image
+  block content
+    form(method="POST", action="/gallery/#{id}?_method=PUT")
+      input(type="text", name="author", value=author placeholder="edit author name")
+      br
+      input(type="text", name="photo", value=link)
+      br
+      input(type="text", name="description", value=description)
+      br
+      input(type="submit" value="submit put request")
