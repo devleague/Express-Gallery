@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-html(lang="en")
-head
-  meta(charset="UTF-8")
-  title Express-Gallery
-body
-  ol
-    li #{Galleries.description}
-      ul
-        img(src= '#{Galleries.link}')
-        p By: #{Galleries.author}
+extends ./layout/layout.jade
+
+block title
+  h1 Express Gallery
+block content
+  p #{Galleries.description}
+  img(src= '#{Galleries.link}')
+  p By: #{Galleries.author}
