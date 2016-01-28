@@ -30,6 +30,13 @@ router.route('/')
       });
 });
 
+
+// router for /new
+router.route('/new')
+  .get(function(req, res) {
+    res.render('gallery/new');
+  });
+
 // router for /gallery/:id
 router.route('/:id')
   .get(function(req, res) {
@@ -50,9 +57,6 @@ router.route('/:id')
 });
 
 
-// router for /new
-router.get('/new', function(req, res) {
-  res.render('/gallery/new'); // do we need a callback?
-});
+
 
 module.exports = router;
