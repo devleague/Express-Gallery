@@ -10,6 +10,7 @@ app.use(bodyParser.urlencoded({
   extended:true
 }));
 
+app.use('/', gallery);
 app.use('/gallery', gallery);
 
 // app.use('/', )
