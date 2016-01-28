@@ -10,27 +10,45 @@ router.route('/')
   .get(function(req, res) {
     Photo.findAll()
     .then(function(data) {
-      // res.send({success:true}); // this works
       res.render('gallery/index', {
         "Photos": data
-      }); // this doesn't work
+      });
     })
     .catch(function(error) {
       console.log(error);
     });
 
-  });
-
-router.post('/gallery', function (req, res) {
-  Photo.create({
-    author: req.body.author,
-    link: req.body.link,
-    description: req.body.description
   })
-    .then(function (photo) {
-      res.json(photo);
-    });
+  .post(function (req, res) {
+    Photo.create({
+      author: req.body.author,
+      link: req.body.link,
+      description: req.body.description
+    })
+      .then(function (photo) {
+        res.json(photo);
+      });
 });
+
+// router for /gallery/:id
+router.route('/:id')
+  .get(function(req, res) {
+    Photo.find({
+      where : {
+        id : req.params.id
+      }
+    })
+  .then(function(data) {
+      res.render('gallery/single', {
+        "Photo": data.dataValues
+      });
+  })
+  .catch(function(err) {
+    console.log(err);
+    res.send({ 'success': false});
+  });
+});
+
 
 // router for /new
 router.get('/new', function(req, res) {
