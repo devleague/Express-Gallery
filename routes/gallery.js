@@ -5,8 +5,6 @@ var db = require('./../models');
 
 var Post = db.Post;
 
-router.use(bodyParser.urlencoded({
-  extended:true
-}));
+
 
 module.exports = router;
