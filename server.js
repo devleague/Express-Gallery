@@ -1,8 +1,16 @@
 var express = require('express');
 var app = express();
-var db = require('./models');
+var router = express.Router();
 var bodyParser = require('body-parser');
-var Gallery = db.Gallery;
+var db = require('./models');
+var gallery = require('./routes/gallery.js');
+// var User = db.User; // User model does not exist yet
+
+app.use(bodyParser.urlencoded({
+  extended:true
+}));
+
+app.use('/gallery', gallery);
 
 // app.use('/', )
 app.listen(3000, function() {
