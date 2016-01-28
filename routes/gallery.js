@@ -5,16 +5,14 @@ var db = require('./../models');
 
 var Photo = db.Photo;
 
-router.use(bodyParser.urlencoded({
-  extended:true
-}));
+
 
 // router for /
 router.route('/')
   .get(function(req, res) {
     Photo.findAll()
     .then(function(photos) {
-      // res.send({success:true}); // this works
+      res.send({success:true}); // this works
       res.render('gallery/index'); // this doesn't work
     })
     .catch(function(error) {
@@ -22,6 +20,17 @@ router.route('/')
     });
 
   });
+
+router.post('/gallery', function (req, res) {
+  Photo.create({
+    author: req.body.author,
+    link: req.body.link,
+    description: req.body.description
+  })
+    .then(function (photo) {
+      res.json(photo);
+    });
+});
 
 // router for /new
 router.get('/new', function(req, res) {
