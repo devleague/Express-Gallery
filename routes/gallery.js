@@ -5,15 +5,15 @@ var db = require('./../models');
 
 var Photo = db.Photo;
 
-
-
 // router for /
 router.route('/')
   .get(function(req, res) {
     Photo.findAll()
-    .then(function(photos) {
-      res.send({success:true}); // this works
-      res.render('gallery/index'); // this doesn't work
+    .then(function(data) {
+      // res.send({success:true}); // this works
+      res.render('gallery/index', {
+        "Photos": data
+      }); // this doesn't work
     })
     .catch(function(error) {
       console.log(error);
