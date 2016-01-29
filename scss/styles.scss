@@ -1,14 +1,62 @@
-$dark-color : #333333;
+// PROCESS
+// 0. CSS reset
+// 1. Set basic variables & media query ranges
+// 2. Style large blocks with bg colors for layout
+// 3. Get general layout elements (block) sized for all media queries
+// 4. Modify general layout elements with &
+// 5. Secondary features grid (S --> L)
+// 6. Typography & Image Sizes
+// 7. Refactor the SCSS to make it dryer & simpler.
+// 8. Set variables for common values.
 
-body {
-  background: $dark-color;
+// 0. RESETS & FRAMEWORKS
+@import "partials/reset";
+
+* {
+  box-sizing: border-box;
+  font-style: Oswald;
 }
 
+// VARIABLES & MIXINS
+$mobile-width: 95%;
+// Mixins
+
+// MEDIA QUERY RANGES
+$medium: "only screen and (min-width: 630px)";
+$large: "only screen and (min-width:900px)";
+
+// GENERAL STYLES
+body {
+  background-color: #F5F5F5;
+}
+h1 {
+text-align: center;
+color: #878288;
+font-size: 48px;
+font-family: Verdana, Geneva, sans-serif;
+}
+h3{
+text-align: center;
+color: #878288;
+font-size: 18px;
+font-family: Verdana, Geneva, sans-serif;
+}
 #image-container {
-  max-width: 500px;
-  background-color : red;
+  margin: 0 auto;
+  max-width: 80%;
 
   img {
-    max-width: 90%;
+    max-width: 100%;
+  }
+}
+ul {
+  list-style-type: none;
+  font-family: Verdana, Geneva, sans-serif;
+  color: #878288;
+  font-size: 0.75em;
+  text-align: center;
+  padding-top: 10px;
+  a {
+    color: #888888;
   }
 }
