@@ -13,11 +13,6 @@ app.use(bodyParser.urlencoded({
   extended : true
 }));
 
-
-// for jade
-app.set('view engine', 'jade');
-app.set('views', 'templates');
-
 app.use(methodOverride(function(req, res) {
   if(req.body && typeof req.body === 'object' && '_method' in req.body) {
     var method = req.body._method;
@@ -25,6 +20,11 @@ app.use(methodOverride(function(req, res) {
     return method;
   }
 }));
+
+// for jade
+app.set('view engine', 'jade');
+app.set('views', 'templates');
+
 
 app.use('/gallery', gallery);
 

@@ -64,9 +64,40 @@ router.route('/:id')
     console.log(err);
     res.send({ 'success': false});
   });
+})
+  .put(function(req, res) {
+    console.log('HEERREEE???');
+    Photo.findById(req.params.id)
+    .then(function(data) {
+      data.update({
+        link : req.body.link,
+        description : req.body.description,
+        author : req.body.author
+      })
+    .then(function (data) {
+      res.render('gallery/single', {
+        "Photo" : data.dataValues
+      } );
+    });
+    })
+    .catch(function(err) {
+      console.log(err);
+      res.send({'success': false});
+
+    });
+  });
+
+router.get('/:id/edit', function(req, res) {
+  Photo.find({
+      where : {
+        id : req.params.id
+      }
+    })
+  .then(function(data) {
+    res.render('gallery/edit', {
+      "Photo": data.dataValues
+    });
+  });
 });
-
-
-
 
 module.exports = router;
