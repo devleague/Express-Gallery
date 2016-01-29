@@ -47,12 +47,21 @@ table {
 
 * {
   box-sizing: border-box;
-  font-style: Oswald; }
+  font-style: Oswald;
+  transition: all 1s ease; }
 
 body {
-  background-color: #F5F5F5; }
+  background-color: #F5F5F5;
+  background-image: url(./../assets/Puppy_pavement.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 250px; }
+
+#header_div {
+  height: 200px;
+  width: 100%; }
 
 h1 {
+  margin-top: 60px;
   text-align: center;
   color: #878288;
   font-size: 48px;
@@ -62,20 +71,32 @@ h3 {
   text-align: center;
   color: #878288;
   font-size: 18px;
+  font-weight: bold;
   font-family: Verdana, Geneva, sans-serif; }
 
-#image-container {
-  margin: 0 auto;
-  max-width: 80%; }
-  #image-container img {
-    max-width: 100%; }
+.photoBackground {
+  padding: 10px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  min-height: 250px;
+  margin: 25px; }
 
-ul {
-  list-style-type: none;
-  font-family: Verdana, Geneva, sans-serif;
-  color: #878288;
-  font-size: 0.75em;
-  text-align: center;
-  padding-top: 10px; }
-  ul a {
-    color: #888888; }
+.image-container {
+  flex: 0 0 26.5%;
+  margin: 10px 10px;
+  padding: 10px; }
+  .image-container img {
+    max-width: 100%;
+    width: 100%;
+    max-height: 100%; }
+  .image-container ul {
+    width: 100%;
+    list-style-type: none;
+    font-family: Verdana, Geneva, sans-serif;
+    color: #878288;
+    font-size: 0.75em;
+    text-align: center;
+    padding-top: 10px; }
+    .image-container ul a {
+      color: #888888; }
