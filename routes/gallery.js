@@ -66,7 +66,6 @@ router.route('/:id')
   });
 })
   .put(function(req, res) {
-    console.log('HEERREEE???');
     Photo.findById(req.params.id)
     .then(function(data) {
       data.update({
@@ -83,7 +82,16 @@ router.route('/:id')
     .catch(function(err) {
       console.log(err);
       res.send({'success': false});
-
+    });
+  })
+  .delete(function(req,res){
+     Photo.destroy({
+      where : {
+        id : req.params.id
+      }
+    })
+    .then(function(data) {
+      res.redirect('/gallery');
     });
   });
 

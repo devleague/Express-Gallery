@@ -8,6 +8,10 @@ block content
       li author : #{Photo.author}
       li link : #{Photo.link}
       li description: #{Photo.description}
-      li delete
-      li edit
+    form(method="GET", action="/gallery/#{Photo.id}/edit")
+          button(type="submit", value="submit") edit
+    form(name="delete-photo", method="POST", action="/gallery/#{Photo.id}")
+      input(type="hidden", name="_method", value="DELETE")
+      button(type="submit", value="submit") delete
+
       li go back
