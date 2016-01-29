@@ -4,7 +4,7 @@ block content
     h3
       a(href="/gallery/new") New
   each photo in Photos
-    div
+    #image-container
       a(href="/gallery/#{photo.id}")
         img(src="#{photo.link}")
     div

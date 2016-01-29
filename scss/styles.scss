@@ -1,0 +1,14 @@
+$dark-color : #333333;
+
+body {
+  background: $dark-color;
+}
+
+#image-container {
+  max-width: 500px;
+  background-color : red;
+
+  img {
+    max-width: 90%;
+  }
+}

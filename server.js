@@ -21,11 +21,16 @@ app.use(methodOverride(function(req, res) {
   }
 }));
 
+//
+app.use(express.static('public'));
+
 // for jade
 app.set('view engine', 'jade');
 app.set('views', 'templates');
 
-
+app.get('/', function(req,res) {
+  res.redirect('/gallery');
+});
 app.use('/gallery', gallery);
 
 app.post('/users', function (req, res) {

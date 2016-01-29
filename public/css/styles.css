@@ -1,0 +1,8 @@
+body {
+  background: #333333; }
+
+#image-container {
+  max-width: 500px;
+  background-color: red; }
+  #image-container img {
+    max-width: 90%; }
