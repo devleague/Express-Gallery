@@ -1,6 +1,6 @@
 {
   "development": {
-    "username": "Corina",
+    "username": "bradbishop",
     "database": "express_gallery",
     "host": "127.0.0.1",
     "dialect": "postgres"
