@@ -6,7 +6,8 @@ block content
   div
     ul
       li author : #{Photo.author}
-      li link : #{Photo.link}
+      li link:&nbsp;
+        a(href="#{Photo.link}") #{Photo.link}
       li description: #{Photo.description}
     form(method="GET", action="/gallery/#{Photo.id}/edit")
           button(type="submit", value="submit") edit
