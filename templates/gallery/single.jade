@@ -1,18 +1,19 @@
 extends ./../layout
-
 block content
-  .single-feature
-    img(src="#{Photo.link}")
-  #main
-    ul
-      li author : #{Photo.author}
-      li link:&nbsp;
-        a(href="#{Photo.link}") #{Photo.link}
-      li description: #{Photo.description}
-    form(method="GET", action="/gallery/#{Photo.id}/edit")
-          button(type="submit", value="submit") edit
-    form(name="delete-photo", method="POST", action="/gallery/#{Photo.id}")
-      input(type="hidden", name="_method", value="DELETE")
-      button(type="submit", value="submit") delete
-
-      li go back
+  #single-main
+    .single-feature
+      h3 #{Photo.author}
+      img.portrait(src="#{Photo.link}")
+      ul
+        li description: #{Photo.description}
+      ul.button
+        li
+          form(method="GET", action="/gallery/#{Photo.id}/edit")
+            button(type="submit", value="submit") edit
+        li
+          form(name="delete-photo", method="POST", action="/gallery/#{Photo.id}")
+            input(type="hidden", name="_method", value="DELETE")
+            button(type="submit", value="submit") delete
+        li
+          form(method="GET", action="/gallery/")
+            button(type="submit", value="submit") back

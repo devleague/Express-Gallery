@@ -3,15 +3,15 @@ block content
   #new-post
     a(href="/gallery/new")
       p New Post
-  #main
+  .main
     each photo in Photos
       .thumbnail
         a(href="/gallery/#{photo.id}")
           img.portrait(src="#{photo.link}")
       ul
-        li #{photo.author} -&nbsp;#{photo.link}
-  #footer
-    p &nbsp;
+        li #{photo.author}&nbsp;- #{photo.link}
+    #footer
+      p &nbsp;
 
 
 
