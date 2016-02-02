@@ -1,10 +1,5 @@
 module.exports = {
-  'PORT' : 3000,
   'SESSION' : {
-    'secret' : 'Keyboard cat'
-  },
-  'CREDENTIALS' : {
-    'USERNAME' : 'Bob',
-    'PASSWORD' : 'superSecret'
+    'secret' : 'sH;IWAEFH;IFSH;ISFDHI;ASFDHI;DFSKLJDSAFJLASFELKJ'
   }
 };
