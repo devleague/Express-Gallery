@@ -1,13 +1,18 @@
-var express = require('express');
-var app = express();
-var methodOverride = require('method-override');
-var router = express.Router();
-var bodyParser = require('body-parser');
-var db = require('./models');
-var gallery = require('./routes/gallery.js');
-var Photo = db.Photo;
-var User = db.User;
+// ** GLOBAL VARIABLES ** \\
+var express         = require('express');
+var app             = express();
+var passport        = require('passport');
+var session         = require('express-session');
+var CONFIG          = require('./config.js');
+var methodOverride  = require('method-override');
+var bodyParser      = require('body-parser');
+var db              = require('./models');
+var gallery         = require('./routes/gallery.js');
+var authorization = require('./routes/authorization.js');
+var Photo           = db.Photo;
+var User            = db.User;
 
+app.use(express.static('public'));
 
 app.use(bodyParser.urlencoded({
   extended : true
@@ -21,26 +26,22 @@ app.use(methodOverride(function(req, res) {
   }
 }));
 
-//
-app.use(express.static('public'));
-
 // for jade
 app.set('view engine', 'jade');
 app.set('views', 'templates');
 
+app.use(session(CONFIG.SESSION));
+app.use(passport.initialize());
+app.use(passport.session());
+
+// ROUTES
 app.get('/', function(req,res) {
   res.redirect('/gallery');
 });
 app.use('/gallery', gallery);
 
-app.post('/users', function (req, res) {
-  User.create({ username: req.body.username })
-    .then(function (user) {
-      res.json(user);
-    });
-});
+app.use(authorization);
 
-// app.use('/', )
 app.listen(3000, function() {
   console.log('Server Online on port 3000');
   db.sequelize.sync();
