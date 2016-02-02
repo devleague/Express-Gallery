@@ -2,8 +2,22 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 var db = require('./../models');
-
+var authorization = require('./authorization.js');
 var Photo = db.Photo;
+
+function getUsername(req, res) {
+  if(req.isAuthenticated()) {
+    return req.user;
+  }
+  return false;
+}
+
+function isAuthenticated(req, res, next) {
+  if(!req.isAuthenticated()) {
+    return res.redirect('/login');
+  }
+  return next();
+}
 
 // router for /
 router.route('/')
@@ -20,8 +34,9 @@ router.route('/')
 
   })
   .post(function (req, res) {
+    var currentUser = getUsername(req, res);
     Photo.create({
-      author: req.body.author,
+      author: currentUser.username,
       link: req.body.link,
       description: req.body.description
     })
@@ -37,8 +52,10 @@ router.route('/new')
     res.render('gallery/new');
   })
   .post(function (req, res) {
+    var currentUser = getUsername(req, res);
     Photo.create({
-      author: req.body.author,
+      author: currentUser.username,
+      UserId: currentUser.id,
       link: req.body.link,
       description: req.body.description
     })
