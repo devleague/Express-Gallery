@@ -1,5 +1,5 @@
-var express = require('express');
-var passport = require('passport');
+var express         = require('express');
+var passport        = require('passport');
 var LocalStrategy   = require('passport-local');
 var router          = express.Router();
 var db              = require('./../models');
@@ -24,14 +24,12 @@ passport.use( new LocalStrategy (
         // res.send({'success' : false});
       });
     // var authenticatedUser = authenticate(username, password);
-    // console.log(authenticatedUser);
     // var isAuthenticated = authenticatedUser.isAuthenticated;
     // console.log(isAuthenticated);
     // if(!isAuthenticated) {
     //   return done(null, false);
     // }
     // var user = authenticatedUser.user;
-    // console.log('not fail');
     // return done(null, user);
   }
 ));
@@ -51,10 +49,17 @@ router.get('/users', function (req, res) {
 });
 
 router.post('/users', function (req, res) {
-  User.create({ username: req.body.username })
+  if(req.body.password === req.body.verifyPassword) {
+  User.create({
+    username: req.body.username,
+    email_address: req.body.email_address,
+    password : req.body.password
+  })
     .then(function (user) {
-      res.json(user);
+      res.send('/gallery');
     });
+  }
+  console.log('passwords did not match');
 });
 
 router.get('/login', function(req, res) {
@@ -67,7 +72,6 @@ router.post('/login', passport.authenticate('local', {
 }));
 
 router.get('/secret', isAuthenticated, function(req, res) {
-  console.log(req.user);
   req.user.role = 'ADMIN';
   res.render('secret', {role: req.user.role.toLowerCase()
   });
@@ -86,7 +90,7 @@ function getUsername(req, res) {
 }
 
 function isAuthenticated(req, res, next) {
-  if(!req.isAuthenticated()) {
+  if(!req.isAuthenticated) {
     return res.redirect('/login');
   }
   return next();
