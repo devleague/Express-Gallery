@@ -42,6 +42,7 @@ router.post('/new', functions.isAuthenticated, function (req, res) {
     author: currentUser.username,
     UserId: currentUser.id,
     link: req.body.link,
+    source: req.body.source,
     description: req.body.description
   })
     .then(function () {

@@ -6,7 +6,7 @@ head
   title Express Gallery
   link(rel="stylesheet", href="./../css/styles.css")
 body
-  div.main
+  .main
     h1 _Woofitekt
     ul.button
       li
@@ -21,5 +21,4 @@ body
       li
         form(method="GET", action="/logout")
           button(type="submit", value="submit") Logout
-    p logged in as __
-  block content
+    block content

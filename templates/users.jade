@@ -1,13 +1,12 @@
 extends ./layout
-
 block content
-  h3 Create New User
-  form#newUser(method="POST" action="/users")
-    p User:
-      input(type="text" name="username", placeholder="New Username" autofocus)
-    p Email:
+  form(method="POST" action="/users")
+    p new username:
+      input(type="text" name="username")
+    p email address:
       input(type="text" name="email_address")
-    p Password:
+    p password:
       input(type="password" name="password")
+    p verify password:
       input(type="password" name="verifyPassword")
-    button(type="submit") Create
+    button(type="submit") Sign Up

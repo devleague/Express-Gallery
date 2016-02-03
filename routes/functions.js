@@ -14,8 +14,7 @@ module.exports = (function() {
   }
 
   function _isAuthenticated(req, res, next) {
-    // console.log(req.session);
-    if(req.session.passport === undefined) {
+    if(!req.isAuthenticated) {
       return res.redirect('/login');
     }
     return next();

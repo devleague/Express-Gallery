@@ -98,6 +98,7 @@ ul {
     word-wrap: break-word;
     padding-top: 10px; }
     ul li a {
+      color: #989BA5;
       text-decoration: underline; }
 
 .button li {

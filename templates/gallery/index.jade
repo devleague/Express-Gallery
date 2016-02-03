@@ -1,17 +1,11 @@
 extends ./../layout
 block content
-  .main
-    each photo in Photos
-      .thumbnail
-        a(href="/gallery/#{photo.id}")
-          img.portrait(src="#{photo.link}")
-      ul
-        li #{photo.author}&nbsp;- #{photo.link}
-    #footer
-      p &nbsp;
-
-
-
-
-          form(method="GET", action="/gallery/new")
-            button(type="submit", value="submit") New Post
+  each photo in Photos
+    .thumbnail
+      a(href="/gallery/#{photo.id}")
+        img.portrait(src="#{photo.link}")
+    ul
+      li #{photo.author}&nbsp;-&nbsp;
+        a(href="#{photo.source}") #{photo.source}
+  #footer
+    p &nbsp;

@@ -11,6 +11,9 @@ module.exports = function(sequelize, DataTypes) {
     description: {
       type: DataTypes.TEXT,
       allowNull: false
+    },
+    source: {
+      type: DataTypes.TEXT
     }
   }, {
     classMethods: {

@@ -53,6 +53,7 @@ router.get('/users', function (req, res) {
 });
 
 router.post('/users', function (req, res) {
+  console.log(req.body);
   if(req.body.password === req.body.verifyPassword) {
   User.create({
     username: req.body.username,
