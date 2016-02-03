@@ -8,4 +8,18 @@ head
 body
   div.main
     h1 _Woofitekt
+    ul.button
+      li
+        form(method="GET", action="/gallery/new")
+          button(type="submit", value="submit") New Post
+      li
+        form(method="GET", action="/login")
+          button(type="submit", value="submit") Login
+      li
+        form(method="GET", action="/users")
+          button(type="submit", value="submit") Sign Up
+      li
+        form(method="GET", action="/logout")
+          button(type="submit", value="submit") Logout
+    p logged in as __
   block content
