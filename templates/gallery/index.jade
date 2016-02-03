@@ -2,8 +2,9 @@ extends ./../layout
 block content
   each photo in Photos
     .thumbnail
-      a(href="/gallery/#{photo.id}")
-        img.portrait(src="#{photo.link}")
+      p
+        a(href="/gallery/#{photo.id}")
+          img.portrait(src="#{photo.link}")
     ul
       li #{photo.author}&nbsp;-&nbsp;
         a(href="#{photo.source}") #{photo.source}

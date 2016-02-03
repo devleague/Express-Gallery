@@ -6,7 +6,7 @@ block content
       img.portrait(src="#{Photo.link}")
       ul
         li description: #{Photo.description}
-      ul.button
+      ul
         li
           form(method="GET", action="/gallery/#{Photo.id}/edit")
             button(type="submit", value="submit") Edit

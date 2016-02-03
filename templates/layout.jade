@@ -8,17 +8,12 @@ head
 body
   .main
     h1 _Woofitekt
-    ul.button
-      li
-        form(method="GET", action="/gallery/new")
-          button(type="submit", value="submit") New Post
-      li
-        form(method="GET", action="/login")
-          button(type="submit", value="submit") Login
-      li
-        form(method="GET", action="/users")
-          button(type="submit", value="submit") Sign Up
-      li
-        form(method="GET", action="/logout")
-          button(type="submit", value="submit") Logout
+    div.nav
+      p
+        if isAuthenticated
+          a.button(href="/gallery/new") New Post
+          a.button(href="/logout") Logout
+        else
+          a.button(href="/users") Sign Up
+          a.button(href="/login") Login
     block content
