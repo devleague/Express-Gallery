@@ -10,34 +10,24 @@ var functions       = require('./functions.js');
 passport.use( new LocalStrategy (
   function(username, password, done) {
     return User.find({
-        where : {
-          username : username
-        }
-      })
-      .then(function(user){
-        var isAuthenticated = (username === user.username && password === user.password);
-        if(!isAuthenticated) {
-          return done(null, false);
-        }
-        return done(null, user);
-      })
-      .catch(function(err) {
-        console.log(err);
-        // res.send({'success' : false});
-      });
-    // var authenticatedUser = authenticate(username, password);
-    // var isAuthenticated = authenticatedUser.isAuthenticated;
-    // console.log(isAuthenticated);
-    // if(!isAuthenticated) {
-    //   return done(null, false);
-    // }
-    // var user = authenticatedUser.user;
-    // return done(null, user);
+      where : {
+        username : username
+      }
+    })
+    .then(function(user){
+      var isAuthenticated = (username === user.username && password === user.password);
+      if(!isAuthenticated) {
+        return done(null, false);
+      }
+      return done(null, user);
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
   }
 ));
 
 passport.serializeUser(function(user, done) {
-  console.log();
   return done(null,user); // CHANGE THIS TO user.id LATER
 });
 
@@ -53,18 +43,18 @@ router.get('/users', function (req, res) {
 });
 
 router.post('/users', function (req, res) {
-  console.log(req.body);
   if(req.body.password === req.body.verifyPassword) {
-  User.create({
+    User.create({
     username: req.body.username,
     email_address: req.body.email_address,
     password : req.body.password
   })
     .then(function (user) {
-      res.send('/gallery');
+      return res.redirect('/gallery');
     });
+  } else {
+    res.redirect('/users');
   }
-  console.log('passwords did not match');
 });
 
 router.get('/login', function(req, res) {
