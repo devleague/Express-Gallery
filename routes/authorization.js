@@ -4,6 +4,8 @@ var LocalStrategy   = require('passport-local');
 var router          = express.Router();
 var db              = require('./../models');
 var User            = db.User;
+var functions       = require('./functions.js');
+// var cookieParser    = require('cookie-parser');
 
 passport.use( new LocalStrategy (
   function(username, password, done) {
@@ -35,8 +37,10 @@ passport.use( new LocalStrategy (
 ));
 
 passport.serializeUser(function(user, done) {
+  console.log();
   return done(null,user); // CHANGE THIS TO user.id LATER
 });
+
 passport.deserializeUser(function(user, done) {// CHANGE user TO id LATER
   // User.findById(id, function(err, user) {
   //   done(err, user); // COMMENT THIS IN LATER
@@ -71,7 +75,7 @@ router.post('/login', passport.authenticate('local', {
   failureRedirect : '/login',
 }));
 
-router.get('/secret', isAuthenticated, function(req, res) {
+router.get('/secret', functions.isAuthenticated, function(req, res) {
   req.user.role = 'ADMIN';
   res.render('secret', {role: req.user.role.toLowerCase()
   });
@@ -81,43 +85,5 @@ router.get('/logout', function(req, res) {
   req.logout();
   res.redirect('/login');
 });
-
-function getUsername(req, res) {
-  if(req.isAuthenticated()) {
-    return req.user;
-  }
-  return false;
-}
-
-function isAuthenticated(req, res, next) {
-  if(!req.isAuthenticated) {
-    return res.redirect('/login');
-  }
-  return next();
-}
-
-function authenticate(username, password) {
-  return User.find({
-    where : {
-      username : username
-    }
-  })
-  .then(function(user){
-    var isAuthenticated = (username === user.username && password === user.password);
-    return {
-      isAuthenticated : isAuthenticated,
-      user : user
-    };
-  })
-  .catch(function(err) {
-    console.log(err);
-    // res.send({'success' : false});
-  });
-  // var CREDENTIALS = CONFIG.CREDENTIALS;
-  // var USERNAME = CREDENTIALS.USERNAME;
-  // var PASSWORD = CREDENTIALS.PASSWORD;
-
-  // return (username === USERNAME && password === PASSWORD);
-}
 
 module.exports = router;
