@@ -20,6 +20,7 @@
   "homepage": "https://github.com/corinajacobson/express-gallery-1#readme",
   "dependencies": {
     "body-parser": "^1.14.2",
+    "cookie-parser": "^1.4.1",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "jade": "^1.11.0",

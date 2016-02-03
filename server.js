@@ -6,17 +6,27 @@ var session         = require('express-session');
 var CONFIG          = require('./config.js');
 var methodOverride  = require('method-override');
 var bodyParser      = require('body-parser');
+// var cookieParser    = require('cookie-parser');
 var db              = require('./models');
 var gallery         = require('./routes/gallery.js');
-var authorization = require('./routes/authorization.js');
+var authorization   = require('./routes/authorization.js');
+var functions       = require('./routes/functions.js');
 var Photo           = db.Photo;
 var User            = db.User;
 
+// for jade
+app.set('view engine', 'jade');
+app.set('views', 'templates');
+
+
+// USE
 app.use(express.static('public'));
 
 app.use(bodyParser.urlencoded({
   extended : true
 }));
+
+// app.use(cookieParser());
 
 app.use(methodOverride(function(req, res) {
   if(req.body && typeof req.body === 'object' && '_method' in req.body) {
@@ -26,13 +36,12 @@ app.use(methodOverride(function(req, res) {
   }
 }));
 
-// for jade
-app.set('view engine', 'jade');
-app.set('views', 'templates');
-
+// require to initalize session and passport
 app.use(session(CONFIG.SESSION));
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(authorization);
 
 // ROUTES
 app.get('/', function(req,res) {
@@ -40,9 +49,8 @@ app.get('/', function(req,res) {
 });
 app.use('/gallery', gallery);
 
-app.use(authorization);
-
 app.listen(3000, function() {
   console.log('Server Online on port 3000');
   db.sequelize.sync();
 });
+
