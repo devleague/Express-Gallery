@@ -6,6 +6,7 @@ var db              = require('./../models');
 var User            = db.User;
 var functions       = require('./functions.js');
 // var cookieParser    = require('cookie-parser');
+var bcrypt = require('bcrypt');
 
 passport.use( new LocalStrategy (
   function(username, password, done) {
