@@ -4,17 +4,15 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var passport = require('passport');
 var BasicStrategy = require('passport-http').BasicStrategy;
+var CONFIG = require('./config');
 
 var db = require('./models');
-
-var CONFIG = require('./config');
 
 var app = express();
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(methodOverride('_method'));
 app.use(passport.initialize());
-app.use(passport.session());
 
 passport.use(new BasicStrategy(
   function (username, password, done) {
