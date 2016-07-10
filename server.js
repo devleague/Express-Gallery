@@ -21,24 +21,20 @@ app.set('views', path.resolve(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.use(express.static('public'));
 
-var locals = "";
-var visitorCount = 0;
-
 app.get('/', function (req, res) {
-  res.render('index', {
-    visitorCount: visitorCount++
-   });
+  res.render('index');
   //res.send('Returning a list of gallery photos');
+});
+
+
+app.get('/gallery/new', function (req, res) {
+  //console.log(Object.getOwnPropertyNames(req));
+  res.render('gallery-new');
 });
 
 app.get('/gallery/:id', function (req, res) {
   //console.log(req.params.id);
   res.send('Single gallery ' + req.params.id);
-});
-
-app.get('/gallery/new', function (req, res) {
-  //console.log(Object.getOwnPropertyNames(req));
-  res.send('Gallery submission form');
 });
 
 app.get('/gallery', function (req, res) {
@@ -48,6 +44,8 @@ app.get('/gallery', function (req, res) {
 
 app.post('/gallery', function (req, res) {
 
+  var locals;
+
   req.on('data', function(data) {
     console.log("Data coming in");
     locals = querystring.parse(data.toString());
@@ -55,6 +53,7 @@ app.post('/gallery', function (req, res) {
       if (err) {
         throw err;
       }
+    console.log("results" + result);
     console.log("App.post locals" + locals);
     res.render('gallery', result);
     })
@@ -72,6 +71,7 @@ app.post('/gallery', function (req, res) {
 });
 
 app.put('/gallery/:id', function (req, res) {
+  var locals;
 
   req.on('data', function(data) {
     console.log("Data coming in");

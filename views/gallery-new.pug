@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    title Express Gallery
+  body
+    form(type="x-www-form-urlencoded" method="POST" action="/gallery")
+      input(type="text" name="url")
+      input(type="text" name="author")
+      textarea(name="description")
+      button(type="submit") Submit
