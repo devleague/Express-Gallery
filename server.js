@@ -13,6 +13,7 @@ var pug = require('pug');
 var express = require('express');
 var querystring = require('querystring');
 var path = require('path');
+var Gallery = require('./gallery');
 
 var app = express();
 
@@ -20,11 +21,13 @@ app.set('views', path.resolve(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.use(express.static('public'));
 
-var dataObjects = "";
+var locals = "";
 var visitorCount = 0;
 
 app.get('/', function (req, res) {
-  res.render('index', { visitorCount: visitorCount++ });
+  res.render('index', {
+    visitorCount: visitorCount++
+   });
   //res.send('Returning a list of gallery photos');
 });
 
@@ -38,20 +41,32 @@ app.get('/gallery/new', function (req, res) {
   res.send('Gallery submission form');
 });
 
+app.get('/gallery', function (req, res) {
+  //console.log(Object.getOwnPropertyNames(req));
+  res.render('gallery');
+});
+
 app.post('/gallery', function (req, res) {
 
   req.on('data', function(data) {
     console.log("Data coming in");
-    dataInput = data.toString();
-    dataObjects = querystring.parse(dataInput);
-    console.log(dataObjects);
+    locals = querystring.parse(data.toString());
+    Gallery.create(locals, function (err, result) {
+      if (err) {
+        throw err;
+      }
+    console.log("App.post locals" + locals);
+    res.render('gallery', result);
+    })
+    //dataInput = data.toString();
+    //locals = querystring.parse(dataInput);
   })
 
   req.on('end', function() {
-    console.log(dataObjects.author);
-    console.log(dataObjects.url);
-    console.log(dataObjects.description);
-    res.send('Creating a gallery with ' + dataObjects.author + ', ' + dataObjects.url + ', ' + dataObjects.description);
+    console.log(locals.author);
+    console.log(locals.url);
+    console.log(locals.description);
+    //res.send('Creating a gallery with ' + locals.author + ', ' + locals.url + ', ' + locals.description);
   })
 
 });
@@ -60,16 +75,15 @@ app.put('/gallery/:id', function (req, res) {
 
   req.on('data', function(data) {
     console.log("Data coming in");
-    dataInput = data.toString();
-    dataObjects = querystring.parse(dataInput);
-    console.log(dataObjects);
+    locals = querystring.parse(data.toString());
+    console.log(locals);
   })
 
   req.on('end', function() {
-    console.log(dataObjects.author);
-    console.log(dataObjects.url);
-    console.log(dataObjects.description);
-    res.send('Updating gallery ' + req.params.id + ' with ' + dataObjects.author + ', ' + dataObjects.url +  ', ' + dataObjects.description);
+    console.log(locals.author);
+    console.log(locals.url);
+    console.log(locals.description);
+    res.send('Updating gallery ' + req.params.id + ' with ' + locals.author + ', ' + locals.url +  ', ' + locals.description);
   })
 
 });
