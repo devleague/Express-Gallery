@@ -50,7 +50,21 @@ app.post('/gallery', function (req, res) {
 });
 
 app.put('/gallery/:id', function (req, res) {
-  res.send('Updating gallery ' + req.params.id + ' with {new_author}, {new_url}, {new_description}');
+
+  req.on('data', function(data) {
+    console.log("Data coming in");
+    dataInput = data.toString();
+    dataObjects = querystring.parse(dataInput);
+    console.log(dataObjects);
+  })
+
+  req.on('end', function() {
+    console.log(dataObjects.author);
+    console.log(dataObjects.url);
+    console.log(dataObjects.description);
+    res.send('Updating gallery ' + req.params.id + ' with ' + dataObjects.author + ', ' + dataObjects.url +  ', ' + dataObjects.description);
+  })
+
 });
 
 app.delete('/gallery/:id', function (req, res) {
