@@ -1,0 +1,24 @@
+{
+  "name": "express-gallery",
+  "version": "1.0.0",
+  "description": "Express Gallery ===============",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/creindle/express-gallery.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/creindle/express-gallery/issues"
+  },
+  "homepage": "https://github.com/creindle/express-gallery#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
