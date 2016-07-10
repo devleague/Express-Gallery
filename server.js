@@ -21,9 +21,10 @@ app.set('view engine', 'pug');
 app.use(express.static('public'));
 
 var dataObjects = "";
+var visitorCount = 0;
 
 app.get('/', function (req, res) {
-  res.render('index', { title: 'Hey', message: 'Hello There!'});
+  res.render('index', { visitorCount: visitorCount++ });
   //res.send('Returning a list of gallery photos');
 });
 
