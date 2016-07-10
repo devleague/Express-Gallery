@@ -8,17 +8,23 @@
 */
 
 console.log("Sanity check");
+
+var pug = require('pug');
 var express = require('express');
+var querystring = require('querystring');
+var path = require('path');
 
 var app = express();
-var querystring = require('querystring');
+
+app.set('views', path.resolve(__dirname, 'views'));
+app.set('view engine', 'pug');
+app.use(express.static('public'));
 
 var dataObjects = "";
 
-app.use(express.static('public'));
-
 app.get('/', function (req, res) {
-  res.send('Returning a list of gallery photos');
+  res.render('index', { title: 'Hey', message: 'Hello There!'});
+  //res.send('Returning a list of gallery photos');
 });
 
 app.get('/gallery/:id', function (req, res) {
