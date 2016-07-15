@@ -9,17 +9,38 @@
 
 console.log("Sanity check");
 
-var pug = require('pug');
+// Module - Express
 var express = require('express');
+var app = express();
+
+// Module - Pug/Jade
+var pug = require('pug');
+
+// Module - morgan
+var morgan = require('morgan');
+
+// Module - body-parser
+var bodyParser = require('body-parser');
+
+// Module - querystring
 var querystring = require('querystring');
+
+// Other variables
 var path = require('path');
 var Gallery = require('./gallery');
 
-var app = express();
+// Express
+app.use(express.static('public'));
 
+// Pug
 app.set('views', path.resolve(__dirname, 'views'));
 app.set('view engine', 'pug');
-app.use(express.static('public'));
+
+// morgan
+app.use(morgan('dev'));
+
+// body-parser
+app.use(bodyParser.urlencoded({extended: false}));
 
 app.get('/', function (req, res) {
   res.render('index');
@@ -33,7 +54,7 @@ app.get('/gallery/new', function (req, res) {
 });
 
 app.get('/gallery/:id', function (req, res) {
-  //console.log(req.params.id);
+  console.log(req.params.id);
   res.send('Single gallery ' + req.params.id);
 });
 
@@ -42,50 +63,24 @@ app.get('/gallery', function (req, res) {
   res.render('gallery');
 });
 
-app.post('/gallery', function (req, res) {
-
-  var locals;
-
-  req.on('data', function(data) {
-    console.log("Data coming in");
-    locals = querystring.parse(data.toString());
-    Gallery.create(locals, function (err, result) {
-      if (err) {
-        throw err;
-      }
-    console.log("results" + result);
-    console.log("App.post locals" + locals);
+app.post('/gallery', function (req, res, next) {
+  var locals = req.body;
+  console.log("THE INPUT");
+  console.log(locals);
+  Gallery.create(locals, function (err, result) {
+    if (err) {
+      throw err;
+    }
+    console.log("Results " + Object.getOwnPropertyNames(result));
+    console.log("App.post locals " + Object.getOwnPropertyNames(locals));
     res.render('gallery', result);
-    })
-    //dataInput = data.toString();
-    //locals = querystring.parse(dataInput);
-  })
-
-  req.on('end', function() {
-    console.log(locals.author);
-    console.log(locals.url);
-    console.log(locals.description);
-    //res.send('Creating a gallery with ' + locals.author + ', ' + locals.url + ', ' + locals.description);
-  })
-
+  });
 });
 
 app.put('/gallery/:id', function (req, res) {
-  var locals;
 
-  req.on('data', function(data) {
-    console.log("Data coming in");
-    locals = querystring.parse(data.toString());
-    console.log(locals);
-  })
-
-  req.on('end', function() {
-    console.log(locals.author);
-    console.log(locals.url);
-    console.log(locals.description);
-    res.send('Updating gallery ' + req.params.id + ' with ' + locals.author + ', ' + locals.url +  ', ' + locals.description);
-  })
-
+  var locals = req.body;
+  res.send('Updating gallery ' + req.params.id + ' with ' + locals.author + ', ' + locals.url +  ', ' + locals.description);
 });
 
 app.delete('/gallery/:id', function (req, res) {
