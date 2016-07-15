@@ -1,5 +1,11 @@
 $background-color: #ff0000;
+$div: white;
 
 body {
   background-color: $background-color;
+}
+
+div {
+  background-color: $div;
+  border-style: solid;
 }

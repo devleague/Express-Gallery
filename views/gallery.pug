@@ -3,7 +3,14 @@ html(lang="en")
   head
     meta(charset="UTF-8")
     title Express Gallery
+    link(rel="stylesheet" type="text/css" href="/styles/styles.css")
   body
-    img(src=url)
-    p Uploaded by: #{author}
-    p= description
+    div(align="center")
+      div(align="left")
+        img(src=url)
+      div(align="left")
+        p Uploaded by: #{author}
+      div(align="left")
+        p= description
+      div(align="left")
+        p Copyright: #{url}
