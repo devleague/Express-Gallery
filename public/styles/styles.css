@@ -4,7 +4,7 @@ body {
 div {
   align: center;
   height: 100%;
-  background-color: white;
-  border-style: solid; }
+  background-color: white; }
   div div {
+    border-style: double;
     align: left; }

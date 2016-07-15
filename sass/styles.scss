@@ -9,9 +9,9 @@ div {
   align: center;
   height: 100%;
   background-color: $div;
-  border-style: solid;
 
   div {
+    border-style: double;
     align: left;
   }
 }
