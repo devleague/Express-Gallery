@@ -3,9 +3,21 @@ html(lang="en")
   head
     meta(charset="UTF-8")
     title Express Gallery
+    link(rel="stylesheet" type="text/css" href="/styles/styles.css")
   body
     form(type="x-www-form-urlencoded" method="POST" action="/gallery")
-      input(type="text" name="url")
-      input(type="text" name="author")
-      textarea(name="description")
-      button(type="submit") Submit
+      div(align="center")
+        div
+          label(for="url") URL
+        div(align="center" text-align="justify")
+          input(type="url" name="url" id="url")
+        div
+          label(for="author") Author
+        div
+          input(type="text" name="author")
+        div
+          label(for="description") Description
+        div
+          textarea(name="description" value="description")
+        div
+          input(type="submit")
