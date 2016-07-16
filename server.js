@@ -8,6 +8,8 @@
 */
 
 console.log("Sanity check");
+// Include json file
+var galleryData = require("./data/gallery");
 
 // Module - Express
 var express = require('express');
@@ -60,12 +62,16 @@ app.get('/gallery/:id', function (req, res) {
 
 app.get('/gallery', function (req, res) {
   //console.log(Object.getOwnPropertyNames(req));
-  res.render('gallery');
+  res.render('gallery', {galleryData: galleryData});
 });
 
 app.post('/gallery', function (req, res, next) {
   var locals = req.body;
   console.log("THE INPUT");
+  console.log(locals);
+  var assignId = Math.floor((Math.random() * 100) + 1);
+  locals.id = assignId;
+  console.log(locals.id);
   console.log(locals);
   Gallery.create(locals, function (err, result) {
     if (err) {
