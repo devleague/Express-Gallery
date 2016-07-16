@@ -6,8 +6,11 @@ html(lang="en")
     link(rel="stylesheet" type="text/css" href="/styles/styles.css")
   body
     div
-      ul
-      each val in galleryData
-        img(src=val.url width="100%" height="100%")
-        li= val.author
-        li= val.description
+      div
+        img(src=url width="100%" height="100%")
+      div
+        p Uploaded by: #{author}
+      div
+        p= description
+      div
+        p Copyright: #{url}
