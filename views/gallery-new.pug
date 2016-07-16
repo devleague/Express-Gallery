@@ -6,21 +6,25 @@ html(lang="en")
     link(rel="stylesheet" type="text/css" href="/styles/styles.css")
   body
     form(type="x-www-form-urlencoded" method="POST" action="/gallery")
-      div
-        div
-          label(for="url") URL
-        div(text-align="justify")
-          input(type="url" name="url" id="url")
+      div(id="border")
+        div(id="url")
+          div
+            label(for="url") URL
+          div(text-align="justify")
+            input(type="url" name="url")
 
-        div
-          label(for="author") Author
-        div
-          input(type="text" name="author")
+        div(id="author")
+          div
+            label(for="author") Author
+          div
+            input(type="text" name="author")
 
-        div
-          label(for="description") Description
-        div
-          textarea(name="description" value="description")
+        div(id="description")
+          div
+            label(for="description") Description
+          div
+            textarea(name="description" value="description")
 
-        div
-          input(type="submit")
+        div(id="submit")
+          div
+            input(type="submit")

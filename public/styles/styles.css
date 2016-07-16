@@ -1,10 +1,35 @@
 body {
   background-color: #ff0000; }
 
+#border {
+  border-style: double; }
+
 div {
   align: center;
   height: 100%;
   background-color: white; }
-  div div {
+  div #url {
+    border-style: solid;
+    border-left-color: #00FFFF;
+    align: left; }
+  div #author {
+    border-style: solid;
+    border-left-color: #7FFF00;
+    align: left; }
+  div #description {
+    border-style: solid;
+    border-left-color: #00008B;
+    align: left; }
+  div #submit {
+    border-style: solid;
+    border-left-color: #8B008B;
+    align: left; }
+  div #galleryPhoto {
+    border-style: solid;
+    align: left;
+    position: absolute;
+    width: 100%;
+    height: 100%; }
+  div #galleryPhoto:hover {
     border-style: double;
     align: left; }

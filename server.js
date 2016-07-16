@@ -30,6 +30,7 @@ var querystring = require('querystring');
 // Other variables
 var path = require('path');
 var Gallery = require('./gallery');
+var counter = 0;
 
 // Express
 app.use(express.static('public'));
@@ -45,8 +46,9 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.get('/', function (req, res) {
-  res.render('index');
+  //res.render('index');
   //res.send('Returning a list of gallery photos');
+  res.redirect('/gallery');
 });
 
 
@@ -94,7 +96,10 @@ app.post('/gallery', function (req, res, next) {
   var locals = req.body;
   console.log("THE INPUT");
   console.log(locals);
-  var assignId = Math.floor((Math.random() * 100) + 1);
+
+  counter++;
+  var assignId = counter;
+  //var assignId = Math.floor((Math.random() * 100) + 1);
   locals.id = assignId;
   console.log(locals.id);
   console.log(locals);
@@ -105,6 +110,7 @@ app.post('/gallery', function (req, res, next) {
     console.log("Results " + Object.getOwnPropertyNames(result));
     console.log("App.post locals " + Object.getOwnPropertyNames(locals));
     //res.render('gallery', result);
+    counter++;
     res.redirect('/gallery');
   });
 });
