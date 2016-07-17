@@ -27,10 +27,13 @@ var bodyParser = require('body-parser');
 // Module - querystring
 var querystring = require('querystring');
 
+// Module - method-override
+var methodOverride = require('method-override');
+var connect = require('connect');
+
 // Other variables
 var path = require('path');
 var Gallery = require('./gallery');
-var counter = 0;
 
 // Express
 app.use(express.static('public'));
@@ -45,12 +48,14 @@ app.use(morgan('dev'));
 // body-parser
 app.use(bodyParser.urlencoded({extended: false}));
 
+// Method-override
+app.use(methodOverride('_method'));
+
 app.get('/', function (req, res) {
   //res.render('index');
   //res.send('Returning a list of gallery photos');
   res.redirect('/gallery');
 });
-
 
 app.get('/gallery/new', function (req, res) {
   //console.log(Object.getOwnPropertyNames(req));
@@ -96,28 +101,31 @@ app.post('/gallery', function (req, res, next) {
   var locals = req.body;
   console.log("THE INPUT");
   console.log(locals);
-
-  counter++;
-  var assignId = counter;
-  //var assignId = Math.floor((Math.random() * 100) + 1);
+  var assignId = 1;
   locals.id = assignId;
   console.log(locals.id);
-  console.log(locals);
   Gallery.create(locals, function (err, result) {
     if (err) {
       throw err;
     }
     console.log("Results " + Object.getOwnPropertyNames(result));
     console.log("App.post locals " + Object.getOwnPropertyNames(locals));
-    //res.render('gallery', result);
-    counter++;
+    console.log("End", counter);
     res.redirect('/gallery');
   });
 });
 
-app.put('/gallery/:id', function (req, res) {
-
+app.put('/gallery', function (req, res) {
   var locals = req.body;
+  console.log("put works");
+
+  res.send('Updating gallery ' + req.params.id + ' with ' + locals.author + ', ' + locals.url +  ', ' + locals.description);
+});
+
+app.put('/gallery/:id', function (req, res) {
+  var locals = req.body;
+  console.log("put works");
+
   res.send('Updating gallery ' + req.params.id + ' with ' + locals.author + ', ' + locals.url +  ', ' + locals.description);
 });
 

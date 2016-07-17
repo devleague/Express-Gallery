@@ -5,12 +5,11 @@ html(lang="en")
     title Express Gallery
     link(rel="stylesheet" type="text/css" href="/styles/styles.css")
   body
+    h1 _Express Gallery
     div
+      h2 Uploaded by: #{author}
       div
         img(src=url width="100%" height="100%")
       div
-        p Uploaded by: #{author}
-      div
         p= description
-      div
         p Copyright: #{url}

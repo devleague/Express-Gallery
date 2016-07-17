@@ -27,9 +27,8 @@ div {
   div #galleryPhoto {
     border-style: solid;
     align: left;
-    position: absolute;
-    width: 100%;
-    height: 100%; }
+    width: 33%;
+    height: 33%; }
   div #galleryPhoto:hover {
     border-style: double;
     align: left; }
