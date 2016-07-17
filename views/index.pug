@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+html(lang='en')
+head
+  meta(charset='UTF-8')
+  title Express Gallery
+body
+  //- header
+  //-   span= fullName || 'First Last'
+  h1 Welcome to the gallery!
+  if new Date().getHours() >= 18
+    h2 Good evening :)
+  h2 The time is currently #{new Date()}
+  h3 You are currently visitor #{visitorCount}!
+  each gallery in galleries
+    img(src=gallery.link)
+    p Uploaded by: #{gallery.author}
+    p Descritption: #{gallery.description}
+
+
+
+//- for gallery in galleries
+//-   p = gallery

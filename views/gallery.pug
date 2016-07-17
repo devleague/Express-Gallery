@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title Express Gallery
+  body
+    for gallery in galleries
+      img(src=gallery.link)
+      p Uploaded by: #{gallery.author}
+      p Description: #{gallery.description}
