@@ -71,6 +71,9 @@ app.get('/gallery', function (req, res) {
 });
 
 app.get('/gallery/:id', function (req, res) {
+  if (typeof req.params.id !== 'number') {
+    return res.redirect('/gallery');
+  }
   Picture.findOne({
     where: {
       id: req.params.id
