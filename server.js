@@ -112,7 +112,7 @@ app.put('/gallery/:id', function (req, res) {
       id: req.params.id
     }
   })
-  .then(function(pictures) {
+  .then(function(picture) {
     res.render('gallery-id', {picture: picture});
   });
 });
