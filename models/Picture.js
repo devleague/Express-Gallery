@@ -3,7 +3,6 @@ module.exports = function(sequelize, DataTypes) {
     url: DataTypes.STRING,
     author: DataTypes.STRING,
     description: DataTypes.STRING
-  }, {});
-
+  });
   return Picture;
 };

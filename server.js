@@ -102,7 +102,6 @@ app.get('/gallery', function (req, res) {
 });
 
 app.post('/gallery', function (req, res, next) {
-  console.log(req.body.url);
   Picture.create({ url: req.body.url, author: req.body.author, description: req.body.description })
     .then(function(picture) {
       res.json(picture);
