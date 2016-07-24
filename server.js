@@ -16,7 +16,7 @@ var express = require('express');
 var app = express();
 
 var db = require('./models');
-var Gallery = db.Gallery;
+var Picture = db.Picture;
 //console.log('db: ', db);
 
 // Module - Pug/Jade
@@ -103,9 +103,9 @@ app.get('/gallery', function (req, res) {
 
 app.post('/gallery', function (req, res, next) {
   console.log(req.body.url);
-  Gallery.create({ url: req.body.url, author: req.body.author, description: req.body.description })
-    .then(function(gallery) {
-      res.json(gallery);
+  Picture.create({ url: req.body.url, author: req.body.author, description: req.body.description })
+    .then(function(picture) {
+      res.json(picture);
     });
   });
 

@@ -1,9 +1,9 @@
 module.exports = function(sequelize, DataTypes) {
-  var Gallery = sequelize.define("Gallery", {
+  var Picture = sequelize.define("Picture", {
     url: DataTypes.STRING,
     author: DataTypes.STRING,
     description: DataTypes.STRING
   }, {});
 
-  return Gallery;
+  return Picture;
 };
