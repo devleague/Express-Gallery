@@ -100,10 +100,22 @@ app.put('/gallery', function (req, res) {
 });
 
 app.put('/gallery/:id', function (req, res) {
-  var locals = req.body;
-  console.log("put works");
+  Picture.update({
+    url: req.body.url,
+    author: req.body.author,
+    description: req.body.description
+  }, {
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(function(pictures) {
+    res.json(pictures);
+  });
+  // var locals = req.body;
+  // console.log("put works");
 
-  res.send('Updating gallery ' + req.params.id + ' with ' + locals.author + ', ' + locals.url +  ', ' + locals.description);
+  // res.send('Updating gallery ' + req.params.id + ' with ' + locals.author + ', ' + locals.url +  ', ' + locals.description);
 });
 
 app.delete('/gallery/:id', function (req, res) {
