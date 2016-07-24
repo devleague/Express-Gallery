@@ -96,9 +96,10 @@ app.get('/gallery/:id', function (req, res) {
 });
 
 app.get('/gallery', function (req, res) {
-  //console.log(Object.getOwnPropertyNames(req));
-  var galleryData = require("./data/gallery");
-  res.render('gallery', {galleryData: galleryData});
+  Picture.findAll()
+    .then(function(pictures) {
+      res.json(pictures);
+    });
 });
 
 app.post('/gallery', function (req, res, next) {
