@@ -65,12 +65,15 @@ app.get('/gallery/new', function (req, res) {
 
 app.get('/gallery', function (req, res) {
   Picture.findAll()
-    .then(function(pictures) {
-      res.render('gallery', {pictures: pictures});
+    .then(function(picture) {
+      res.render('gallery', {picture: picture});
     });
 });
 
 app.get('/gallery/:id', function (req, res) {
+  if (req.params.id === null) {
+    res.redirect('/gallery');
+  }
   Picture.findOne({
     where: {
       id: req.params.id
