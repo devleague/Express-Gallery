@@ -19,7 +19,6 @@ var db = require('./models');
 var Gallery = db.Gallery;
 //console.log('db: ', db);
 
-
 // Module - Pug/Jade
 var pug = require('pug');
 
