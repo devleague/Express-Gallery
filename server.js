@@ -67,32 +67,14 @@ app.get('/gallery/new', function (req, res) {
 });
 
 app.get('/gallery/:id', function (req, res) {
-  console.log(req.params);
-  console.log(req.params.id);
-  console.log(typeof(req.params.id));
-  var pageId = req.params.id;
-  var idToInteger = parseInt(pageId);
-
-  var galleryData = require("./data/gallery");
-  console.log("FOR EACH");
-  console.log(galleryData.forEach(function(element, index) {
-    console.log("page id " + pageId);
-    console.log("GALLERY ELEMENT");
-    console.log("Element ID " + element.id);
-
-    console.log(index);
-
-    if (idToInteger === element.id) {
-      console.log("*****Match*****");
-      console.log("The index");
-      console.log(index);
-      console.log("The Element");
-      console.log(element);
-      console.log("***************");
-      res.render('gallery-id', element);
+  Picture.findOne({
+    where: {
+      id: req.params.id
     }
-  }));
-  //res.send('Single gallery ' + req.params.id);
+  })
+  .then(function(picture) {
+    res.json(picture);
+  });
 });
 
 app.get('/gallery', function (req, res) {
