@@ -15,6 +15,11 @@ console.log("Sanity check");
 var express = require('express');
 var app = express();
 
+var db = require('./models');
+var User = db.User;
+//console.log('db: ', db);
+
+
 // Module - Pug/Jade
 var pug = require('pug');
 
@@ -134,9 +139,10 @@ app.delete('/gallery/:id', function (req, res) {
   res.send('Deleting gallery ' + req.params.id);
 });
 
-var server = app.listen(3000, function () {
+var server = app.listen(8080, function () {
   var host = server.address().address;
   var port = server.address().port;
 
   console.log(`Example app listening at http://%s:%s`, host, port);
+  db.sequelize.sync();
 });
