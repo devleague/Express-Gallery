@@ -71,17 +71,19 @@ app.get('/gallery', function (req, res) {
 });
 
 app.get('/gallery/:id', function (req, res) {
-  if (req.params.id === null) {
-    res.redirect('/gallery');
-  }
   Picture.findOne({
     where: {
       id: req.params.id
     }
   })
   .then(function(picture) {
-    console.log(picture);
-    res.render('gallery-id', {picture: picture});
+    console.log(picture);//if picture === null
+    if (picture === null) {
+      return res.redirect('/gallery');
+    }
+    else {
+      res.render('gallery-id', {picture: picture});
+    }
   });
 });
 
@@ -92,7 +94,8 @@ app.post('/gallery', function (req, res, next) {
     description: req.body.description
   })
   .then(function(picture) {
-    res.render('gallery-new', {picture: picture});
+    console.log(picture.toJSON());
+    res.render('gallery-id', {picture: picture});
   });
 });
 
