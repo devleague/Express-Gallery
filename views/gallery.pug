@@ -6,7 +6,7 @@ html(lang="en")
     link(rel="stylesheet" type="text/css" href="/styles/styles.css")
   body
     div
-      each val in galleryData
-        img(src=val.url id="galleryPhoto")
+      each val in pictures
+        img(src=val.url id="pictures")
         li= val.author
         li= val.description

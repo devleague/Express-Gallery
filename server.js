@@ -63,6 +63,13 @@ app.get('/gallery/new', function (req, res) {
   res.render('gallery-new');
 });
 
+app.get('/gallery', function (req, res) {
+  Picture.findAll()
+    .then(function(pictures) {
+      res.render('gallery', {pictures: pictures});
+    });
+});
+
 app.get('/gallery/:id', function (req, res) {
   Picture.findOne({
     where: {
@@ -70,15 +77,9 @@ app.get('/gallery/:id', function (req, res) {
     }
   })
   .then(function(picture) {
-    res.json(picture);
+    console.log(picture);
+    res.render('gallery-id', {picture: picture});
   });
-});
-
-app.get('/gallery', function (req, res) {
-  Picture.findAll()
-    .then(function(pictures) {
-      res.json(pictures);
-    });
 });
 
 app.post('/gallery', function (req, res, next) {
@@ -88,7 +89,7 @@ app.post('/gallery', function (req, res, next) {
     description: req.body.description
   })
   .then(function(picture) {
-    res.json(picture);
+    res.render('gallery-new', {picture: picture});
   });
 });
 
@@ -103,7 +104,7 @@ app.put('/gallery/:id', function (req, res) {
     }
   })
   .then(function(pictures) {
-    res.json(pictures);
+    res.render('gallery-id', {picture: picture});
   });
 });
 

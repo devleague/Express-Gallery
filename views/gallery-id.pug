@@ -7,9 +7,9 @@ html(lang="en")
   body
     h1 _Express Gallery
     div
-      h2 Uploaded by: #{author}
+      h2 Uploaded by: #{picture.author}
       div
-        img(src=url width="100%" height="100%")
+        img(src=picture.url width="100%" height="100%")
       div
-        p= description
-        p Copyright: #{url}
+        p= picture.description
+        p Copyright: #{picture.url}
