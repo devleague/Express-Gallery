@@ -116,6 +116,7 @@ app.post('/gallery', function (req, res, next) {
 });
 
 app.put('/gallery', function (req, res) {
+
   var locals = req.body;
   console.log("put works");
 
