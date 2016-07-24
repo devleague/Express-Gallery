@@ -56,13 +56,10 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(methodOverride('_method'));
 
 app.get('/', function (req, res) {
-  //res.render('index');
-  //res.send('Returning a list of gallery photos');
   res.redirect('/gallery');
 });
 
 app.get('/gallery/new', function (req, res) {
-  //console.log(Object.getOwnPropertyNames(req));
   res.render('gallery-new');
 });
 
@@ -85,18 +82,14 @@ app.get('/gallery', function (req, res) {
 });
 
 app.post('/gallery', function (req, res, next) {
-  Picture.create({ url: req.body.url, author: req.body.author, description: req.body.description })
-    .then(function(picture) {
-      res.json(picture);
-    });
+  Picture.create({
+    url: req.body.url,
+    author: req.body.author,
+    description: req.body.description
+  })
+  .then(function(picture) {
+    res.json(picture);
   });
-
-app.put('/gallery', function (req, res) {
-
-  var locals = req.body;
-  console.log("put works");
-
-  res.send('Updating gallery ' + req.params.id + ' with ' + locals.author + ', ' + locals.url +  ', ' + locals.description);
 });
 
 app.put('/gallery/:id', function (req, res) {
@@ -112,14 +105,17 @@ app.put('/gallery/:id', function (req, res) {
   .then(function(pictures) {
     res.json(pictures);
   });
-  // var locals = req.body;
-  // console.log("put works");
-
-  // res.send('Updating gallery ' + req.params.id + ' with ' + locals.author + ', ' + locals.url +  ', ' + locals.description);
 });
 
 app.delete('/gallery/:id', function (req, res) {
-  res.send('Deleting gallery ' + req.params.id);
+  Picture.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(function(pictures) {
+    res.json(pictures);
+  });
 });
 
 var server = app.listen(8080, function () {
