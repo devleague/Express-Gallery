@@ -16,7 +16,7 @@ var express = require('express');
 var app = express();
 
 var db = require('./models');
-var User = db.User;
+var Gallery = db.Gallery;
 //console.log('db: ', db);
 
 
@@ -38,7 +38,7 @@ var connect = require('connect');
 
 // Other variables
 var path = require('path');
-var Gallery = require('./gallery');
+//var Gallery = require('./gallery');
 
 // Express
 app.use(express.static('public'));
@@ -103,22 +103,12 @@ app.get('/gallery', function (req, res) {
 });
 
 app.post('/gallery', function (req, res, next) {
-  var locals = req.body;
-  console.log("THE INPUT");
-  console.log(locals);
-  var assignId = 1;
-  locals.id = assignId;
-  console.log(locals.id);
-  Gallery.create(locals, function (err, result) {
-    if (err) {
-      throw err;
-    }
-    console.log("Results " + Object.getOwnPropertyNames(result));
-    console.log("App.post locals " + Object.getOwnPropertyNames(locals));
-    console.log("End", counter);
-    res.redirect('/gallery');
+  console.log(req.body.url);
+  Gallery.create({ url: req.body.url, author: req.body.author, description: req.body.description })
+    .then(function(gallery) {
+      res.json(gallery);
+    });
   });
-});
 
 app.put('/gallery', function (req, res) {
 
