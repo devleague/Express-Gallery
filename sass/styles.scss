@@ -1,5 +1,5 @@
-$background-color: #ff0000;
-$div: white;
+$background-color: white;
+$div: #ff0000;
 
 body {
   background-color: $background-color;
@@ -11,10 +11,20 @@ body {
 
 div {
   //border-style: double;
+  display: flex;
   align: center;
   height: 100%;
   background-color: $div;
-
+  border-style: dotted;
+  #header{
+    flex: 1 1 75%
+  }
+  #about{
+    flex: 1 1 25%;
+  }
+  #picture{
+    flex: 1 1 33%;
+  }
   #url {
     border-style: solid;
     border-left-color: #00FFFF;

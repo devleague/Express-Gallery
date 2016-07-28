@@ -1,13 +1,21 @@
 body {
-  background-color: #ff0000; }
+  background-color: white; }
 
 #border {
   border-style: double; }
 
 div {
+  display: flex;
   align: center;
   height: 100%;
-  background-color: white; }
+  background-color: #ff0000;
+  border-style: dotted; }
+  div #header {
+    flex: 1 1 75%; }
+  div #about {
+    flex: 1 1 25%; }
+  div #picture {
+    flex: 1 1 33%; }
   div #url {
     border-style: solid;
     border-left-color: #00FFFF;
