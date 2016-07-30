@@ -4,7 +4,11 @@ html(lang='en')
     meta(charset='UTF-8')
     title Express Gallery
   body
-    for gallery in galleries
-      img(src=gallery.link)
-      p Uploaded by: #{gallery.author}
-      p Description: #{gallery.description}
+    img(src=gallery.link)
+    p Uploaded by: #{gallery.author}
+    p Description: #{gallery.description}
+    p
+      button(type="submit" onclick="redirect()") Update
+script.
+  function redirect() {
+    window.location = 'update/#{gallery.id}'}
