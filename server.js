@@ -5,6 +5,8 @@ var morgan = require('morgan');
 var cookie = require('cookie-parser');
 var db = require('./models');
 var methodOverride = require('method-override');
+var passport = require('passport');
+var BasicStrategy = require('passport-http').BasicStrategy;
 var PORT = process.env.PORT || 8080;
 var Gallery = db.Gallery;
 var app = express();
@@ -30,6 +32,17 @@ app.use(methodOverride(function(req, res){
 // Serve files in the specified path
 app.use(express.static(path.resolve(__dirname, 'public')));
 
+// Passport middleware
+var user = { username: 'bob', password: 'secret', email: 'bob@example.com' };
+passport.use(new BasicStrategy(
+  function(username, password, done) {
+    // Example authentication strategy using
+    if ( !(username === user.username && password === user.password) ) {
+      return done(null, false);
+    }
+    return done(null, user);
+}));
+
 // Set file route and template engine
 app.set('views', path.resolve(__dirname, './views'));
 app.set('view engine', 'pug'); // pug = jade
@@ -46,7 +59,9 @@ app.get('/', function (req, res) {
   });
 });
 
-app.get('/gallery/new', function (req, res) {
+app.get('/gallery/new',
+  passport.authenticate('basic', { session: false }),
+  function(req, res) {
     res.render('newGallery');
 });
 
@@ -56,13 +71,15 @@ app.get('/gallery/:id', function (req, res, next) {
       id: req.params.id
     }
   }).then(function (gallery) {
-    res.render('gallery', {gallery: gallery});
+    res.render('gallery', {gallery: gallery, path: req.path});
   });
 });
 
-app.get('/gallery/update/:id', function (req, res) {
-  var id = req.params.id;
-  res.render('updateForm', {id:id});
+app.get('/gallery/update/:id',
+  passport.authenticate('basic', { session: false }),
+  function(req, res) {
+    var id = req.params.id;
+    res.render('updateForm', {id:id});
 });
 
 // Route handler for POST
