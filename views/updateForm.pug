@@ -4,16 +4,13 @@ head
   meta(charset="UTF-8")
   title Document
 body
-  h1 EDIT #{name}
-  form(method="post", action="/gallery/#{id}?_method=PUT", enctype="application/x-www/form-urlencoded")
-    h2 Author
-    input(type="text" name="author")
-    h2 Link
-    input(type="text" name="link")
-    h2 Description
-    input(type="text" name="desciption")
+  form(method="POST" action="/gallery/" + gallery.id enctype="application/x-www/form-urlencoded")
+    input(type="hidden" name="_method" value="PUT")
+    p Author
+    input(type="text" name="author" value=gallery.author)
+    p Link
+    input(type="text" name="link" value=gallery.link)
+    p Description
+    input(type="text" name="description" value=gallery.description)
     p
-    input(type="submit" value="EDIT")
-  h1 Delete Photo
-  form(method="POST", action="/gallery/#{id}?_method=DELETE")
-    input(type="submit" value="DELETE")
+      button(type="submit") Update Gallery
