@@ -81,11 +81,11 @@ visitorCount = 0;
 
 // Route handler for GET
 
-app.get('/', function (req, res) {
+app.get('/', isAuthenticated, function (req, res) {
   Gallery.findAll()
   .then(function (gallery) {
     var id = req.params.id;
-    res.render('index', {visitorCount: visitorCount++, galleries: gallery, title: "_MY ARCHITEKT"});
+    res.render('index', {visitorCount: visitorCount++, galleries: gallery});
   });
 });
 
@@ -186,7 +186,7 @@ app.put('/gallery/:id', function (req, res) {
 
 // Route handler for DELETE
 
-app.delete('/gallery/:id', function (req, res) {
+app.delete('/gallery/:id', isAuthenticated, function (req, res) {
   Gallery.destroy({
     where: {
       id: req.params.id
