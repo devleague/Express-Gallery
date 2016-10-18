@@ -29,7 +29,7 @@ app.get('/gallery/:id', function(req, res) {
   let id = req.params.id;
   Photo.findById(id)
     .then((photo) => {
-      res.json(photo);
+      res.json(photo.link);
     });
 });
 
@@ -69,10 +69,16 @@ app.put('/gallery/:id', function(req, res) {
   //to update selected photo in gallery
   let id = req.params.id;
   Photo.findById(id)
+  .then((photo) => {
+    photo.update({
+      description: req.body.description || photo.description,
+      author: req.body.author || photo.author,
+      link: req.body.link || photo.link
+    })
     .then((photo) => {
       res.json(photo);
+    });
   });
-
 });
 
 app.delete('/gallery/:id', function(req, res) {
@@ -80,6 +86,7 @@ app.delete('/gallery/:id', function(req, res) {
   let id = req.params.id;
   Photo.findById(id)
     .then((photo) => {
-      res.json(photo);
+      photo.destroy();
+      res.send('SUCCESS');
   });
 });
