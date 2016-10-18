@@ -29,21 +29,6 @@ app.get('/', function(req, res) {
     });
 });
 
-app.get('/gallery/:id', function(req, res) {
-  //to view single of gallery photo
-  let id = req.params.id;
-  Photo.findById(id)
-    .then((photo) => {
-      res.render('photo', {
-        title:photo.title,
-        link: photo.link,
-        description: photo.description,
-        //needs to be edited
-        relatedPhotos: [photo]
-      });
-    });
-});
-
 app.get('/gallery/new', function(req, res) {
   //to view new photo form
   //we will pass res.render an object with the user's info later
@@ -79,6 +64,21 @@ app.get('/gallery/:id/edit', function(req, res) {
   Photo.findById(id)
     .then((photo) => {
       res.json(photo);
+    });
+});
+
+app.get('/gallery/:id', function(req, res) {
+  //to view single of gallery photo
+  let id = req.params.id;
+  Photo.findById(id)
+    .then((photo) => {
+      res.render('photo', {
+        title:photo.title,
+        link: photo.link,
+        description: photo.description,
+        //needs to be edited
+        relatedPhotos: [photo]
+      });
     });
 });
 
