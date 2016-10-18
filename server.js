@@ -84,7 +84,7 @@ app.get('/gallery/:id', function(req, res) {
   Photo.findById(id)
     .then((photo) => {
       //add a WHERE clause here for hashtags
-      Photo.query('SELECT title, link FROM "Photos"')
+      Photo.query('SELECT title, link FROM "Photos" LIMIT 3')
       .then((related) => {
         res.render('photo', {
           title:photo.title,
@@ -115,7 +115,7 @@ app.post('/gallery/:id', function(req, res) {
       })
       .then((photo) => {
       //add a WHERE clause here for hashtags
-        Photo.query('SELECT title, link FROM "Photos"')
+        Photo.query('SELECT title, link FROM "Photos" LIMIT 3')
         .then((related) => {
           res.render('photo', {
             title:photo.title,
