@@ -1,8 +1,15 @@
-var express = require('express');
+let express = require('express');
 const bodyParser = require('body-parser');
-var app = express();
+const pug = require('pug');
+let app = express();
+let db = require('./models');
+let Photo = db.Photo;
+let User = db.User;
 
-var db = require('./models');
+app.use(express.static('./public'));
+app.set('view engine', 'pug');
+app.set('views', './views');
+
 app.use(bodyParser.urlencoded({ extended: true}));
 
 app.listen(3000, function() {
@@ -11,58 +18,68 @@ app.listen(3000, function() {
 
 app.get('/', function(req, res) {
   //to view list of gallery photos
-  User.findAll()
-    .then((users) => {
-      res.json(users);
+  Photo.findAll()
+    .then((photos) => {
+      res.json(photos);
     });
 });
 
 app.get('/gallery/:id', function(req, res) {
   //to view single of gallery photo
-  User.findAll()
-    .then((users) => {
-      res.json(users);
+  let id = req.params.id;
+  Photo.findById(id)
+    .then((photo) => {
+      res.json(photo);
     });
 });
 
 app.get('/gallery/new', function(req, res) {
   //to view new photo form
-  User.findAll()
-    .then((users) => {
-      res.json(users);
+
+});
+
+app.post('/users', (req, res) => {
+  //to create a new gallery photo
+  User.create({ username: req.body.username, password: req.body.password, emailaddress: req.body.emailaddress})
+    .then((user) => {
+      res.json(user);
     });
 });
 
 
 app.post('/gallery', (req, res) => {
   //to create a new gallery photo
-  Task.create({ title: req.body.title, UserId: 1 })
-    .then((task) => {
-      res.json(task);
+  Photo.create({ description: req.body.description, author: req.body.author, link: req.body.link, UserId: 2 })
+    .then((photos) => {
+      res.json(photos);
     });
 });
 
 
 app.get('/gallery/:id/edit', function(req, res) {
   //to edit selected photo in gallery
-  User.findAll()
-    .then((users) => {
-      res.json(users);
+  let id = req.params.id;
+  Photo.findById(id)
+    .then((photo) => {
+      res.json(photo);
     });
 });
 
 app.put('/gallery/:id', function(req, res) {
   //to update selected photo in gallery
-  User.findAll()
-    .then((users) => {
-      res.json(users);
-    });
+  let id = req.params.id;
+  Photo.findById(id)
+    .then((photo) => {
+      res.json(photo);
+  });
+
 });
 
 app.delete('/gallery/:id', function(req, res) {
   //to delete selected photo in gallery
-  User.findAll()
-    .then((users) => {
-      res.json(users);
-    });
+  let id = req.params.id;
+  Photo.findById(id)
+    .then((photo) => {
+      res.json(photo);
+  });
 });
