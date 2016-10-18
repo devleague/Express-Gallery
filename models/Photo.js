@@ -1,5 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   var Photo = sequelize.define("Photo", {
+    title: DataTypes.STRING,
     description: DataTypes.TEXT,
     author: DataTypes.STRING,
     link: DataTypes.TEXT
