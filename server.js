@@ -83,14 +83,18 @@ app.get('/gallery/:id', function(req, res) {
   let id = req.params.id;
   Photo.findById(id)
     .then((photo) => {
-      res.render('photo', {
-        title:photo.title,
-        link: photo.link,
-        description: photo.description,
-        author: photo.author,
-        hashtags: photo.hashtags,
-        //needs to be edited
-        relatedPhotos: [photo]
+      //add a WHERE clause here for hashtags
+      Photo.query('SELECT title, link FROM "Photos"')
+      .then((related) => {
+        res.render('photo', {
+          title:photo.title,
+          link: photo.link,
+          description: photo.description,
+          author: photo.author,
+          hashtags: photo.hashtags,
+          //needs to be edited
+          relatedPhotos: related
+        });
       });
     });
 });
@@ -110,14 +114,18 @@ app.post('/gallery/:id', function(req, res) {
         hashtags: req.body.hashtags || photo.hashtags
       })
       .then((photo) => {
-        res.render('photo', {
-          title:photo.title,
-          link: photo.link,
-          description: photo.description,
-          author: photo.author,
-          hashtags: photo.hashtags,
-          //needs to be edited
-          relatedPhotos: [photo]
+      //add a WHERE clause here for hashtags
+        Photo.query('SELECT title, link FROM "Photos"')
+        .then((related) => {
+          res.render('photo', {
+            title:photo.title,
+            link: photo.link,
+            description: photo.description,
+            author: photo.author,
+            hashtags: photo.hashtags,
+            //needs to be edited
+            relatedPhotos: related
+          });
         });
       });
     });
