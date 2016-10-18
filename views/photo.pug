@@ -1,0 +1,13 @@
+extends ./layout.pug
+
+block body
+  div#main
+    div#photoDiv
+      h5 #{title}
+      img(src=`${link}`)
+        div#description #{description}
+    div#sidebar
+      each rel in relatedPhotos
+        div.relatedPhoto
+          img(src=`${rel.link}`)
+          h5 #{rel.title}
