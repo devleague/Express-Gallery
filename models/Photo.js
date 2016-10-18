@@ -1,13 +1,15 @@
 module.exports = function(sequelize, DataTypes) {
-  var Task = sequelize.define("Photo", {
-    title: DataTypes.STRING
+  var Photo = sequelize.define("Photo", {
+    description: DataTypes.TEXT,
+    author: DataTypes.STRING,
+    link: DataTypes.TEXT
   }, {
     classMethods: {
       associate: function(models) {
-        Task.belongsTo(models.User);
+        Photo.belongsTo(models.User);
       }
     }
   });
 
-  return Task;
+  return Photo;
 };
