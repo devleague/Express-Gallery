@@ -5,7 +5,9 @@ block body
     div#photoDiv
       h5 #{title}
       img(src=`${link}`)
-      div#description #{description}
+      div#description
+        h5 #{author}
+        p #{description}
     div#sidebar
       each rel in relatedPhotos
         div.relatedPhoto
