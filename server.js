@@ -36,7 +36,8 @@ app.get('/gallery/new', function(req, res) {
     title: 'Untitled',
     author: 'Your name here',
     link: 'URL Link to Photo',
-    description: 'Your text here'
+    description: 'Your text here',
+    hashtags: 'Your tags here'
   });
 });
 
@@ -50,7 +51,12 @@ app.post('/users', (req, res) => {
 
 app.post('/gallery', (req, res) => {
   //to create a new gallery photo
-  Photo.create({ title: req.body.title, description: req.body.description, author: req.body.author, link: req.body.link, UserId: 2 })
+  Photo.create({ title: req.body.title,
+    description: req.body.description,
+    author: req.body.author,
+    link: req.body.link,
+    hashtags: req.body.hashtags,
+    UserId: 2 })
     .then((photos) => {
       res.json(photos);
     });
@@ -66,7 +72,8 @@ app.get('/gallery/:id/edit', function(req, res) {
         title:photo.title,
         link: photo.link,
         description: photo.description,
-        author: photo.author
+        author: photo.author,
+        hashtags: photo.hashtags
       });
     });
 });
@@ -81,6 +88,7 @@ app.get('/gallery/:id', function(req, res) {
         link: photo.link,
         description: photo.description,
         author: photo.author,
+        hashtags: photo.hashtags,
         //needs to be edited
         relatedPhotos: [photo]
       });
@@ -98,10 +106,19 @@ app.post('/gallery/:id', function(req, res) {
         title: req.body.title || photo.title,
         description: req.body.description || photo.description,
         author: req.body.author || photo.author,
-        link: req.body.link || photo.link
+        link: req.body.link || photo.link,
+        hashtags: req.body.hashtags || photo.hashtags
       })
       .then((photo) => {
-        res.json(photo);
+        res.render('photo', {
+          title:photo.title,
+          link: photo.link,
+          description: photo.description,
+          author: photo.author,
+          hashtags: photo.hashtags,
+          //needs to be edited
+          relatedPhotos: [photo]
+        });
       });
     });
   } else {
@@ -118,7 +135,8 @@ app.put('/gallery/:id', function(req, res) {
       title: req.body.title || photo.title,
       description: req.body.description || photo.description,
       author: req.body.author || photo.author,
-      link: req.body.link || photo.link
+      link: req.body.link || photo.link,
+      hashtags: req.body.hashtags || photo.hashtags
     })
     .then((photo) => {
       res.json(photo);
