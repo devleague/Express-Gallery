@@ -20,7 +20,12 @@ app.get('/', function(req, res) {
   //to view list of gallery photos
   Photo.findAll()
     .then((photos) => {
-      res.json(photos);
+      res.render('gallery', {
+        featured: {
+          link: 'https://pbs.twimg.com/media/B6mfb6nIYAA2Cox.jpg',
+        },
+        gallery: photos
+      });
     });
 });
 
@@ -29,7 +34,13 @@ app.get('/gallery/:id', function(req, res) {
   let id = req.params.id;
   Photo.findById(id)
     .then((photo) => {
-      res.json(photo.link);
+      res.render('photo', {
+        title:photo.title,
+        link: photo.link,
+        description: photo.description,
+        //needs to be edited
+        relatedPhotos: [photo]
+      });
     });
 });
 
