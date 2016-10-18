@@ -1,0 +1,33 @@
+{
+  "name": "express-gallery",
+  "version": "1.0.0",
+  "description": "Express Gallery ===============",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SpaceToastCoastToCoast/express-gallery.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SpaceToastCoastToCoast/express-gallery/issues"
+  },
+  "homepage": "https://github.com/SpaceToastCoastToCoast/express-gallery#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-sass": "^2.3.2",
+    "pg": "^6.1.0",
+    "pg-hstore": "^2.3.2",
+    "pug": "^2.0.0-beta6",
+    "sass": "^0.5.0",
+    "sequelize": "^3.24.4",
+    "sequelize-cli": "^2.4.0"
+  }
+}
