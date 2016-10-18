@@ -1,10 +1,10 @@
-let express = require('express');
+const express = require('express');
 const bodyParser = require('body-parser');
 const pug = require('pug');
-let app = express();
-let db = require('./models');
-let Photo = db.Photo;
-let User = db.User;
+const app = express();
+const db = require('./models');
+const Photo = db.Photo;
+const User = db.User;
 
 app.use(express.static('./public'));
 app.set('view engine', 'pug');
@@ -15,6 +15,32 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.listen(3000, function() {
   db.sequelize.sync();
 });
+
+let renderById = (res, id) => {
+  Photo.findById(id)
+    .then((photo) => {
+      //add a WHERE clause here for hashtags
+      Photo.findAll({
+        limit: 3,
+          where: {
+            id: {
+              $ne:id
+            }
+          }
+        })
+      .then((related) => {
+        res.render('photo', {
+          title:photo.title,
+          link: photo.link,
+          description: photo.description,
+          author: photo.author,
+          hashtags: photo.hashtags,
+          //needs to be edited
+          relatedPhotos: related
+        });
+      });
+    });
+};
 
 app.get('/', function(req, res) {
   //to view list of gallery photos
@@ -81,22 +107,7 @@ app.get('/gallery/:id/edit', function(req, res) {
 app.get('/gallery/:id', function(req, res) {
   //to view single of gallery photo
   let id = req.params.id;
-  Photo.findById(id)
-    .then((photo) => {
-      //add a WHERE clause here for hashtags
-      Photo.query('SELECT title, link FROM "Photos" LIMIT 3')
-      .then((related) => {
-        res.render('photo', {
-          title:photo.title,
-          link: photo.link,
-          description: photo.description,
-          author: photo.author,
-          hashtags: photo.hashtags,
-          //needs to be edited
-          relatedPhotos: related
-        });
-      });
-    });
+  renderById(res, id);
 });
 
 app.post('/gallery/:id', function(req, res) {
@@ -115,18 +126,7 @@ app.post('/gallery/:id', function(req, res) {
       })
       .then((photo) => {
       //add a WHERE clause here for hashtags
-        Photo.query('SELECT title, link FROM "Photos" LIMIT 3')
-        .then((related) => {
-          res.render('photo', {
-            title:photo.title,
-            link: photo.link,
-            description: photo.description,
-            author: photo.author,
-            hashtags: photo.hashtags,
-            //needs to be edited
-            relatedPhotos: related
-          });
-        });
+        renderById(res, id);
       });
     });
   } else {
