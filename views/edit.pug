@@ -1,0 +1,18 @@
+extends ./layout.pug
+
+block body
+  div#editPostForm
+    -var br = '<br />'
+    form(action=`/gallery/${id}` method="post")
+      input(type='hidden' name='_method' value='PUT')
+      p Title
+      input(type='text' name='title' value=title required)
+      p Author
+      input(type='text' name='author' value=author required)
+      p Link
+      textarea(name='link' rows='4' cols='48' required) #{link}
+      p Description
+      textarea(name='description' rows='16' cols='48' required) #{description}
+      !=br
+      !=br
+      input(type='submit' value='submit')
