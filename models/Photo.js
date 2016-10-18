@@ -3,7 +3,8 @@ module.exports = function(sequelize, DataTypes) {
     title: DataTypes.STRING,
     description: DataTypes.TEXT,
     author: DataTypes.STRING,
-    link: DataTypes.TEXT
+    link: DataTypes.TEXT,
+    hashtags: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {
