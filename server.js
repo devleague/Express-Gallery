@@ -46,7 +46,13 @@ app.get('/gallery/:id', function(req, res) {
 
 app.get('/gallery/new', function(req, res) {
   //to view new photo form
-
+  //we will pass res.render an object with the user's info later
+  res.render('new', {
+    title: 'Untitled',
+    author: 'Your name here',
+    link: 'URL Link to Photo',
+    description: 'Your text here'
+  });
 });
 
 app.post('/users', (req, res) => {
