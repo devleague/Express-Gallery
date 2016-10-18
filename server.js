@@ -60,7 +60,7 @@ app.post('/users', (req, res) => {
 
 app.post('/gallery', (req, res) => {
   //to create a new gallery photo
-  Photo.create({ description: req.body.description, author: req.body.author, link: req.body.link, UserId: 2 })
+  Photo.create({ title: req.body.title, description: req.body.description, author: req.body.author, link: req.body.link, UserId: 2 })
     .then((photos) => {
       res.json(photos);
     });
@@ -82,6 +82,7 @@ app.put('/gallery/:id', function(req, res) {
   Photo.findById(id)
   .then((photo) => {
     photo.update({
+      title: req.body.title || photo.title,
       description: req.body.description || photo.description,
       author: req.body.author || photo.author,
       link: req.body.link || photo.link
