@@ -29,21 +29,6 @@ app.get('/', function(req, res) {
     });
 });
 
-app.get('/gallery/:id', function(req, res) {
-  //to view single of gallery photo
-  let id = req.params.id;
-  Photo.findById(id)
-    .then((photo) => {
-      res.render('photo', {
-        title:photo.title,
-        link: photo.link,
-        description: photo.description,
-        //needs to be edited
-        relatedPhotos: [photo]
-      });
-    });
-});
-
 app.get('/gallery/new', function(req, res) {
   //to view new photo form
   //we will pass res.render an object with the user's info later
@@ -66,7 +51,7 @@ app.post('/users', (req, res) => {
 
 app.post('/gallery', (req, res) => {
   //to create a new gallery photo
-  Photo.create({ description: req.body.description, author: req.body.author, link: req.body.link, UserId: 2 })
+  Photo.create({ title: req.body.title, description: req.body.description, author: req.body.author, link: req.body.link, UserId: 2 })
     .then((photos) => {
       res.json(photos);
     });
@@ -82,12 +67,28 @@ app.get('/gallery/:id/edit', function(req, res) {
     });
 });
 
+app.get('/gallery/:id', function(req, res) {
+  //to view single of gallery photo
+  let id = req.params.id;
+  Photo.findById(id)
+    .then((photo) => {
+      res.render('photo', {
+        title:photo.title,
+        link: photo.link,
+        description: photo.description,
+        //needs to be edited
+        relatedPhotos: [photo]
+      });
+    });
+});
+
 app.put('/gallery/:id', function(req, res) {
   //to update selected photo in gallery
   let id = req.params.id;
   Photo.findById(id)
   .then((photo) => {
     photo.update({
+      title: req.body.title || photo.title,
       description: req.body.description || photo.description,
       author: req.body.author || photo.author,
       link: req.body.link || photo.link
