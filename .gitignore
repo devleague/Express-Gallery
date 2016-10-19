@@ -35,7 +35,6 @@ node_modules
 **/config.json
 
 #Gulpfile
-**/gulpfile.js
 **/fake-server.js
 
 #css
