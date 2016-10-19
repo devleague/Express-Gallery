@@ -1,9 +1,11 @@
 extends ./layout.pug
 
 block body
-  div#main
+  -var sp = ' '
+  div#notFound
     h3 404
     h5 Page not found.
     p That item doesn't exist in our database. Perhaps you would like to
+    !=sp
       a(href="/gallery/new") create it.
     a(href="/") Main Page

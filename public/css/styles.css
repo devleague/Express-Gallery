@@ -86,6 +86,15 @@ textarea, input[type=text] {
       flex-flow: row wrap;
       width: 85%; } }
 
+#notFound {
+  font-size: 14px;
+  color: #606060;
+  width: 90%;
+  margin: auto; }
+  @media (min-width: 900px) {
+    #notFound {
+      width: 85%; } }
+
 #gallery {
   display: flex;
   flex-flow: row wrap;
