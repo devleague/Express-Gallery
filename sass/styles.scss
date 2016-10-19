@@ -1,5 +1,58 @@
-$light-color : #dddddd;
+@import "mixins";
+
+$light-color : #fdfdfd;
+$border-color: #a0a0a0;
+$header-desc-color: #909090;
+$text-color: #606060;
+
+html {
+  font-family: sans-serif;
+}
 
 body {
   background: $light-color;
+}
+
+#header {
+  height: 100px;
+  padding: 8px;
+  color: $header-desc-color;
+  border-top: 1px solid $border-color;
+  width: 90%;
+  margin: auto;
+  margin-top: 64px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+  h1 {
+    flex: 0 1 auto;
+    font-size: 56px;
+    text-align: center;
+    font-weight: bold;
+    color: $text-color;
+    width: 100%;
+    @include respond-to(medium) {
+      font-size: 72px;
+      width: 45%
+    }
+  }
+}
+
+#headerDesc {
+
+  flex: 0 1 auto;
+  width: 35%;
+  border-left: 1px solid $border-color;
+  padding-left: 16px;
+  display: none;
+  @include respond-to(medium) {
+    display: inline-block;
+  }
+}
+
+#main {
+  @include respond-to(medium) {
+
+  }
 }

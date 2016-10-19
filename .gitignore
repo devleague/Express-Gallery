@@ -36,3 +36,4 @@ config/**
 
 #Gulpfile
 **/gulpfile.js
+**/fake-server.js

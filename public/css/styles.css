@@ -1,2 +1,39 @@
+html {
+  font-family: sans-serif; }
+
 body {
-  background: #dddddd; }
+  background: #fdfdfd; }
+
+#header {
+  height: 100px;
+  padding: 8px;
+  color: #909090;
+  border-top: 1px solid #a0a0a0;
+  width: 90%;
+  margin: auto;
+  margin-top: 64px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between; }
+  #header h1 {
+    flex: 0 1 auto;
+    font-size: 56px;
+    text-align: center;
+    font-weight: bold;
+    color: #606060;
+    width: 100%; }
+    @media (min-width: 900px) {
+      #header h1 {
+        font-size: 72px;
+        width: 45%; } }
+
+#headerDesc {
+  flex: 0 1 auto;
+  width: 35%;
+  border-left: 1px solid #a0a0a0;
+  padding-left: 16px;
+  display: none; }
+  @media (min-width: 900px) {
+    #headerDesc {
+      display: inline-block; } }
