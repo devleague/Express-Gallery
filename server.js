@@ -2,11 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const pug = require('pug');
 const validate = require('./middleware/validation.js');
+const log = require ('./middleware/log.js');
 const app = express();
 const db = require('./models');
 const Photo = db.Photo;
 const User = db.User;
-const log = require ('./middleware/log.js');
 
 app.use(express.static('./public'));
 app.set('view engine', 'pug');
