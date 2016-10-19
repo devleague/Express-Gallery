@@ -20,53 +20,50 @@ app.listen(3000, function() {
 
 let renderById = (res, id) => {
   Photo.findById(id)
-    .then((photo) => {
-      //add a WHERE clause here for hashtags
-      Photo.findAll({
-        limit: 3,
-          where: {
-            id: {
-              $ne:id
-            }
+  .then((photo) => {
+    //add a WHERE clause here for hashtags
+    Photo.findAll({
+      limit: 3,
+        where: {
+          id: {
+            $ne:id
           }
-        })
-      .then((related) => {
-        res.render('photo', {
-          title:photo.title,
-          link: photo.link,
-          description: photo.description,
-          author: photo.author,
-          hashtags: photo.hashtags,
-          //needs to be edited
-          relatedPhotos: related
-        })
-        .catch((error) => {
-          res.status(404)
-          .json({error: 'Does not exist'});
-        });
+        }
+      })
+    .then((related) => {
+      res.render('photo', {
+        title:photo.title,
+        link: photo.link,
+        description: photo.description,
+        author: photo.author,
+        hashtags: photo.hashtags,
+        //needs to be edited
+        relatedPhotos: related
       })
       .catch((error) => {
-          res.status(404)
-          .json({error: 'Does not exist'});
-      });;
+        res.status(404).render('404');
+      });
     })
     .catch((error) => {
-      res.status(404)
-      .json({error: 'Does not exist'});
+      res.status(404).render('404');
     });
+  })
+  .catch((error) => {
+    res.status(404).render('404');
+  });
 };
 
 app.get('/', function(req, res) {
   //to view list of gallery photos
   Photo.findAll()
-    .then((photos) => {
-      res.render('gallery', {
-        featured: {
-          link: 'https://pbs.twimg.com/media/B6mfb6nIYAA2Cox.jpg',
-        },
-        gallery: photos
-      });
+  .then((photos) => {
+    res.render('gallery', {
+      featured: {
+        link: 'https://pbs.twimg.com/media/B6mfb6nIYAA2Cox.jpg',
+      },
+      gallery: photos
     });
+  });
 });
 
 
@@ -85,12 +82,12 @@ app.get('/gallery/new', function(req, res) {
 app.post('/users', (req, res) => {
   //to create a new gallery photo
   User.create({ username: req.body.username, password: req.body.password, emailaddress: req.body.emailaddress})
-    .then((user) => {
-      res.status(200)
-          .json({
-            success: true
-          });
+  .then((user) => {
+    res.status(200)
+    .json({
+      success: true
     });
+  });
 });
 
 app.post('/gallery', validate,(req, res) => {
@@ -101,28 +98,28 @@ app.post('/gallery', validate,(req, res) => {
     link: req.body.link,
     hashtags: req.body.hashtags,
     UserId: 2 })
-    .then((photos) => {
-      res.status(200)
-        .json({
-          success: true
-        });
+  .then((photos) => {
+    res.status(200)
+    .json({
+      success: true
     });
+  });
 });
 
 app.get('/gallery/:id/edit', function(req, res) {
   //to edit selected photo in gallery
   let id = parseInt(req.params.id);
   Photo.findById(id)
-    .then((photo) => {
-      res.render('edit', {
-        id: id,
-        title: photo.title,
-        link: photo.link,
-        description: photo.description,
-        author: photo.author,
-        hashtags: photo.hashtags
-      });
+  .then((photo) => {
+    res.render('edit', {
+      id: id,
+      title: photo.title,
+      link: photo.link,
+      description: photo.description,
+      author: photo.author,
+      hashtags: photo.hashtags
     });
+  });
 });
 
 app.get('/gallery/:id', function(req, res) {
@@ -151,10 +148,7 @@ app.post('/gallery/:id', validate, function(req, res) {
       });
     })
     .catch((error) => {
-      res.status(404)
-      .json({
-        success: false
-      });
+      res.status(404).render('404');
     });
   } else {
     res.sendStatus(405);
@@ -174,10 +168,10 @@ app.put('/gallery/:id', validate, function(req, res) {
       hashtags: req.body.hashtags || photo.hashtags
     })
     .then((photo) => {
-        res.status(200)
-          .json({
-            success: true
-          });
+      res.status(200)
+      .json({
+        success: true
+      });
     });
   });
 });
@@ -186,17 +180,16 @@ app.delete('/gallery/:id', function(req, res) {
   //to delete selected photo in gallery
   let id = req.params.id;
   Photo.findById(id)
-    .then((photo) => {
-      photo.destroy();
-      res.status(200)
-        .json({
-          success: true
-        });
-  })
-    .catch((error) => {
-      res.status(404)
-      .json({success: false});
+  .then((photo) => {
+    photo.destroy();
+    res.status(200)
+    .json({
+      success: true
     });
+  })
+  .catch((error) => {
+    res.status(404).render('404');
+  });
 });
 
 module.exports = app;

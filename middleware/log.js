@@ -9,7 +9,7 @@ let writeFunc = (file, req) => {
   getLogData(file, logString, currentDate, (logData) => {
     fs.writeFile(`./logs/${currentDate}.log`, logData, (err) => {
       if(err){
-        return console.log(err);
+        return console.error(err);
       }
     });
   });
@@ -26,7 +26,6 @@ let getLogData = (file, logString, currentDate, callback) => {
     return callback(logData);
   }
 };
-
 
 let log = (req, res, next) => {
   fs.readdir('./logs/', (err, file) => {
