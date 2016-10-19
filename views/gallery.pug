@@ -1,11 +1,12 @@
 extends ./layout.pug
 
 block body
+  div#featured
+    img(src=`${featured.link}` id='featuredImage')
   div#main
-    img(src=`${featured.link}`)
     div#gallery
       each photo in gallery
         div.galleryPreview
           a(href=`/gallery/${photo.id}`)
-            img(src=`${photo.link}`)
-            h5 #{photo.title}
+            img(src=`${photo.link}` class='preview')
+          h5 #{photo.title}

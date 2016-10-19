@@ -2,20 +2,38 @@ html {
   font-family: sans-serif; }
 
 body {
-  background: #fdfdfd; }
+  background: #fdfdfd;
+  color: #606060;
+  font-size: 14px; }
+
+h5 {
+  font-size: 16px;
+  font-weight: bolder; }
+
+#photoTitle {
+  color: #909090;
+  width: 85%;
+  margin: auto;
+  padding-bottom: 12px; }
 
 #header {
-  height: 100px;
-  padding: 8px;
+  height: 72px;
   color: #909090;
-  border-top: 1px solid #a0a0a0;
   width: 90%;
   margin: auto;
-  margin-top: 64px;
+  margin-bottom: 24px;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between; }
+  @media (min-width: 900px) {
+    #header {
+      width: 85%;
+      height: 88px;
+      padding: 8px;
+      border-top: 1px solid #a0a0a0;
+      margin-top: 64px;
+      margin-bottom: 48px; } }
   #header h1 {
     flex: 0 1 auto;
     font-size: 56px;
@@ -29,6 +47,7 @@ body {
         width: 45%; } }
 
 #headerDesc {
+  font-size: 14px;
   flex: 0 1 auto;
   width: 35%;
   border-left: 1px solid #a0a0a0;
@@ -37,3 +56,78 @@ body {
   @media (min-width: 900px) {
     #headerDesc {
       display: inline-block; } }
+
+#main {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  justify-content: space-between; }
+  @media (min-width: 900px) {
+    #main {
+      flex-flow: row wrap;
+      width: 85%; } }
+
+#gallery {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin: auto;
+  margin-top: 8px;
+  width: 95%; }
+  @media (min-width: 900px) {
+    #gallery {
+      width: 100%; } }
+
+.galleryPreview {
+  width: 100%; }
+  @media (min-width: 900px) {
+    .galleryPreview {
+      width: 32%; } }
+
+.preview {
+  width: 100%; }
+
+.relatedPhoto {
+  text-align: right; }
+  .relatedPhoto h5 {
+    text-align: left;
+    margin-top: 12px;
+    margin-bottom: 24px; }
+
+.relatedPreview {
+  width: 100%; }
+  @media (min-width: 900px) {
+    .relatedPreview {
+      width: 250px; } }
+
+#featured {
+  margin: auto;
+  padding: 8px;
+  border-bottom: 1px solid #a0a0a0;
+  width: 90%; }
+  @media (min-width: 900px) {
+    #featured {
+      width: 85%; } }
+
+#featuredImage {
+  width: 100%; }
+
+#photoDiv {
+  width: 100%; }
+  @media (min-width: 900px) {
+    #photoDiv {
+      width: 60%; } }
+
+.detail {
+  width: 100%; }
+
+#sidebar {
+  width: 100%;
+  flex-flow: column nowrap;
+  display: none; }
+  @media (min-width: 900px) {
+    #sidebar {
+      display: inline-block;
+      width: 250px; } }
