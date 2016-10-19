@@ -7,24 +7,45 @@ $text-color: #606060;
 
 html {
   font-family: sans-serif;
+
 }
 
 body {
   background: $light-color;
+  color: $text-color;
+  font-size: 14px;
+}
+
+h5 {
+  font-size: 16px;
+  font-weight: bolder;
+}
+
+#photoTitle {
+  color: $header-desc-color;
+  width: 85%;
+  margin: auto;
+  padding-bottom: 12px;
 }
 
 #header {
-  height: 100px;
-  padding: 8px;
+  height: 72px;
   color: $header-desc-color;
-  border-top: 1px solid $border-color;
   width: 90%;
   margin: auto;
-  margin-top: 64px;
+  margin-bottom: 24px;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
+  @include respond-to(medium) {
+    width: 85%;
+    height: 88px;
+    padding: 8px;
+    border-top: 1px solid $border-color;
+    margin-top: 64px;
+    margin-bottom: 48px;
+  }
   h1 {
     flex: 0 1 auto;
     font-size: 56px;
@@ -40,7 +61,7 @@ body {
 }
 
 #headerDesc {
-
+  font-size: 14px;
   flex: 0 1 auto;
   width: 35%;
   border-left: 1px solid $border-color;
@@ -52,7 +73,85 @@ body {
 }
 
 #main {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  justify-content: space-between;
   @include respond-to(medium) {
+    flex-flow: row wrap;
+    width: 85%;
+  }
+}
 
+#gallery {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin: auto;
+  margin-top: 8px;
+  width: 95%;
+  @include respond-to(medium) {
+    width: 100%;
+  }
+}
+.galleryPreview {
+  width: 100%;
+  @include respond-to(medium) {
+    width: 32%;
+  }
+}
+
+.preview {
+  width: 100%;
+}
+
+.relatedPhoto {
+  text-align: right;
+  h5 {
+    text-align: left;
+    margin-top: 12px;
+    margin-bottom: 24px;
+  }
+}
+.relatedPreview {
+  width: 100%;
+  @include respond-to(medium) {
+    width: 250px;
+  }
+}
+
+#featured {
+  margin: auto;
+  padding: 8px;
+  border-bottom: 1px solid $border-color;
+  width: 90%;
+  @include respond-to(medium) {
+    width: 85%;
+  }
+}
+
+#featuredImage {
+  width: 100%
+}
+
+#photoDiv {
+  width: 100%;
+  @include respond-to(medium) {
+    width: 60%;
+  }
+}
+.detail {
+  width: 100%;
+}
+
+#sidebar {
+  width: 100%;
+  flex-flow: column nowrap;
+  display: none;
+  @include respond-to(medium) {
+    display: inline-block;
+    width: 250px;
   }
 }

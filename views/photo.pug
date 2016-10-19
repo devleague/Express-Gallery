@@ -1,10 +1,10 @@
 extends ./layout.pug
 
 block body
+  h5#photoTitle #{title}
   div#main
     div#photoDiv
-      h5 #{title}
-      img(src=`${link}`)
+      img(src=`${link}` class='detail')
       div#description
         h5 #{author}
         p #{description}
@@ -12,5 +12,5 @@ block body
     div#sidebar
       each rel in relatedPhotos
         div.relatedPhoto
-          img(src=`${rel.link}`)
-          h5 #{rel.title}
+          img(src=`${rel.link}` class='relatedPreview')
+        h5 #{rel.title}
