@@ -95,7 +95,7 @@ app.get('/gallery/:id/edit', function(req, res) {
     .then((photo) => {
       res.render('edit', {
         id: id,
-        title:photo.title,
+        title: photo.title,
         link: photo.link,
         description: photo.description,
         author: photo.author,

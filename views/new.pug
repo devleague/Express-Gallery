@@ -3,7 +3,7 @@ extends ./layout.pug
 block body
   div#newPostForm
     -var br = '<br />'
-    form(action=`/gallery` method="post")
+    form( onsubmit="return validate(this);")
       p Title
       input(type='text' name='title' placeholder=title required)
       p Author
@@ -12,6 +12,9 @@ block body
       textarea(name='link' rows='1' cols='48' placeholder=link required)
       p Description
       textarea(name='description' rows='16' cols='48' placeholder=description required)
+      p Hashtags
+      input(type = 'text' name = 'hashtags' placeholder = hashtags)
       !=br
       !=br
       input(type='submit' value='submit')
+  script( type='text/javascript', src='/js/validation.js')
