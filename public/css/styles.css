@@ -1,21 +1,26 @@
+/* line 8, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
 html {
   font-family: sans-serif; }
 
+/* line 12, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
 body {
   background: #fdfdfd;
   color: #606060;
   font-size: 14px; }
 
+/* line 18, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
 h5 {
   font-size: 16px;
   font-weight: bolder; }
 
+/* line 23, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
 #photoTitle {
   color: #909090;
   width: 85%;
   margin: auto;
   padding-bottom: 12px; }
 
+/* line 30, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
 #header {
   height: 72px;
   color: #909090;
@@ -27,6 +32,7 @@ h5 {
   align-items: center;
   justify-content: space-between; }
   @media (min-width: 900px) {
+    /* line 30, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
     #header {
       width: 85%;
       height: 88px;
@@ -34,6 +40,7 @@ h5 {
       border-top: 1px solid #a0a0a0;
       margin-top: 64px;
       margin-bottom: 48px; } }
+  /* line 48, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
   #header h1 {
     flex: 0 1 auto;
     font-size: 56px;
@@ -42,10 +49,12 @@ h5 {
     color: #606060;
     width: 100%; }
     @media (min-width: 900px) {
+      /* line 48, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
       #header h1 {
         font-size: 72px;
         width: 45%; } }
 
+/* line 62, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
 #headerDesc {
   font-size: 14px;
   flex: 0 1 auto;
@@ -54,24 +63,30 @@ h5 {
   padding-left: 16px;
   display: none; }
   @media (min-width: 900px) {
+    /* line 62, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
     #headerDesc {
       display: inline-block; } }
 
+/* line 74, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
 #newPostForm, #editPostForm {
   width: 90%;
   margin: auto; }
   @media (min-width: 900px) {
+    /* line 74, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
     #newPostForm, #editPostForm {
       width: 85%; } }
 
+/* line 82, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
 textarea, input[type=text] {
   width: 100%;
   resize: vertical;
   font-family: sans-serif; }
   @media (min-width: 900px) {
+    /* line 82, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
     textarea, input[type=text] {
       width: 62.5%; } }
 
+/* line 91, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
 #main {
   font-size: 14px;
   color: #606060;
@@ -82,19 +97,23 @@ textarea, input[type=text] {
   align-items: flex-start;
   justify-content: space-between; }
   @media (min-width: 900px) {
+    /* line 91, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
     #main {
       flex-flow: row wrap;
       width: 85%; } }
 
+/* line 106, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
 #notFound {
   font-size: 14px;
   color: #606060;
   width: 90%;
   margin: auto; }
   @media (min-width: 900px) {
+    /* line 106, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
     #notFound {
       width: 85%; } }
 
+/* line 116, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
 #gallery {
   display: flex;
   flex-flow: row wrap;
@@ -103,57 +122,73 @@ textarea, input[type=text] {
   margin-top: 8px;
   width: 95%; }
   @media (min-width: 900px) {
+    /* line 116, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
     #gallery {
       width: 100%; } }
 
+/* line 127, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
 .galleryPreview {
   width: 100%; }
   @media (min-width: 900px) {
+    /* line 127, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
     .galleryPreview {
       width: 32%; } }
 
+/* line 134, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
 .preview {
   width: 100%; }
 
+/* line 138, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
 .relatedPhoto {
   text-align: right; }
+  /* line 140, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
   .relatedPhoto h5 {
     text-align: left;
     margin-top: 12px;
     margin-bottom: 24px; }
 
+/* line 146, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
 .relatedPreview {
   width: 100%; }
   @media (min-width: 900px) {
+    /* line 146, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
     .relatedPreview {
       width: 250px; } }
 
+/* line 153, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
 #featured {
   margin: auto;
   padding: 8px;
   border-bottom: 1px solid #a0a0a0;
   width: 90%; }
   @media (min-width: 900px) {
+    /* line 153, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
     #featured {
       width: 85%; } }
 
+/* line 163, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
 #featuredImage {
   width: 100%; }
 
+/* line 167, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
 #photoDiv {
   width: 100%; }
   @media (min-width: 900px) {
+    /* line 167, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
     #photoDiv {
       width: 60%; } }
 
+/* line 173, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
 .detail {
   width: 100%; }
 
+/* line 177, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
 #sidebar {
   width: 100%;
   flex-flow: column nowrap;
   display: none; }
   @media (min-width: 900px) {
+    /* line 177, /Users/caseyoeda/DevLeague/express-gallery/sass/styles.scss */
     #sidebar {
       display: inline-block;
       width: 250px; } }
