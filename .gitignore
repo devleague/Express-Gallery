@@ -32,10 +32,9 @@ node_modules
 node_modules
 
 # Config file for db
-config/**
+**/config.json
 
 #Gulpfile
-**/gulpfile.js
 **/fake-server.js
 
 #css
