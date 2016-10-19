@@ -6,19 +6,19 @@ let validateForm = () => {
   let hashtags = document.forms["validate"]["hashtags"];
 
   if (/[{}<>;]/g.test(title.value)){
-    alert('Invalid Input in title');
+    title.value = 'Invalid Input in Title';
     title.focus();
     return false;
   } else if(/[{}<>;]/g.test(author.value)) {
-    alert('Invalid Input in author');
+    author.value = 'Invalid Input in Author';
     author.focus();
     return false;
   } else if(/[{}<>;]/g.test(description.value)) {
-    alert('Invalid Input in description');
+    description.value = 'Invalid Input in Description';
     description.focus();
     return false;
   } else if(/[<>?":{}|!@$%^&*()_\-+,./\];\\=]/g.test(hashtags.value)){
-    alert('Invalid Input in hashtags');
+    hashtags.value = 'Invalid Input in Hashtags';
     hashtags.focus();
     return false;
   }

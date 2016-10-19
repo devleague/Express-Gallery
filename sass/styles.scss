@@ -7,7 +7,6 @@ $text-color: #606060;
 
 html {
   font-family: sans-serif;
-
 }
 
 body {
@@ -90,6 +89,8 @@ textarea, input[type=text] {
 }
 
 #main {
+  font-size: 14px;
+  color: $text-color;
   width: 90%;
   margin: auto;
   display: flex;

@@ -5,22 +5,19 @@ const supertest = require("supertest")(app);
 const successMessage = JSON.stringify({
   success: true
 });
-const failureMessage = JSON.stringify({
-  success: false
-});
 
 describe("gallery server GET", function(){
 
   it("gives the index page when / is requested", (done) => {
     supertest
-      .get("/")
-      .expect(200)
-      .end(done);
+    .get("/")
+    .expect(200)
+    .end(done);
   });
 
   it("gives a 404 when a nonexistent page is requested", (done) => {
     supertest
-    .get("/cat%20toy")
+    .get("/100000000")
     .expect(404)
     .end(done);
   });
@@ -39,7 +36,7 @@ describe("gallery server POST", function() {
     .post("/gallery")
     .set("Content-Type", "application/x-www-form-urlencoded")
     .type("form")
-    .send('title=stuff')
+    .send('title=Landscapes+of+Norway')
     .send('author=author')
     .expect(400)
     .end(done);
@@ -170,7 +167,6 @@ describe("product server DELETE", function() {
     supertest
     .del("/gallery/496")
     .expect(404)
-    .expect(failureMessage)
     .end(done);
   });
 

@@ -46,8 +46,8 @@ module.exports = {
 
   down: function (queryInterface, Sequelize) {
     return queryInterface.bulkDelete('Photos',
-        {
-          author: ['Such Doge', 'Doge', 'Snoop Dogey Doge']
-        }, {});
+      {
+        author: ['Such Doge', 'Doge', 'Snoop Dogey Doge']
+      }, {});
   }
 };
