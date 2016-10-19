@@ -72,6 +72,23 @@ h5 {
   }
 }
 
+#newPostForm, #editPostForm {
+  width: 90%;
+  margin: auto;
+  @include respond-to(medium) {
+    width: 85%;
+  }
+}
+
+textarea, input[type=text] {
+  width: 100%;
+  resize: vertical;
+  font-family: sans-serif;
+  @include respond-to(medium) {
+    width: 62.5%;
+  }
+}
+
 #main {
   width: 90%;
   margin: auto;
