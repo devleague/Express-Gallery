@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const pug = require('pug');
+const validate = require('./middleware/validation.js');
 const app = express();
 const db = require('./models');
 const Photo = db.Photo;
@@ -9,7 +10,6 @@ const User = db.User;
 app.use(express.static('./public'));
 app.set('view engine', 'pug');
 app.set('views', './views');
-
 app.use(bodyParser.urlencoded({ extended: true}));
 
 app.listen(3000, function() {
@@ -55,6 +55,7 @@ app.get('/', function(req, res) {
     });
 });
 
+
 app.get('/gallery/new', function(req, res) {
   //to view new photo form
   //we will pass res.render an object with the user's info later
@@ -75,7 +76,7 @@ app.post('/users', (req, res) => {
     });
 });
 
-app.post('/gallery', (req, res) => {
+app.post('/gallery', validate,(req, res) => {
   //to create a new gallery photo
   Photo.create({ title: req.body.title,
     description: req.body.description,
@@ -95,7 +96,7 @@ app.get('/gallery/:id/edit', function(req, res) {
     .then((photo) => {
       res.render('edit', {
         id: id,
-        title:photo.title,
+        title: photo.title,
         link: photo.link,
         description: photo.description,
         author: photo.author,
@@ -110,7 +111,7 @@ app.get('/gallery/:id', function(req, res) {
   renderById(res, id);
 });
 
-app.post('/gallery/:id', function(req, res) {
+app.post('/gallery/:id', validate, function(req, res) {
   //to update selected photo in gallery
   if(req.body._method === 'PUT'){
     let id = parseInt(req.params.id);
@@ -134,7 +135,7 @@ app.post('/gallery/:id', function(req, res) {
   }
 });
 
-app.put('/gallery/:id', function(req, res) {
+app.put('/gallery/:id', validate, function(req, res) {
   //to update selected photo in gallery
   let id = req.params.id;
   Photo.findById(id)
