@@ -2,7 +2,7 @@
     if (/[{}<>;]/g.test(req.body.title) ||
       /[{}<>;]/g.test(req.body.author) ||
       /[{}<>;]/g.test(req.body.description) ||
-      /[<>{}[\])(*&^%$@!]/g.test(req.body.hashtags)
+      /[<>?":{}|!@$%^&*()_\-+,./\];\\=]/g.test(req.body.hashtags)
       ){
         res.status(400)
           .json({
