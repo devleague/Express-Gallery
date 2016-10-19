@@ -6,11 +6,13 @@ const app = express();
 const db = require('./models');
 const Photo = db.Photo;
 const User = db.User;
+const log = require ('./middleware/log.js');
 
 app.use(express.static('./public'));
 app.set('view engine', 'pug');
 app.set('views', './views');
 app.use(bodyParser.urlencoded({ extended: true}));
+app.use(log);
 
 app.listen(3000, function() {
   db.sequelize.sync();
