@@ -39,8 +39,20 @@ let renderById = (res, id) => {
           hashtags: photo.hashtags,
           //needs to be edited
           relatedPhotos: related
+        })
+        .catch((error) => {
+          res.status(404)
+          .json({error: 'Does not exist'});
         });
-      });
+      })
+      .catch((error) => {
+          res.status(404)
+          .json({error: 'Does not exist'});
+      });;
+    })
+    .catch((error) => {
+      res.status(404)
+      .json({error: 'Does not exist'});
     });
 };
 
@@ -74,7 +86,10 @@ app.post('/users', (req, res) => {
   //to create a new gallery photo
   User.create({ username: req.body.username, password: req.body.password, emailaddress: req.body.emailaddress})
     .then((user) => {
-      res.json(user);
+      res.status(200)
+          .json({
+            success: true
+          });
     });
 });
 
@@ -87,7 +102,10 @@ app.post('/gallery', validate,(req, res) => {
     hashtags: req.body.hashtags,
     UserId: 2 })
     .then((photos) => {
-      res.json(photos);
+      res.status(200)
+        .json({
+          success: true
+        });
     });
 });
 
@@ -131,6 +149,12 @@ app.post('/gallery/:id', validate, function(req, res) {
       //add a WHERE clause here for hashtags
         renderById(res, id);
       });
+    })
+    .catch((error) => {
+      res.status(404)
+      .json({
+        success: false
+      });
     });
   } else {
     res.sendStatus(405);
@@ -150,7 +174,10 @@ app.put('/gallery/:id', validate, function(req, res) {
       hashtags: req.body.hashtags || photo.hashtags
     })
     .then((photo) => {
-      res.json(photo);
+        res.status(200)
+          .json({
+            success: true
+          });
     });
   });
 });
@@ -161,6 +188,15 @@ app.delete('/gallery/:id', function(req, res) {
   Photo.findById(id)
     .then((photo) => {
       photo.destroy();
-      res.send('SUCCESS');
-  });
+      res.status(200)
+        .json({
+          success: true
+        });
+  })
+    .catch((error) => {
+      res.status(404)
+      .json({success: false});
+    });
 });
+
+module.exports = app;
