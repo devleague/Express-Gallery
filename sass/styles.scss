@@ -49,19 +49,19 @@ h5 {
     margin-bottom: 48px;
   }
   a#homeLink {
-      h1 {
-        flex: 0 1 auto;
-        font-size: 56px;
-        text-align: center;
-        font-weight: bold;
-        color: $text-color;
-        width: 100%;
-        @include respond-to(medium) {
-          font-size: 72px;
-          width: 100%
-        }
+    h1 {
+      flex: 0 1 auto;
+      font-size: 56px;
+      text-align: center;
+      font-weight: bold;
+      color: $text-color;
+      width: 100%;
+      @include respond-to(medium) {
+        font-size: 72px;
+        width: 100%
       }
     }
+  }
 }
 
 #headerDesc {
