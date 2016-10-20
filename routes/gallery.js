@@ -32,9 +32,6 @@ let renderById = (res, id) => {
         hashtags: photo.hashtags,
         //needs to be edited
         relatedPhotos: related
-      })
-      .catch((error) => {
-        res.status(404).render('404');
       });
     })
     .catch((error) => {
