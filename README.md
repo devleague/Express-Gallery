@@ -45,4 +45,4 @@ The layout of the app matches the layouts included in `/layouts`.
 - Run `npm start`
 - Run `sequelize db:seed:all`
 - Run `gulp`
-- gulp should bring up a browser window at http://localhost:7000
+- gulp should bring up a Chrome window at http://localhost:7000
