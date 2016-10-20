@@ -46,6 +46,13 @@ app.post('/login', passport.authenticate('local', {
     failureRedirect: '/login'
 }));
 
+let isLoggedIn = (req) => {
+  if(req.user !== undefined && req.user !== false) {
+    return true;
+  }
+  return false;
+};
+
 app.get('/', function(req, res) {
   //to view list of gallery photos
   Photo.findAll()
@@ -54,7 +61,8 @@ app.get('/', function(req, res) {
       featured: {
         link: 'http://4.bp.blogspot.com/-ASxswpMUlmg/U0xvrC2RgkI/AAAAAAAAHy4/kZy_Aw3fugE/s1600/doge.jpg',
       },
-      gallery: photos
+      gallery: photos,
+      isLoggedIn: isLoggedIn(req)
     });
   });
 });

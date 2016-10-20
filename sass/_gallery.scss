@@ -1,3 +1,20 @@
+$light-color : #fdfdfd;
+$border-color: #a0a0a0;
+$header-desc-color: #909090;
+$text-color: #606060;
+
+
+#buttons {
+  margin: auto;
+  width: 90%;
+  @include respond-to(medium) {
+    width: 85%;
+  }
+  button {
+    margin-right: 8px;
+  }
+}
+
 #gallery {
   display: flex;
   flex-flow: row wrap;

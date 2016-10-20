@@ -10,7 +10,14 @@ const session = require('express-session');
 const db = require('../models');
 const Photo = db.Photo;
 
-let renderById = (res, id) => {
+let isLoggedIn = (req) => {
+  if(req.user !== undefined && req.user !== false) {
+    return true;
+  }
+  return false;
+};
+
+let renderById = (req, res, id) => {
   Photo.findById(id)
   .then((photo) => {
     //add a WHERE clause here for hashtags
@@ -24,6 +31,7 @@ let renderById = (res, id) => {
       })
     .then((related) => {
       res.render('photo', {
+        user: req.user,
         id: photo.id,
         title:photo.title,
         link: photo.link,
@@ -35,14 +43,29 @@ let renderById = (res, id) => {
       });
     })
     .catch((error) => {
+      console.log('catch on findall:', error);
       res.status(404).render('404');
     });
   })
   .catch((error) => {
+    console.log('catch on findbyid');
     res.status(404).render('404');
   });
 };
 router.route('/')
+  .get((req, res) => {
+    //to view list of gallery photos
+    Photo.findAll()
+    .then((photos) => {
+      res.render('gallery', {
+        featured: {
+          link: 'http://4.bp.blogspot.com/-ASxswpMUlmg/U0xvrC2RgkI/AAAAAAAAHy4/kZy_Aw3fugE/s1600/doge.jpg',
+        },
+        gallery: photos,
+        isLoggedIn: isLoggedIn(req)
+      });
+    });
+  })
   .post(validate, authenticate, (req, res) => {
     //to create a new gallery photo
     Photo.create({ title: req.body.title,
@@ -76,7 +99,7 @@ router.route('/:id')
   .get((req, res) => {
     //to view single of gallery photo
     let id = parseInt(req.params.id);
-    renderById(res, id);
+    renderById(req, res, id);
   })
   .post(validate, authenticate, (req, res) => {
     //to update selected photo in gallery
@@ -94,7 +117,7 @@ router.route('/:id')
         })
         .then((photo) => {
         //add a WHERE clause here for hashtags
-          renderById(res, id);
+          renderById(req, res, id);
         });
       })
       .catch((error) => {
@@ -154,6 +177,23 @@ router.route('/:id/edit')
         author: photo.author,
         hashtags: photo.hashtags
       });
+    })
+    .catch((error) => {
+      res.status(404).render('404');
+    });
+  });
+
+  router.route('/:id/delete')
+  .get(authenticate, (req, res) => {
+    //to edit selected photo in gallery
+    let id = parseInt(req.params.id);
+    Photo.findById(id)
+    .then((photo) => {
+      photo.destroy();
+      res.redirect('/');
+    })
+    .catch((error) => {
+      res.status(404).render('404');
     });
   });
 

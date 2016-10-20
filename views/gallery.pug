@@ -1,6 +1,15 @@
 extends ./layout.pug
 
 block body
+  div#buttons
+    if isLoggedIn
+      a(href="/logout")
+        button Log Out
+    else
+      a(href="/login")
+        button Log In
+    a(href="/gallery/new")
+      button New Photo
   div#featured
     img(src=`${featured.link}` id='featuredImage')
   div#main

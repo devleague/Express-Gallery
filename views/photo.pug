@@ -10,7 +10,11 @@ block body
         p #{description}
         p #{hashtags}
       a(href=`/gallery/${id}/edit`)
-        button Edit Post
+        if user != false
+          button Edit Post
+      a(href=`/gallery/${id}/delete`)
+        if user != false
+          button Delete Post
     div#sidebar
       each rel in relatedPhotos
         div.relatedPhoto

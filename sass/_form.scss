@@ -1,3 +1,8 @@
+$light-color : #fdfdfd;
+$border-color: #a0a0a0;
+$header-desc-color: #909090;
+$text-color: #606060;
+
 #newPostForm, #editPostForm {
   width: 90%;
   margin: auto;
@@ -18,7 +23,7 @@ textarea, input[type=text] {
 #login {
   font-size: 14px;
   color: $text-color;
-  width: 90%;
+  width: 50%;
   margin: auto;
   display: flex;
   flex-flow: column nowrap;
@@ -26,5 +31,13 @@ textarea, input[type=text] {
   justify-content: space-between;
   @include respond-to(medium) {
     width: 85%;
+  }
+  form {
+    border: 1px solid $border-color;
+    padding: 8px;
+    input, button {
+      margin: auto;
+      width: 180px;
+    }
   }
 }
