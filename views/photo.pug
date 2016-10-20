@@ -14,5 +14,6 @@ block body
     div#sidebar
       each rel in relatedPhotos
         div.relatedPhoto
-          img(src=`${rel.link}` class='relatedPreview')
+          a(href=`/gallery/${rel.id}`)
+            img(src=`${rel.link}` class='relatedPreview')
         h5 #{rel.title}
