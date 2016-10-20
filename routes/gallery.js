@@ -24,6 +24,7 @@ let renderById = (res, id) => {
       })
     .then((related) => {
       res.render('photo', {
+        id: photo.id,
         title:photo.title,
         link: photo.link,
         description: photo.description,
@@ -77,7 +78,7 @@ router.route('/new')
 router.route('/:id')
   .get((req, res) => {
     //to view single of gallery photo
-    let id = req.params.id;
+    let id = parseInt(req.params.id);
     renderById(res, id);
   })
   .post(validate, authenticate, (req, res) => {
@@ -108,7 +109,7 @@ router.route('/:id')
   })
   .put(validate, authenticate, (req, res) => {
     //to update selected photo in gallery
-    let id = req.params.id;
+    let id = parseInt(req.params.id);
     Photo.findById(id)
     .then((photo) => {
       photo.update({
@@ -128,7 +129,7 @@ router.route('/:id')
   })
   .delete(authenticate, (req, res) => {
     //to delete selected photo in gallery
-    let id = req.params.id;
+    let id = parseInt(req.params.id);
     Photo.findById(id)
     .then((photo) => {
       photo.destroy();
