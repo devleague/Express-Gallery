@@ -1,0 +1,41 @@
+#photoTitle {
+  color: $header-desc-color;
+  width: 85%;
+  margin: auto;
+  padding-bottom: 12px;
+}
+
+.relatedPhoto {
+  text-align: right;
+  h5 {
+    text-align: left;
+    margin-top: 12px;
+    margin-bottom: 24px;
+  }
+}
+.relatedPreview {
+  width: 100%;
+  @include respond-to(medium) {
+    width: 250px;
+  }
+}
+
+#photoDiv {
+  width: 100%;
+  @include respond-to(medium) {
+    width: 60%;
+  }
+}
+.detail {
+  width: 100%;
+}
+
+#sidebar {
+  width: 100%;
+  flex-flow: column nowrap;
+  display: none;
+  @include respond-to(medium) {
+    display: inline-block;
+    width: 250px;
+  }
+}

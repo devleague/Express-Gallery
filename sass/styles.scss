@@ -1,4 +1,8 @@
 @import "mixins";
+@import "gallery";
+@import "photo";
+@import "notfound";
+@import "form";
 
 $light-color : #fdfdfd;
 $border-color: #a0a0a0;
@@ -21,13 +25,6 @@ body {
 h5 {
   font-size: 16px;
   font-weight: bolder;
-}
-
-#photoTitle {
-  color: $header-desc-color;
-  width: 85%;
-  margin: auto;
-  padding-bottom: 12px;
 }
 
 #header {
@@ -76,23 +73,6 @@ h5 {
   }
 }
 
-#newPostForm, #editPostForm {
-  width: 90%;
-  margin: auto;
-  @include respond-to(medium) {
-    width: 85%;
-  }
-}
-
-textarea, input[type=text] {
-  width: 100%;
-  resize: vertical;
-  font-family: sans-serif;
-  @include respond-to(medium) {
-    width: 62.5%;
-  }
-}
-
 #main {
   font-size: 14px;
   color: $text-color;
@@ -105,100 +85,5 @@ textarea, input[type=text] {
   @include respond-to(medium) {
     flex-flow: row wrap;
     width: 85%;
-  }
-}
-
-#notFound {
-  font-size: 14px;
-  color: $text-color;
-  width: 90%;
-  margin: auto;
-  @include respond-to(medium) {
-    width: 85%;
-  }
-}
-
-#login {
-  font-size: 14px;
-  color: $text-color;
-  width: 90%;
-  margin: auto;
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: flex-start;
-  justify-content: space-between;
-  @include respond-to(medium) {
-    width: 85%;
-  }
-}
-
-#gallery {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  margin: auto;
-  margin-top: 8px;
-  width: 95%;
-  @include respond-to(medium) {
-    width: 100%;
-  }
-}
-.galleryPreview {
-  width: 100%;
-  @include respond-to(medium) {
-    width: 32%;
-  }
-}
-
-.preview {
-  width: 100%;
-}
-
-.relatedPhoto {
-  text-align: right;
-  h5 {
-    text-align: left;
-    margin-top: 12px;
-    margin-bottom: 24px;
-  }
-}
-.relatedPreview {
-  width: 100%;
-  @include respond-to(medium) {
-    width: 250px;
-  }
-}
-
-#featured {
-  margin: auto;
-  padding: 8px;
-  border-bottom: 1px solid $border-color;
-  width: 90%;
-  @include respond-to(medium) {
-    width: 85%;
-  }
-}
-
-#featuredImage {
-  width: 100%
-}
-
-#photoDiv {
-  width: 100%;
-  @include respond-to(medium) {
-    width: 60%;
-  }
-}
-.detail {
-  width: 100%;
-}
-
-#sidebar {
-  width: 100%;
-  flex-flow: column nowrap;
-  display: none;
-  @include respond-to(medium) {
-    display: inline-block;
-    width: 250px;
   }
 }

@@ -1,0 +1,9 @@
+#notFound {
+  font-size: 14px;
+  color: $text-color;
+  width: 90%;
+  margin: auto;
+  @include respond-to(medium) {
+    width: 85%;
+  }
+}

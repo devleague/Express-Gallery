@@ -1,0 +1,35 @@
+#gallery {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin: auto;
+  margin-top: 8px;
+  width: 95%;
+  @include respond-to(medium) {
+    width: 100%;
+  }
+}
+.galleryPreview {
+  width: 100%;
+  @include respond-to(medium) {
+    width: 32%;
+  }
+}
+
+.preview {
+  width: 100%;
+}
+
+#featured {
+  margin: auto;
+  padding: 8px;
+  border-bottom: 1px solid $border-color;
+  width: 90%;
+  @include respond-to(medium) {
+    width: 85%;
+  }
+}
+
+#featuredImage {
+  width: 100%
+}
