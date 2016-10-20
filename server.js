@@ -1,9 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const pug = require('pug');
+const CONFIG = require('./config/config.json');
 const validate = require('./middleware/validation.js');
 const log = require ('./middleware/log.js');
 const app = express();
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const session = require('express-session');
 const db = require('./models');
 const Photo = db.Photo;
 const User = db.User;
@@ -12,11 +15,64 @@ app.use(express.static('./public'));
 app.set('view engine', 'pug');
 app.set('views', './views');
 app.use(bodyParser.urlencoded({ extended: true}));
+app.use(session({
+  secret: CONFIG.SECRET,
+  resave: false,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy((username, password, done) => {
+  const { USERNAME, PASSWORD } = CONFIG.CREDENTIALS;
+  const isAuthenticated = (username === USERNAME && password === PASSWORD);
+
+  if(!isAuthenticated) {
+    return done(null, false);
+  }
+  const user = {
+    name: 'Gallery Admin',
+    role: 'ADMIN',
+    id: 1
+  };
+  return done(null, user);
+}));
+
+passport.serializeUser((user, done) => {
+  return done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+  return done(null, user);
+});
+
+const isAuthenticated = () => {
+  if(!req.isAuthenticated()) {
+    return res.redirect('/login');
+  } else {
+    return next();
+  }
+};
+
 app.use(log);
 
 app.listen(3000, function() {
   db.sequelize.sync();
 });
+
+app.get('/login', (req, res) => {
+  res.render('login');
+});
+
+app.get('/login', (req, res) => {
+  req.logout();
+  res.redirect('/login');
+});
+
+app.post('/login', passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login'
+}));
 
 let renderById = (res, id) => {
   Photo.findById(id)
@@ -67,7 +123,7 @@ app.get('/', function(req, res) {
 });
 
 
-app.get('/gallery/new', function(req, res) {
+app.get('/gallery/new', isAuthenticated, (req, res) => {
   //to view new photo form
   //we will pass res.render an object with the user's info later
   res.render('new', {
@@ -90,7 +146,7 @@ app.post('/users', (req, res) => {
   });
 });
 
-app.post('/gallery', validate,(req, res) => {
+app.post('/gallery', validate, isAuthenticated, (req, res) => {
   //to create a new gallery photo
   Photo.create({ title: req.body.title,
     description: req.body.description,
@@ -106,7 +162,7 @@ app.post('/gallery', validate,(req, res) => {
   });
 });
 
-app.get('/gallery/:id/edit', function(req, res) {
+app.get('/gallery/:id/edit', isAuthenticated, (req, res) => {
   //to edit selected photo in gallery
   let id = parseInt(req.params.id);
   Photo.findById(id)
@@ -122,13 +178,13 @@ app.get('/gallery/:id/edit', function(req, res) {
   });
 });
 
-app.get('/gallery/:id', function(req, res) {
+app.get('/gallery/:id', (req, res) => {
   //to view single of gallery photo
   let id = req.params.id;
   renderById(res, id);
 });
 
-app.post('/gallery/:id', validate, function(req, res) {
+app.post('/gallery/:id', validate, isAuthenticated, (req, res) => {
   //to update selected photo in gallery
   if(req.body._method === 'PUT'){
     let id = parseInt(req.params.id);
@@ -155,7 +211,7 @@ app.post('/gallery/:id', validate, function(req, res) {
   }
 });
 
-app.put('/gallery/:id', validate, function(req, res) {
+app.put('/gallery/:id', validate, isAuthenticated, (req, res) => {
   //to update selected photo in gallery
   let id = req.params.id;
   Photo.findById(id)
@@ -176,7 +232,7 @@ app.put('/gallery/:id', validate, function(req, res) {
   });
 });
 
-app.delete('/gallery/:id', function(req, res) {
+app.delete('/gallery/:id', isAuthenticated, (req, res) => {
   //to delete selected photo in gallery
   let id = req.params.id;
   Photo.findById(id)
