@@ -26,37 +26,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use('/gallery', gallery);
 
-// passport.use(new LocalStrategy((username, password, done) => {
-//   const { USERNAME, PASSWORD } = CONFIG.CREDENTIALS;
-//   const isAuthenticated = (username === USERNAME && password === PASSWORD);
-
-//   if(!isAuthenticated) {
-//     return done(null, false);
-//   }
-//   const user = {
-//     name: 'Gallery Admin',
-//     role: 'ADMIN',
-//     id: 1
-//   };
-//   return done(null, user);
-// }));
-
-// passport.serializeUser((user, done) => {
-//   return done(null, user);
-// });
-
-// passport.deserializeUser((user, done) => {
-//   return done(null, user);
-// });
-
-// const isAuthenticated = (req, res, next) => {
-//   if(!req.isAuthenticated()) {
-//     return res.redirect('/login');
-//   } else {
-//     return next();
-//   }
-// };
-
 app.use(log);
 
 app.listen(3000, function() {
@@ -76,8 +45,6 @@ app.post('/login', passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login'
 }));
-
-
 
 app.get('/', function(req, res) {
   //to view list of gallery photos
