@@ -39,6 +39,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         UserId: 2
+      },{
+        title: 'Shrek Doge',
+        description: 'Shrek Doge',
+        author: 'Shrek Doge',
+        link: 'https://pbs.twimg.com/media/B6mfb6nIYAA2Cox.jpg',
+        hashtags: '#Snoop#DOGE',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        UserId: 2
       }
     ], {});
   },
