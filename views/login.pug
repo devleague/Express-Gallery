@@ -1,9 +1,10 @@
 extends ./layout.pug
 
 block body
-  form(method="POST" action="login")
-    input(type="text" name="username" placeholder="username")
-    input(type="password" name="password" placeholder="password")
-    button(type="submit") Login
-  a(href="/logout")
-    button Logout
+  div#login
+    form(method="POST" action="login")
+      input(type="text" name="username" placeholder="username")
+      input(type="password" name="password" placeholder="password")
+      button(type="submit") Login
+    a(href="/logout")
+      button Logout
