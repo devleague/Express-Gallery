@@ -71,4 +71,8 @@ app.post('/users', (req, res) => {
   });
 });
 
+app.get('/:page', (req, res) => {
+  res.status(404).render('404');
+});
+
 module.exports = app;

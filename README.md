@@ -3,10 +3,6 @@ Express Gallery
 
 Express, Sequelize, HTML5, stored on PostgreSQL
 
-Use the Express, Sequelize, and *almost* any other library or templating engines you want to fulfill the requirements.
-recommended: jade and sass.
-helpful: livereload, gulp for watching compiling sass
-
 ---
 
 Create a multi-user Gallery.
@@ -32,8 +28,7 @@ Any user should be able to access these routes:
 
 ---
 
-The layout of the app must match the layouts included in `/layouts`.
-Match the layout as close as you can, using free and open fonts and graphics.
+The layout of the app matches the layouts included in `/layouts`.
 
 ---
 
@@ -41,3 +36,13 @@ Match the layout as close as you can, using free and open fonts and graphics.
 
 - does not have tablet layout
 - uses a background image that is not included, you will have to find something similar (subtlepatterns.com)
+
+---
+
+#### Setting up the project
+
+- Create a database for the project in postgres.
+- Run `npm start`
+- Run `sequelize db:seed:all`
+- Run `gulp`
+- gulp should bring up a Chrome window at http://localhost:7000
