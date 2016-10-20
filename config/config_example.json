@@ -1,0 +1,28 @@
+{
+  "SECRET": "abc123",
+  "CREDENTIALS": {
+    "USERNAME" : "user",
+    "PASSWORD" : "password"
+  },
+  "development": {
+    "username": "galleryuser",
+    "password": "password",
+    "database": "express_gallery",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "galleryuser",
+    "password": "password",
+    "database": "express_gallery",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "galleryuser",
+    "password": "password",
+    "database": "express_gallery",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
