@@ -9,6 +9,8 @@ block body
         h5 #{author}
         p #{description}
         p #{hashtags}
+      a(href=`/gallery/${id}/edit`)
+        button Edit Post
     div#sidebar
       each rel in relatedPhotos
         div.relatedPhoto
