@@ -46,7 +46,7 @@ passport.deserializeUser((user, done) => {
   return done(null, user);
 });
 
-const isAuthenticated = () => {
+const isAuthenticated = (req, res, next) => {
   if(!req.isAuthenticated()) {
     return res.redirect('/login');
   } else {
@@ -64,9 +64,9 @@ app.get('/login', (req, res) => {
   res.render('login');
 });
 
-app.get('/login', (req, res) => {
+app.get('/logout', (req, res) => {
   req.logout();
-  res.redirect('/login');
+  res.redirect('/');
 });
 
 app.post('/login', passport.authenticate('local', {
@@ -115,7 +115,7 @@ app.get('/', function(req, res) {
   .then((photos) => {
     res.render('gallery', {
       featured: {
-        link: 'https://pbs.twimg.com/media/B6mfb6nIYAA2Cox.jpg',
+        link: 'http://4.bp.blogspot.com/-ASxswpMUlmg/U0xvrC2RgkI/AAAAAAAAHy4/kZy_Aw3fugE/s1600/doge.jpg',
       },
       gallery: photos
     });
