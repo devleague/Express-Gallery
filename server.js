@@ -2,31 +2,60 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const CONFIG = require('./config/config.json');
 const validate = require('./middleware/validation.js');
-const authenticate = require('./middleware/authentication.js');
 const log = require ('./middleware/log.js');
 const app = express();
+const authenticate = require('./middleware/authentication.js');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
+const gallery = require('./routes/gallery.js');
 const db = require('./models');
 const Photo = db.Photo;
 const User = db.User;
-const gallery = require('./routes/gallery.js');
 
 app.use(express.static('./public'));
 app.set('view engine', 'pug');
 app.set('views', './views');
 app.use(bodyParser.urlencoded({ extended: true}));
-app.use('/gallery', gallery);
-
-app.use(passport.initialize());
-app.use(passport.session());
-
 app.use(session({
   secret: CONFIG.SECRET,
   resave: false,
   saveUninitialized: true
 }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use('/gallery', gallery);
+
+// passport.use(new LocalStrategy((username, password, done) => {
+//   const { USERNAME, PASSWORD } = CONFIG.CREDENTIALS;
+//   const isAuthenticated = (username === USERNAME && password === PASSWORD);
+
+//   if(!isAuthenticated) {
+//     return done(null, false);
+//   }
+//   const user = {
+//     name: 'Gallery Admin',
+//     role: 'ADMIN',
+//     id: 1
+//   };
+//   return done(null, user);
+// }));
+
+// passport.serializeUser((user, done) => {
+//   return done(null, user);
+// });
+
+// passport.deserializeUser((user, done) => {
+//   return done(null, user);
+// });
+
+// const isAuthenticated = (req, res, next) => {
+//   if(!req.isAuthenticated()) {
+//     return res.redirect('/login');
+//   } else {
+//     return next();
+//   }
+// };
 
 app.use(log);
 

@@ -3,8 +3,9 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const validate = require('../middleware/validation.js');
 const authenticate = require('../middleware/authentication.js');
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
+//const authenticate = require('../middleware/authentication.js');
+// const passport = require('passport');
+// const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
 const db = require('../models');
 const Photo = db.Photo;
@@ -44,7 +45,7 @@ let renderById = (res, id) => {
   });
 };
 router.route('/')
-  .post(validate, authenticate.isAuthenticated, (req, res) => {
+  .post(validate, authenticate, (req, res) => {
     //to create a new gallery photo
     Photo.create({ title: req.body.title,
       description: req.body.description,
@@ -61,7 +62,7 @@ router.route('/')
   });
 
 router.route('/new')
-  .get(authenticate.isAuthenticated, (req, res) => {
+  .get(authenticate, (req, res) => {
     //to view new photo form
     //we will pass res.render an object with the user's info later
     res.render('new', {
@@ -79,7 +80,7 @@ router.route('/:id')
     let id = req.params.id;
     renderById(res, id);
   })
-  .post(validate, authenticate.isAuthenticated, (req, res) => {
+  .post(validate, authenticate, (req, res) => {
     //to update selected photo in gallery
     if(req.body._method === 'PUT'){
       let id = parseInt(req.params.id);
@@ -105,7 +106,7 @@ router.route('/:id')
       res.sendStatus(405);
     }
   })
-  .put(validate, authenticate.isAuthenticated, (req, res) => {
+  .put(validate, authenticate, (req, res) => {
     //to update selected photo in gallery
     let id = req.params.id;
     Photo.findById(id)
@@ -125,7 +126,7 @@ router.route('/:id')
       });
     });
   })
-  .delete(authenticate.isAuthenticated, (req, res) => {
+  .delete(authenticate, (req, res) => {
     //to delete selected photo in gallery
     let id = req.params.id;
     Photo.findById(id)
@@ -142,7 +143,7 @@ router.route('/:id')
   });
 
 router.route('/:id/edit')
-  .get(authenticate.isAuthenticated, (req, res) => {
+  .get(authenticate, (req, res) => {
     //to edit selected photo in gallery
     let id = parseInt(req.params.id);
     Photo.findById(id)
@@ -157,3 +158,4 @@ router.route('/:id/edit')
       });
     });
   });
+module.exports = router;
