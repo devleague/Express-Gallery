@@ -32,7 +32,7 @@ module.exports = {
   down: function (queryInterface, Sequelize) {
     return queryInterface.bulkDelete('Users',
       {
-        username: ['galleryuser', 'meow', 'superdoge']
+        username: ['galleryuser', 'doge', 'meow', 'superdoge']
       }, {});
   }
 };

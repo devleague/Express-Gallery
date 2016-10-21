@@ -2,12 +2,14 @@ module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define("User", {
     username: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
         isAlphanumeric: true
       }
     },
     password: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
         validatePassword: (value) => {
           if(/[{}<>;]/g.test(value)) {
@@ -18,6 +20,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     emailaddress: {
       type:DataTypes.STRING,
+      allowNull: false,
       validate: {
         isEmail: true
       }

@@ -1,11 +1,13 @@
 'use strict';
 
-const gulp        = require('gulp');
-const sass        = require('gulp-sass');
-const nodemon     = require('gulp-nodemon');
-const browserSync = require('browser-sync');
-const reload      = browserSync.reload;
-const pkg         = require('./package.json');
+const gulp         = require('gulp');
+const sass         = require('gulp-sass');
+const nodemon      = require('gulp-nodemon');
+const browserSync  = require('browser-sync');
+const reload       = browserSync.reload;
+const pkg          = require('./package.json');
+const concat       = require('gulp-concat');
+const childProcess = require('child_process');
 
 gulp.task('nodemon', function (cb) {
 
@@ -47,4 +49,15 @@ gulp.task('watch', function () {
   gulp.watch('./public/**/*.*').on('change', reload);
 });
 
-gulp.task('default', ['watch', 'sass', 'browser-sync']);
+gulp.task('redis-server', function() {
+  childProcess.exec('redis-server', function(err, stdout, stderr) {
+    console.log(stdout);
+    if (err !== null) {
+      console.log('exec error: ' + err);
+    }
+  });
+});
+
+gulp.task('default', ['dev']);
+
+gulp.task('dev', ['redis-server', 'watch', 'sass', 'browser-sync']);

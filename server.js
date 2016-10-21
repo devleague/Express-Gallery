@@ -6,6 +6,7 @@ const log = require ('./middleware/log.js');
 const app = express();
 const authenticate = require('./middleware/authentication.js');
 const passport = require('passport');
+const flash = require('connect-flash');
 /*
 const LocalStrategy = require('passport-local').Strategy;
 */
@@ -20,6 +21,7 @@ app.use(express.static('./public'));
 app.set('view engine', 'pug');
 app.set('views', './views');
 app.use(bodyParser.urlencoded({ extended: true}));
+app.use(flash());
 app.use(session({
   store: new RedisStore(),
   secret: CONFIG.SECRET,
@@ -48,7 +50,10 @@ app.get('/logout', (req, res) => {
 
 app.post('/login', passport.authenticate('local', {
     successRedirect: '/gallery',
-    failureRedirect: '/login'
+    failureRedirect: '/login',
+    /* requires npm i -S connect-flash */
+    successFlash: 'Login successful.',
+    failureFlash: 'Invalid username or password.'
 }));
 
 let isLoggedIn = (req) => {
@@ -60,6 +65,11 @@ let isLoggedIn = (req) => {
 
 app.get('/', function(req, res) {
   //to view list of gallery photos
+  if(req.user === undefined) {
+    username = 'Not logged in';
+  } else {
+    username = req.user.username;
+  }
   Photo.findAll()
   .then((photos) => {
     res.render('gallery', {
@@ -68,23 +78,19 @@ app.get('/', function(req, res) {
       },
       gallery: photos,
       isLoggedIn: isLoggedIn(req),
-      username: req.user.username || 'Not logged in'
+      username: username
     });
   });
 });
-
 
 app.post('/users', (req, res) => {
   //to create a new gallery photo
   User.create({ username: req.body.username,
     password: req.body.password,
-    emailaddress: req.body.emailaddress,
+    emailaddress: req.body.email,
     role: 'USER'})
   .then((user) => {
-    res.status(200)
-    .json({
-      success: true
-    });
+    res.render('login');
   });
 });
 

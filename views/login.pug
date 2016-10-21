@@ -3,7 +3,7 @@ extends ./layout.pug
 block body
   -var br = '<br />'
   div#login
-    form(method="POST" action="login")
+    form(method="POST" action="/login")
       input(type="text" name="username" placeholder="username")
       !=br
       !=br
@@ -15,3 +15,16 @@ block body
       !=br
       a(href="/logout")
         button Logout
+      !=br
+      !=br
+    form(method="POST" action="/users")
+      input(type="text" name="username" placeholder="username" required)
+      !=br
+      !=br
+      input(type="password" name="password" placeholder="password" required)
+      !=br
+      !=br
+      input(type="text" name="email" placeholder="email address" required)
+      !=br
+      !=br
+      button(type="submit") Create Account

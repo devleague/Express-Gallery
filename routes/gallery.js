@@ -67,6 +67,11 @@ let renderById = (req, res, id) => {
 router.route('/')
   .get((req, res) => {
     //to view list of gallery photos
+    if(req.user == undefined) {
+      username = 'Not logged in';
+    } else {
+      username = req.user.username;
+    }
     Photo.findAll()
     .then((photos) => {
       res.render('gallery', {
@@ -75,7 +80,7 @@ router.route('/')
         },
         gallery: photos,
         isLoggedIn: isLoggedIn(req),
-        username: req.user.username || 'Not logged in'
+        username: username
       });
     });
   })
