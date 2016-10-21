@@ -13,5 +13,18 @@
     }
   };
 
+  let userValidate = (req, res, next) => {
+    if ( /[{}<>;]/g.test(req.body.password) ||
+      req.body.password === undefined ||
+      /[<>?":{}|!@$%^&*()_\-+,./\];\\=]/g.test(req.body.username) ||
+      req.body.username === undefined ||
+      /[{}<>;]/g.test(req.body.email) ||
+      req.body.email === undefined) {
+        res.status(400).render('login', {status: 'invalid'});
+    } else {
+      next();
+    }
+  };
 
-  module.exports = validate;
+
+  module.exports = {validate, userValidate};

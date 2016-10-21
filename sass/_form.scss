@@ -2,6 +2,7 @@ $light-color : #fdfdfd;
 $border-color: #a0a0a0;
 $header-desc-color: #909090;
 $text-color: #606060;
+$invalid-color: #e09680;
 
 #newPostForm, #editPostForm {
   width: 90%;
@@ -36,15 +37,27 @@ textarea, input[type=text] {
     justify-content: flex-start;
   }
   form {
+    h5 {
+      font-size: 9px;
+      font-weight: normal;
+    }
     border: 1px solid $border-color;
     padding: 8px;
     margin-bottom: 8px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: space-around;
+    height: 200px;
     @include respond-to(medium) {
       margin-right: 8px;
     }
-    input, button {
+    input, button, a {
       margin: auto;
       width: 180px;
     }
+  }
+  #invalid {
+    background-color: $invalid-color;
   }
 }

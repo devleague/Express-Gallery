@@ -67,7 +67,7 @@ let renderById = (req, res, id) => {
 router.route('/')
   .get((req, res) => {
     //to view list of gallery photos
-    if(req.user == undefined) {
+    if(req.user === undefined) {
       username = 'Not logged in';
     } else {
       username = req.user.username;
@@ -84,7 +84,7 @@ router.route('/')
       });
     });
   })
-  .post(validate, authenticate.isAuthenticated, (req, res) => {
+  .post(validate.validate, authenticate.isAuthenticated, (req, res) => {
     //to create a new gallery photo
     Photo.create({ title: req.body.title,
       description: req.body.description,
@@ -119,7 +119,7 @@ router.route('/:id')
     let id = parseInt(req.params.id);
     renderById(req, res, id);
   })
-  .post(validate, authenticate.isAuthenticated, (req, res) => {
+  .post(validate.validate, authenticate.isAuthenticated, (req, res) => {
     //to update selected photo in gallery
     if(req.body._method === 'PUT'){
       let id = parseInt(req.params.id);
@@ -149,7 +149,7 @@ router.route('/:id')
       res.sendStatus(405);
     }
   })
-  .put(validate, authenticate.isAuthenticated, (req, res) => {
+  .put(validate.validate, authenticate.isAuthenticated, (req, res) => {
     //to update selected photo in gallery
     let id = parseInt(req.params.id);
     Photo.findById(id)

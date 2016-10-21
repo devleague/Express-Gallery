@@ -4,27 +4,24 @@ block body
   -var br = '<br />'
   div#login
     form(method="POST" action="/login")
+      h5 Login existing user
       input(type="text" name="username" placeholder="username")
-      !=br
-      !=br
+
       input(type="password" name="password" placeholder="password")
-      !=br
-      !=br
+
       button(type="submit") Login
-      !=br
-      !=br
+
       a(href="/logout")
         button Logout
-      !=br
-      !=br
-    form(method="POST" action="/users")
+    form(method="POST" action="/users" id=`${status}`)
+      if status === 'invalid'
+        h5 Username cannot contain special characters.
+      else
+        h5 Create account
       input(type="text" name="username" placeholder="username" required)
-      !=br
-      !=br
+
       input(type="password" name="password" placeholder="password" required)
-      !=br
-      !=br
+
       input(type="text" name="email" placeholder="email address" required)
-      !=br
-      !=br
+
       button(type="submit") Create Account

@@ -40,7 +40,7 @@ app.listen(3000, function() {
 });
 
 app.get('/login', (req, res) => {
-  res.render('login');
+  res.render('login', {status: 'valid'});
 });
 
 app.get('/logout', (req, res) => {
@@ -83,14 +83,18 @@ app.get('/', function(req, res) {
   });
 });
 
-app.post('/users', (req, res) => {
+app.post('/users', validate.userValidate, (req, res) => {
   //to create a new gallery photo
   User.create({ username: req.body.username,
     password: req.body.password,
     emailaddress: req.body.email,
     role: 'USER'})
   .then((user) => {
-    res.render('login');
+    res.render('login', {status: 'valid'});
+  })
+  .catch((err) => {
+    req.flash('info', 'Invalid input in user account fields');
+    res.render('login', {status: 'invalid'});
   });
 });
 
