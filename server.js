@@ -67,7 +67,8 @@ app.get('/', function(req, res) {
         link: 'http://4.bp.blogspot.com/-ASxswpMUlmg/U0xvrC2RgkI/AAAAAAAAHy4/kZy_Aw3fugE/s1600/doge.jpg',
       },
       gallery: photos,
-      isLoggedIn: isLoggedIn(req)
+      isLoggedIn: isLoggedIn(req),
+      username: req.user.username || 'Not logged in'
     });
   });
 });

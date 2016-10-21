@@ -6,6 +6,7 @@ const authenticate = require('../middleware/authentication.js');
 const session = require('express-session');
 const db = require('../models');
 const Photo = db.Photo;
+const User = db.User;
 
 let isLoggedIn = (req) => {
   if(req.user !== undefined && req.user !== false) {
@@ -17,31 +18,43 @@ let isLoggedIn = (req) => {
 let renderById = (req, res, id) => {
   Photo.findById(id)
   .then((photo) => {
-    //add a WHERE clause here for hashtags
-    Photo.findAll({
-      limit: 3,
-        where: {
-          id: {
-            $ne:id
-          }
+    User.findAll({
+      attributes: ['username'],
+      limit: 1,
+      where: {
+        id: {
+          $eq: photo.UserId
         }
+      }
+    }).then((poster) => {
+      let [postedBy] = poster;
+      Photo.findAll({
+        limit: 3,
+          where: {
+            id: {
+              $ne:id
+            }
+          }
+        })
+      .then((related) => {
+        res.render('photo', {
+          user: req.user || {auth: false, id: null},
+          id: photo.id,
+          title:photo.title,
+          link: photo.link,
+          description: photo.description,
+          author: photo.author,
+          hashtags: photo.hashtags,
+          uid: photo.UserId,
+          poster: postedBy.dataValues.username,
+          //needs to be edited
+          relatedPhotos: related
+        });
       })
-    .then((related) => {
-      res.render('photo', {
-        user: req.user,
-        id: photo.id,
-        title:photo.title,
-        link: photo.link,
-        description: photo.description,
-        author: photo.author,
-        hashtags: photo.hashtags,
-        //needs to be edited
-        relatedPhotos: related
+      .catch((error) => {
+        console.log('catch on findall:', error);
+        res.status(404).render('404');
       });
-    })
-    .catch((error) => {
-      console.log('catch on findall:', error);
-      res.status(404).render('404');
     });
   })
   .catch((error) => {
@@ -73,7 +86,7 @@ router.route('/')
       author: req.body.author,
       link: req.body.link,
       hashtags: req.body.hashtags,
-      UserId: 2 })
+      UserId: req.user.id })
     .then((photos) => {
       res.status(200)
       .json({
@@ -107,18 +120,22 @@ router.route('/:id')
       let id = parseInt(req.params.id);
       Photo.findById(id)
       .then((photo) => {
-        photo.update({
-          id: id,
-          title: req.body.title || photo.title,
-          description: req.body.description || photo.description,
-          author: req.body.author || photo.author,
-          link: req.body.link || photo.link,
-          hashtags: req.body.hashtags || photo.hashtags
-        })
-        .then((photo) => {
-        //add a WHERE clause here for hashtags
-          renderById(req, res, id);
-        });
+        if(req.user.id == photo.UserId || req.user.id == 1) {
+          photo.update({
+            id: id,
+            title: req.body.title || photo.title,
+            description: req.body.description || photo.description,
+            author: req.body.author || photo.author,
+            link: req.body.link || photo.link,
+            hashtags: req.body.hashtags || photo.hashtags
+          })
+          .then((photo) => {
+          //add a WHERE clause here for hashtags
+            renderById(req, res, id);
+          });
+        } else {
+          res.sendStatus(403);
+        }
       })
       .catch((error) => {
         res.status(404).render('404');
@@ -132,19 +149,23 @@ router.route('/:id')
     let id = parseInt(req.params.id);
     Photo.findById(id)
     .then((photo) => {
-      photo.update({
-        title: req.body.title || photo.title,
-        description: req.body.description || photo.description,
-        author: req.body.author || photo.author,
-        link: req.body.link || photo.link,
-        hashtags: req.body.hashtags || photo.hashtags
-      })
-      .then((photo) => {
-        res.status(200)
-        .json({
-          success: true
+      if(req.user.id == photo.UserId || req.user.id == 1) {
+        photo.update({
+          title: req.body.title || photo.title,
+          description: req.body.description || photo.description,
+          author: req.body.author || photo.author,
+          link: req.body.link || photo.link,
+          hashtags: req.body.hashtags || photo.hashtags
+        })
+        .then((photo) => {
+          res.status(200)
+          .json({
+            success: true
+          });
         });
-      });
+      } else {
+        res.sendStatus(403);
+      }
     });
   })
   .delete(authenticate.isAuthenticated, (req, res) => {
@@ -152,11 +173,15 @@ router.route('/:id')
     let id = parseInt(req.params.id);
     Photo.findById(id)
     .then((photo) => {
-      photo.destroy();
-      res.status(200)
-      .json({
-        success: true
-      });
+      if(req.user.id == photo.UserId || req.user.id == 1) {
+        photo.destroy();
+        res.status(200)
+        .json({
+          success: true
+        });
+      } else {
+        res.sendStatus(403);
+      }
     })
     .catch((error) => {
       res.status(404).render('404');
@@ -189,8 +214,12 @@ router.route('/:id/edit')
     let id = parseInt(req.params.id);
     Photo.findById(id)
     .then((photo) => {
-      photo.destroy();
-      res.redirect('/');
+      if(req.user.id == photo.UserId || req.user.id == 1) {
+        photo.destroy();
+        res.redirect('/');
+      } else {
+        res.sendStatus(403);
+      }
     })
     .catch((error) => {
       res.status(404).render('404');
