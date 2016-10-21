@@ -2,14 +2,13 @@ extends ./layout.pug
 
 block body
   div#buttons
+    a(href="/gallery/new")
+      button New Photo
     if isLoggedIn
-      a(href="/logout")
-        button Log Out
+      <a href="/logout"><button>Log Out</button></a><h5>Logged in as #{username}</h5>
     else
       a(href="/login")
         button Log In
-    a(href="/gallery/new")
-      button New Photo
   div#featured
     img(src=`${featured.link}` id='featuredImage')
   div#main

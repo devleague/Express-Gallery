@@ -4,7 +4,7 @@ const CONFIG = require('../config/config.json');
 const db = require('../models');
 const User = db.User;
 
-passport.use(new LocalStrategy((username, password, done) => {
+const ls = new LocalStrategy((username, password, done) => {
   /*const { USERNAME, PASSWORD } = CONFIG.CREDENTIALS;
   const isAuthenticated = (username === USERNAME && password === PASSWORD);
 
@@ -18,20 +18,25 @@ passport.use(new LocalStrategy((username, password, done) => {
   };
   return done(null, user);*/
   User.findAll({
-    attributes: [username, id],
+    attributes: ['username', 'id'],
     where: {
       username: username,
       password: password
     }
   }).then((user) => {
-    console.log(user);
-    return done(null, user);
+    if(user.length < 1) {
+      return done(null, false);
+    }
+    let [u] = user;
+    return done(null, u);
   })
   .catch((err) => {
     return done(null, false);
   });
 
-}));
+});
+
+passport.use(ls);
 
 passport.serializeUser((user, done) => {
   return done(null, user);
@@ -49,4 +54,4 @@ const isAuthenticated = (req, res, next) => {
   }
 };
 
-module.exports = isAuthenticated;
+module.exports = {isAuthenticated, ls};

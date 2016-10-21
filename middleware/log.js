@@ -30,12 +30,12 @@ let getLogData = (file, logString, currentDate, callback) => {
 let log = (req, res, next) => {
   fs.readdir('./logs/', (err, file) => {
     if(err) {
-      console.error(err);
+      return console.error(err);
     } else {
       writeFunc(file, req);
+      next();
     }
   });
-  next();
 };
 
 module.exports = log;

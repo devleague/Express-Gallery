@@ -49,6 +49,8 @@ let renderById = (req, res, id) => {
     res.status(404).render('404');
   });
 };
+
+
 router.route('/')
   .get((req, res) => {
     //to view list of gallery photos
@@ -59,11 +61,12 @@ router.route('/')
           link: 'http://4.bp.blogspot.com/-ASxswpMUlmg/U0xvrC2RgkI/AAAAAAAAHy4/kZy_Aw3fugE/s1600/doge.jpg',
         },
         gallery: photos,
-        isLoggedIn: isLoggedIn(req)
+        isLoggedIn: isLoggedIn(req),
+        username: req.user.username || 'Not logged in'
       });
     });
   })
-  .post(validate, authenticate, (req, res) => {
+  .post(validate, authenticate.isAuthenticated, (req, res) => {
     //to create a new gallery photo
     Photo.create({ title: req.body.title,
       description: req.body.description,
@@ -80,7 +83,7 @@ router.route('/')
   });
 
 router.route('/new')
-  .get(authenticate, (req, res) => {
+  .get(authenticate.isAuthenticated, (req, res) => {
     //to view new photo form
     //we will pass res.render an object with the user's info later
     res.render('new', {
@@ -98,7 +101,7 @@ router.route('/:id')
     let id = parseInt(req.params.id);
     renderById(req, res, id);
   })
-  .post(validate, authenticate, (req, res) => {
+  .post(validate, authenticate.isAuthenticated, (req, res) => {
     //to update selected photo in gallery
     if(req.body._method === 'PUT'){
       let id = parseInt(req.params.id);
@@ -124,7 +127,7 @@ router.route('/:id')
       res.sendStatus(405);
     }
   })
-  .put(validate, authenticate, (req, res) => {
+  .put(validate, authenticate.isAuthenticated, (req, res) => {
     //to update selected photo in gallery
     let id = parseInt(req.params.id);
     Photo.findById(id)
@@ -144,7 +147,7 @@ router.route('/:id')
       });
     });
   })
-  .delete(authenticate, (req, res) => {
+  .delete(authenticate.isAuthenticated, (req, res) => {
     //to delete selected photo in gallery
     let id = parseInt(req.params.id);
     Photo.findById(id)
@@ -161,7 +164,7 @@ router.route('/:id')
   });
 
 router.route('/:id/edit')
-  .get(authenticate, (req, res) => {
+  .get(authenticate.isAuthenticated, (req, res) => {
     //to edit selected photo in gallery
     let id = parseInt(req.params.id);
     Photo.findById(id)
@@ -181,7 +184,7 @@ router.route('/:id/edit')
   });
 
   router.route('/:id/delete')
-  .get(authenticate, (req, res) => {
+  .get(authenticate.isAuthenticated, (req, res) => {
     //to edit selected photo in gallery
     let id = parseInt(req.params.id);
     Photo.findById(id)

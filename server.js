@@ -6,7 +6,9 @@ const log = require ('./middleware/log.js');
 const app = express();
 const authenticate = require('./middleware/authentication.js');
 const passport = require('passport');
+/*
 const LocalStrategy = require('passport-local').Strategy;
+*/
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
 const gallery = require('./routes/gallery.js');
@@ -26,6 +28,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+passport.use(authenticate.ls);
 app.use('/gallery', gallery);
 
 app.use(log);
@@ -44,7 +47,7 @@ app.get('/logout', (req, res) => {
 });
 
 app.post('/login', passport.authenticate('local', {
-    successRedirect: '/',
+    successRedirect: '/gallery',
     failureRedirect: '/login'
 }));
 
