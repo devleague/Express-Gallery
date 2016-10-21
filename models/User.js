@@ -21,6 +21,13 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         isEmail: true
       }
+    },
+    role: {
+      type: DataTypes.STRING,
+      validate: {
+        isAlpha: true,
+        isIn: [['ADMIN', 'USER']]
+      }
     }
   }, {
     classMethods: {

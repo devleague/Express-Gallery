@@ -11,7 +11,7 @@ module.exports = {
         hashtags: '#Simple#DOGE',
         createdAt: new Date(),
         updatedAt: new Date(),
-        UserId: 2
+        UserId: 1
       }, {
         title: 'Many Doge',
         description: 'Many Doge',
@@ -20,7 +20,7 @@ module.exports = {
         hashtags: '#Many#DOGE',
         createdAt: new Date(),
         updatedAt: new Date(),
-        UserId: 2
+        UserId: 1
       },{
         title: 'OG Doge',
         description: 'dOGe',
@@ -29,7 +29,7 @@ module.exports = {
         hashtags: '#DOGE#OG',
         createdAt: new Date(),
         updatedAt: new Date(),
-        UserId: 2
+        UserId: 1
       },{
         title: 'Snoop Doge',
         description: 'Snoop Doge',
@@ -38,7 +38,7 @@ module.exports = {
         hashtags: '#Snoop#DOGE',
         createdAt: new Date(),
         updatedAt: new Date(),
-        UserId: 2
+        UserId: 1
       },{
         title: 'Shrek Doge',
         description: 'Shrek Doge',
@@ -47,7 +47,7 @@ module.exports = {
         hashtags: '#Snoop#DOGE',
         createdAt: new Date(),
         updatedAt: new Date(),
-        UserId: 2
+        UserId: 1
       }
     ], {});
   },
@@ -56,7 +56,7 @@ module.exports = {
   down: function (queryInterface, Sequelize) {
     return queryInterface.bulkDelete('Photos',
       {
-        author: ['Such Doge', 'Doge', 'Snoop Dogey Doge']
+        author: ['Such Doge', 'Doge', 'Snoop Dogey Doge', 'Shrek Doge']
       }, {});
   }
 };

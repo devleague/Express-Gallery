@@ -4,21 +4,24 @@ module.exports = {
   up: function (queryInterface, Sequelize) {
     return queryInterface.bulkInsert('Users', [
       {
-        username: 'doge',
-        password: 'iamdoge',
+        username: 'galleryuser',
+        password: 'password',
         emailaddress: 'woof@doge.com',
+        role: 'ADMIN',
         createdAt: new Date(),
         updatedAt: new Date()
       }, {
         username: 'meow',
         password: 'iamcat',
         emailaddress: 'meow@cat.com',
+        role: 'USER',
         createdAt: new Date(),
         updatedAt: new Date(),
       },{
         username: 'superdoge',
         password: 'icanfly',
         emailaddress: 'superdoge@doge.com',
+        role: 'ADMIN',
         createdAt: new Date(),
         updatedAt: new Date(),
       }
@@ -27,9 +30,9 @@ module.exports = {
 
 
   down: function (queryInterface, Sequelize) {
-    return queryInterface.bulkDelete('Photos',
+    return queryInterface.bulkDelete('Users',
       {
-        author: ['Such Doge', 'Doge', 'Snoop Dogey Doge']
+        username: ['galleryuser', 'meow', 'superdoge']
       }, {});
   }
 };

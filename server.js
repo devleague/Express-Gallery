@@ -8,6 +8,7 @@ const authenticate = require('./middleware/authentication.js');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const session = require('express-session');
+const RedisStore = require('connect-redis')(session);
 const gallery = require('./routes/gallery.js');
 const db = require('./models');
 const Photo = db.Photo;
@@ -18,6 +19,7 @@ app.set('view engine', 'pug');
 app.set('views', './views');
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(session({
+  store: new RedisStore(),
   secret: CONFIG.SECRET,
   resave: false,
   saveUninitialized: true
@@ -70,7 +72,10 @@ app.get('/', function(req, res) {
 
 app.post('/users', (req, res) => {
   //to create a new gallery photo
-  User.create({ username: req.body.username, password: req.body.password, emailaddress: req.body.emailaddress})
+  User.create({ username: req.body.username,
+    password: req.body.password,
+    emailaddress: req.body.emailaddress,
+    role: 'USER'})
   .then((user) => {
     res.status(200)
     .json({

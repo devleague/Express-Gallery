@@ -1,7 +1,7 @@
 {
   "SECRET": "abc123",
   "CREDENTIALS": {
-    "USERNAME" : "user",
+    "USERNAME" : "galleryuser",
     "PASSWORD" : "password"
   },
   "development": {

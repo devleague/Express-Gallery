@@ -1,9 +1,11 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const CONFIG = require('../config/config.json');
+const db = require('../models');
+const User = db.User;
 
 passport.use(new LocalStrategy((username, password, done) => {
-  const { USERNAME, PASSWORD } = CONFIG.CREDENTIALS;
+  /*const { USERNAME, PASSWORD } = CONFIG.CREDENTIALS;
   const isAuthenticated = (username === USERNAME && password === PASSWORD);
 
   if(!isAuthenticated) {
@@ -14,7 +16,21 @@ passport.use(new LocalStrategy((username, password, done) => {
     role: 'ADMIN',
     id: 1
   };
-  return done(null, user);
+  return done(null, user);*/
+  User.findAll({
+    attributes: [username, id],
+    where: {
+      username: username,
+      password: password
+    }
+  }).then((user) => {
+    console.log(user);
+    return done(null, user);
+  })
+  .catch((err) => {
+    return done(null, false);
+  });
+
 }));
 
 passport.serializeUser((user, done) => {
