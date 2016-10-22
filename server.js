@@ -10,6 +10,7 @@ const flash = require('connect-flash');
 /*
 const LocalStrategy = require('passport-local').Strategy;
 */
+const bcrypt = require('bcrypt');
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
 const gallery = require('./routes/gallery.js');
@@ -50,10 +51,7 @@ app.get('/logout', (req, res) => {
 
 app.post('/login', passport.authenticate('local', {
     successRedirect: '/gallery',
-    failureRedirect: '/login',
-    /* requires npm i -S connect-flash */
-    successFlash: 'Login successful.',
-    failureFlash: 'Invalid username or password.'
+    failureRedirect: '/login'
 }));
 
 let isLoggedIn = (req) => {
@@ -70,12 +68,12 @@ app.get('/', function(req, res) {
   } else {
     username = req.user.username;
   }
-  Photo.findAll()
+  Photo.findAll({
+    order: [['id', 'DESC']]
+  })
   .then((photos) => {
     res.render('gallery', {
-      featured: {
-        link: 'http://4.bp.blogspot.com/-ASxswpMUlmg/U0xvrC2RgkI/AAAAAAAAHy4/kZy_Aw3fugE/s1600/doge.jpg',
-      },
+      featured: photos.shift(),
       gallery: photos,
       isLoggedIn: isLoggedIn(req),
       username: username
@@ -85,16 +83,20 @@ app.get('/', function(req, res) {
 
 app.post('/users', validate.userValidate, (req, res) => {
   //to create a new gallery photo
-  User.create({ username: req.body.username,
-    password: req.body.password,
-    emailaddress: req.body.email,
-    role: 'USER'})
-  .then((user) => {
-    res.render('login', {status: 'valid'});
-  })
-  .catch((err) => {
-    req.flash('info', 'Invalid input in user account fields');
-    res.render('login', {status: 'invalid'});
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(req.body.password, salt, (err, hash) => {
+      User.create({ username: req.body.username,
+        password: hash,
+        emailaddress: req.body.email,
+        role: 'USER'})
+      .then((user) => {
+        res.render('login', {status: 'valid'});
+      })
+      .catch((err) => {
+        //req.flash('info', 'Invalid input in user account fields');
+        res.render('login', {status: 'invalid'});
+      });
+    });
   });
 });
 

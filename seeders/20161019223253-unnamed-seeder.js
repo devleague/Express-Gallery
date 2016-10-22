@@ -40,11 +40,11 @@ module.exports = {
         updatedAt: new Date(),
         UserId: 1
       },{
-        title: 'Shrek Doge',
-        description: 'Shrek Doge',
-        author: 'Shrek Doge',
-        link: 'https://pbs.twimg.com/media/B6mfb6nIYAA2Cox.jpg',
-        hashtags: '#Snoop#DOGE',
+        title: 'Fake Burger Guy',
+        description: 'NFL player Todd Gurley eats a fake Carl\'s Jr. Cali Burger',
+        author: 'Fake Burger Guy',
+        link: 'http://www.adweek.com/files/2016_Jun/burger-bite.gif',
+        hashtags: '#fake#burger#carlsjr',
         createdAt: new Date(),
         updatedAt: new Date(),
         UserId: 1
@@ -56,7 +56,7 @@ module.exports = {
   down: function (queryInterface, Sequelize) {
     return queryInterface.bulkDelete('Photos',
       {
-        author: ['Such Doge', 'Doge', 'Snoop Dogey Doge', 'Shrek Doge']
+        author: ['Such Doge', 'Doge', 'Snoop Dogey Doge', 'Shrek Doge', 'Fake Burger Guy']
       }, {});
   }
 };

@@ -1,34 +1,28 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const CONFIG = require('../config/config.json');
+const bcrypt = require('bcrypt');
 const db = require('../models');
 const User = db.User;
 
 const ls = new LocalStrategy((username, password, done) => {
-  /*const { USERNAME, PASSWORD } = CONFIG.CREDENTIALS;
-  const isAuthenticated = (username === USERNAME && password === PASSWORD);
-
-  if(!isAuthenticated) {
-    return done(null, false);
-  }
-  const user = {
-    name: 'Gallery Admin',
-    role: 'ADMIN',
-    id: 1
-  };
-  return done(null, user);*/
   User.findAll({
-    attributes: ['username', 'id'],
+    attributes: ['username', 'password', 'id'],
     where: {
-      username: username,
-      password: password
+      username: username
     }
   }).then((user) => {
     if(user.length < 1) {
       return done(null, false);
     }
     let [u] = user;
-    return done(null, u);
+    bcrypt.compare(password, u.dataValues.password, (err, res) => {
+      if(res === true) {
+        return done(null, u);
+      } else {
+        return done(null, false);
+      }
+    });
   })
   .catch((err) => {
     return done(null, false);

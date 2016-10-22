@@ -10,14 +10,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        validatePassword: (value) => {
-          if(/[{}<>;]/g.test(value)) {
-            throw new TypeError("invalid characters in password");
-          }
-        }
-      }
+      allowNull: false
     },
     emailaddress: {
       type:DataTypes.STRING,
@@ -39,7 +32,7 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
         User.hasMany(models.Photo);
       }
-    }
+    },
   });
 
   return User;
