@@ -7,17 +7,25 @@ const User = db.User;
 
  const ls = new LocalStrategy((username, password, done) => {
    User.findAll({
-    attributes: ['username', 'id'],
+    attributes: ['username', 'password', 'role', 'id'],
     where: {
-      username: username,
-      password: password
+      username: username
     }
   }).then((user) => {
     if(user.length < 1) {
       return done(null, false);
     }
     let [u] = user;
-    return done(null, u);
+    let res = bcrypt.compareSync(password, u.dataValues.password);
+    if(res === true) {
+      return done(null, {
+        username: u.datavalues.username,
+        role: u.datavalues.role,
+        id: u.dataValues.id
+      });
+    } else {
+      return done(null, false);
+    }
   })
   .catch((err) => {
     return done(null, false);

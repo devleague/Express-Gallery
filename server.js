@@ -7,9 +7,6 @@ const app = express();
 const authenticate = require('./middleware/authentication.js');
 const passport = require('passport');
 const flash = require('connect-flash');
-/*
-const LocalStrategy = require('passport-local').Strategy;
-*/
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
