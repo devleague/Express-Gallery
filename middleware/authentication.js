@@ -17,10 +17,11 @@ const User = db.User;
     }
     let [u] = user;
     let res = bcrypt.compareSync(password, u.dataValues.password);
+    console.log(password, res);
     if(res === true) {
       return done(null, {
-        username: u.datavalues.username,
-        role: u.datavalues.role,
+        username: u.dataValues.username,
+        role: u.dataValues.role,
         id: u.dataValues.id
       });
     } else {
@@ -33,15 +34,17 @@ const User = db.User;
 
  });
 
-passport.use(ls);
-
-passport.serializeUser((user, done) => {
+ passport.serializeUser((user, done) => {
+  console.log('hit serializeUser');
   return done(null, user);
 });
 
 passport.deserializeUser((user, done) => {
+  console.log('hit deserialize user');
   return done(null, user);
 });
+
+passport.use(ls);
 
 const isAuthenticated = (req, res, next) => {
   if(!req.isAuthenticated()) {

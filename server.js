@@ -31,14 +31,6 @@ app.use(passport.session());
 
 passport.use(authenticate.ls);
 
-passport.serializeUser((user, done) => {
-  return done(null, user);
-});
-
-passport.deserializeUser((user, done) => {
-  return done(null, user);
-});
-
 app.use('/gallery', gallery);
 
 app.use(log);
@@ -70,6 +62,7 @@ let isLoggedIn = (req) => {
 
 app.get('/', function(req, res) {
   //to view list of gallery photos
+  console.log('req.user: ' + req.user);
   if(req.user === undefined) {
     username = 'Not logged in';
   } else {
