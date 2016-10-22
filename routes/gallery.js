@@ -90,7 +90,7 @@ router.route('/')
       hashtags: req.body.hashtags,
       UserId: req.user.id })
     .then((photos) => {
-      res.renderById(req, res, photos.id);
+      renderById(req, res, photos.id);
     });
   });
 
