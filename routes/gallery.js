@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const bodyParser = require('body-parser');
-const validate = require('../middleware/validation.js');
 const authenticate = require('../middleware/authentication.js');
+const validate = require('../middleware/validation.js');
 const session = require('express-session');
 const db = require('../models');
 const Photo = db.Photo;
@@ -67,17 +66,18 @@ let renderById = (req, res, id) => {
 router.route('/')
   .get((req, res) => {
     //to view list of gallery photos
+    console.log('req.user', req.user);
     if(req.user === undefined) {
       username = 'Not logged in';
     } else {
       username = req.user.username;
     }
-    Photo.findAll()
+    Photo.findAll({
+      order: [['id', 'DESC']]
+    })
     .then((photos) => {
       res.render('gallery', {
-        featured: {
-          link: 'http://4.bp.blogspot.com/-ASxswpMUlmg/U0xvrC2RgkI/AAAAAAAAHy4/kZy_Aw3fugE/s1600/doge.jpg',
-        },
+        featured: photos.shift(),
         gallery: photos,
         isLoggedIn: isLoggedIn(req),
         username: username
@@ -93,10 +93,7 @@ router.route('/')
       hashtags: req.body.hashtags,
       UserId: req.user.id })
     .then((photos) => {
-      res.status(200)
-      .json({
-        success: true
-      });
+      res.renderById(req, res, photos.id);
     });
   });
 

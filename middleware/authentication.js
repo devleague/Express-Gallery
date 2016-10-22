@@ -17,8 +17,10 @@ const ls = new LocalStrategy((username, password, done) => {
     }
     let [u] = user;
     bcrypt.compare(password, u.dataValues.password, (err, res) => {
+      console.log(password, res);
       if(res === true) {
-        return done(null, u);
+        console.log("logged in");
+        return done(null, user);
       } else {
         return done(null, false);
       }
