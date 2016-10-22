@@ -45,4 +45,5 @@ The layout of the app matches the layouts included in `/layouts`.
 - Run `npm start`
 - Run `sequelize db:seed:all`
 - Run `gulp`
+- (Linux) gulp may not automatically run redis-server, in that case start it up manually before the next step
 - gulp should bring up a Chrome window at http://localhost:7000
