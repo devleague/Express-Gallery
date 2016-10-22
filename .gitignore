@@ -38,3 +38,6 @@ node_modules
 
 #css
 public/css/styles.css
+
+
+**/dump.rdb
