@@ -10,6 +10,22 @@ $invalid-color: #e08690;
   @include respond-to(medium) {
     width: 85%;
   }
+  form {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: space-around;
+    input[type=submit]{
+      margin-top: 16px;
+      width: 80px;
+    }
+    a {
+      margin-top: 16px;
+      button {
+        width: 80px;
+      }
+    }
+  }
 }
 
 textarea, input[type=text] {

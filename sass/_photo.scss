@@ -30,6 +30,12 @@ $text-color: #606060;
   @include respond-to(medium) {
     width: 60%;
   }
+  a {
+    margin-right: 16px;
+    button {
+      width: 80px;
+    }
+  }
 }
 .detail {
   width: 100%;

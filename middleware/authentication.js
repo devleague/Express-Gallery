@@ -5,8 +5,8 @@ const bcrypt = require('bcrypt');
 const db = require('../models');
 const User = db.User;
 
- const ls = new LocalStrategy((username, password, done) => {
-   User.findAll({
+const ls = new LocalStrategy((username, password, done) => {
+  User.findAll({
     attributes: ['username', 'password', 'role', 'id'],
     where: {
       username: username
@@ -31,9 +31,9 @@ const User = db.User;
     return done(null, false);
   });
 
- });
+});
 
- passport.serializeUser((user, done) => {
+passport.serializeUser((user, done) => {
   return done(null, user);
 });
 
