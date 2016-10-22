@@ -58,6 +58,6 @@ textarea, input[type=text] {
     }
   }
   #invalid {
-    background-color: $invalid-color;
+    box-shadow:  0px 0px 2px $invalid-color, 0px 0px 4px $invalid-color;
   }
 }

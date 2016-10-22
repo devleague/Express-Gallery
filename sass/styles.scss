@@ -8,9 +8,17 @@ $light-color : #fdfdfd;
 $border-color: #a0a0a0;
 $header-desc-color: #909090;
 $text-color: #606060;
+$button-color: #d0d0d0;
 
 html {
   font-family: sans-serif;
+}
+
+button, input[type=submit] {
+  border: none;
+  padding: 4px;
+  background-color: $button-color;
+  box-shadow: 0px 2px 1px $header-desc-color;
 }
 
 body {
