@@ -19,7 +19,7 @@ app.use(express.static('./public'));
 app.set('view engine', 'pug');
 app.set('views', './views');
 app.use(bodyParser.urlencoded({ extended: true}));
-app.use(flash());
+//app.use(flash());
 app.use(session({
   store: new RedisStore(),
   secret: CONFIG.SECRET,
