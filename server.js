@@ -62,7 +62,6 @@ let isLoggedIn = (req) => {
 
 app.get('/', function(req, res) {
   //to view list of gallery photos
-  console.log('req.user: ' + req.user);
   if(req.user === undefined) {
     username = 'Not logged in';
   } else {

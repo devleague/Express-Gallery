@@ -51,13 +51,11 @@ let renderById = (req, res, id) => {
         });
       })
       .catch((error) => {
-        console.log('catch on findall:', error);
         res.status(404).render('404');
       });
     });
   })
   .catch((error) => {
-    console.log('catch on findbyid');
     res.status(404).render('404');
   });
 };
@@ -66,7 +64,6 @@ let renderById = (req, res, id) => {
 router.route('/')
   .get((req, res) => {
     //to view list of gallery photos
-    console.log('req.user', req.user);
     if(req.user === undefined) {
       username = 'Not logged in';
     } else {

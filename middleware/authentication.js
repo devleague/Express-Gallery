@@ -17,7 +17,6 @@ const User = db.User;
     }
     let [u] = user;
     let res = bcrypt.compareSync(password, u.dataValues.password);
-    console.log(password, res);
     if(res === true) {
       return done(null, {
         username: u.dataValues.username,
@@ -35,12 +34,10 @@ const User = db.User;
  });
 
  passport.serializeUser((user, done) => {
-  console.log('hit serializeUser');
   return done(null, user);
 });
 
 passport.deserializeUser((user, done) => {
-  console.log('hit deserialize user');
   return done(null, user);
 });
 
