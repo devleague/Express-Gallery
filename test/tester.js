@@ -1,5 +1,5 @@
 const express = require('express');
-const app = require('../server.js');
+const app = require('../server');
 const supertest = require("supertest")(app);
 
 const successMessage = JSON.stringify({
