@@ -15,7 +15,7 @@ block body
         button Logout
     form(method="POST" action="/users" id=`${status}`)
       if status === 'invalid'
-        h5 Username cannot contain special characters.
+        h5 Invalid username or email.
       else
         h5 Create account
       input(type="text" name="username" placeholder="username" required)

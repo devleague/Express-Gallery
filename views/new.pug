@@ -3,7 +3,7 @@ extends ./layout
 block body
   div#newPostForm
     -var br = '<br />'
-    form(action=`/gallery` method="post" name ="validate" onsubmit="return validateForm()")
+    form(action='/gallery' method="post" name ="validate" onsubmit="return validateForm()")
       p Title
       input(type='text' name='title' placeholder=title required)
       p Author

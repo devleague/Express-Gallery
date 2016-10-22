@@ -1,11 +1,10 @@
 extends ./layout
 
 block body
-  -var sp = ' '
   div#notFound
     h3 404
     h5 Page not found.
     p That item doesn't exist in our database. Perhaps you would like to
-      a(href="/gallery/new")!=sp
+      a(href="/gallery/new") &nbsp;
         span create it.
     a(href="/") Main Page

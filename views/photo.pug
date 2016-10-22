@@ -4,7 +4,7 @@ block body
   h5#photoTitle #{title}
   div#main
     div#photoDiv
-      img(src=`${link}` class='detail')
+      img.detail(src=`${link}`)
       div#description
         h5 #{author} (posted by #{poster})
         p #{description}
@@ -19,5 +19,5 @@ block body
       each rel in relatedPhotos
         div.relatedPhoto
           a(href=`/gallery/${rel.id}`)
-            img(src=`${rel.link}` class='relatedPreview')
+            img.relatedPreview(src=`${rel.link}`)
         h5 #{rel.title}
