@@ -31,7 +31,17 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
 passport.use(authenticate.ls);
+
+passport.serializeUser((user, done) => {
+  return done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+  return done(null, user);
+});
+
 app.use('/gallery', gallery);
 
 app.use(log);

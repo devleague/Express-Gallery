@@ -5,32 +5,25 @@ const bcrypt = require('bcrypt');
 const db = require('../models');
 const User = db.User;
 
-const ls = new LocalStrategy((username, password, done) => {
-  User.findAll({
-    attributes: ['username', 'password', 'id'],
+ const ls = new LocalStrategy((username, password, done) => {
+   User.findAll({
+    attributes: ['username', 'id'],
     where: {
-      username: username
+      username: username,
+      password: password
     }
   }).then((user) => {
     if(user.length < 1) {
       return done(null, false);
     }
     let [u] = user;
-    bcrypt.compare(password, u.dataValues.password, (err, res) => {
-      console.log(password, res);
-      if(res === true) {
-        console.log("logged in");
-        return done(null, user);
-      } else {
-        return done(null, false);
-      }
-    });
+    return done(null, u);
   })
   .catch((err) => {
     return done(null, false);
   });
 
-});
+ });
 
 passport.use(ls);
 
@@ -50,4 +43,7 @@ const isAuthenticated = (req, res, next) => {
   }
 };
 
-module.exports = {isAuthenticated, ls};
+module.exports = {
+  isAuthenticated: isAuthenticated,
+  ls: ls
+};
