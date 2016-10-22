@@ -10,7 +10,8 @@ block body
       a(href="/login")
         button Log In
   div#featured
-    img(src=`${featured.link}` id='featuredImage')
+    a(href=`/gallery/${featured.id}`)
+      img(src=`${featured.link}` id='featuredImage')
   div#main
     div#gallery
       each photo in gallery
