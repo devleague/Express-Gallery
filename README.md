@@ -41,3 +41,5 @@ Match the layout as close as you can, using free and open fonts and graphics.
 
 - does not have tablet layout
 - uses a background image that is not included, you will have to find something similar (subtlepatterns.com)
+
+

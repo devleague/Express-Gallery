@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+html(lang='en')
+head
+  meta(charset='UTF-8')
+  title Express Gallery #{title}
+body
+  h1 Welcome to the gallery!
+  if new Date().getHours() < 18
+    h2 Good morning
+  if new Date().getHours() >= 18
+    h2 Good evening
+  h2 #{new Date()}
+  h3 You are currently visitor #{visitorCount}!
+  div
+    button(onclick="redirect()") Post a photo
+
+  each gallery in galleries
+    a(href="gallery/" + gallery.id class="randomPics")
+      img(src=gallery.link)
+script.
+  function redirect() {
+    window.location = "gallery/new"}
