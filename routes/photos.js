@@ -9,18 +9,32 @@ const {addPhoto, editPhoto, removePhoto, getAllPhotos, getPhotoById} = require('
 
 galleryRouter.route('/')
   .post((req, res) => {
-    addPhoto()
-    res.send('route works');
+  // /gallery/new will redirect with values in form to this route
+    // const photoInfo = req.body;
+    // console.log('photoInfo ', photoInfo);
+    // addPhoto(photoInfo)
+    //   .then(photos => {
+    //     res.render('home', {photos});
+
+    //   });
+
   });
 
 galleryRouter.route('/:id')
 
   .get((req, res) => {
-    if(req.params.id === 'new') {
-      res.render('new');
-      return;
+    const photoId = req.params.id;
+    if(photoId === 'new') {
+        res.render('../views/gallery/new');
     }
-    res.send('get works');
+    getPhotoById(photoId)
+      .then(photo => {
+        console.log('photo ', photo);
+        res.render('photo', {photo});
+      })
+      .catch(error => {
+        console.log(error);
+      });
   })
 
   .put((req, res) => {

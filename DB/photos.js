@@ -3,6 +3,8 @@ const express = require('express');
 const router = express.Router();
 
 const addPhoto = (item) => {
+  console.log(item);
+  //return something:
   console.log('add photo');
 };
 
