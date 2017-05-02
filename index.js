@@ -18,6 +18,8 @@ app.engine('hbs', hbs.engine);
 
 app.set('view engine', 'hbs');
 
+app.use(override('_method'));
+
 app.use(bodyParser.urlencoded({extended: false}));
 //app.use('/gallery', galleryRoutes);
 

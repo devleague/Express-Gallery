@@ -79,6 +79,6 @@ router.route('/:id')
 
   router.route('/:id/edit')
   .get((req,res) => {
-    res.send('edit id');
+    res.render('./partials/gallery_edit');
   });
 
