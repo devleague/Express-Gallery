@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "Dev_team",
+    "username": "dev_team",
     "password": null,
-    "database": "express_gallery_DB",
+    "database": "express_gallery_db",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
