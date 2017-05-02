@@ -3,9 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 const addPhoto = (item) => {
-  console.log(item);
-  //return something:
-  console.log('add photo');
+return {author: "Someone", link:"Link Here" , description: "Lorem Ipsum"};
 };
 
 const editPhoto = (editInfo, editId) => {
