@@ -29,6 +29,11 @@ router.route('/')
     .then(res.send('Created!'));
   });
 
+router.route('/new')
+  .get((req,res)=> {
+    res.render('./partials/gallery_new');
+  });
+
 router.route('/:id')
   .get((req,res) => {
   console.log(typeof req.path);
@@ -77,7 +82,3 @@ router.route('/:id')
     res.send('edit id');
   });
 
-router.route('/new')
-  .get((req,res)=> {
-    res.send('New pics here');
-  });
