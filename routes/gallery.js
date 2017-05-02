@@ -8,8 +8,14 @@ const db = require('../models/');
 module.exports = router;
 
 router.route('/')
-  .get((req, res) =>{
-    res.send('Hello World');
+  .get((req, res)  =>{
+    db.Gallery.findAll({
+    })
+  .then(data => {
+    //console.log(data);
+    res.send('gotem');
+    });
+
   })
 
   .post((req,res)=> {
@@ -18,14 +24,26 @@ router.route('/')
       title: req.body.title,
       author: req.body.author,
       link: req.body.link,
-      descriptuion: req.body.descriptuion
+      description: req.body.description
     })
     .then(res.send('Created!'));
   });
 
 router.route('/:id')
   .get((req,res) => {
-    res.send('fake id');
+  console.log(typeof req.path);
+  let path = req.path.split('/')[1];
+  console.log(path);
+     db.Gallery.findAll({
+      where: {
+        id: path
+      }
+    })
+  .then(data => {
+    console.log(data);
+    res.send('gotem');
+    });
+
   })
 
   .put((req, res) => {
