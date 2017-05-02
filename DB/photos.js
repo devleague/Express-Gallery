@@ -22,11 +22,12 @@ const getAllPhotos = () => {
 
 const getPhotoById = (photoId) => {
 
-  return Post.findAll({
-    where: {
-      id: photoId
-    }
-  });
+  return photoId;
+  // return Post.findAll({
+  //   where: {
+  //     id: photoId
+  //   }
+  // });
 };
 
 module.exports = {

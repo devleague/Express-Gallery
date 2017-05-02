@@ -24,8 +24,9 @@ galleryRouter.route('/:id')
 
   .get((req, res) => {
     const photoId = req.params.id;
+    console.log('reqParams ', req.params.id);
     if(photoId === 'new') {
-        res.render('../views/gallery/new');
+        res.render('./gallery/new');
     }
     getPhotoById(photoId)
       .then(photo => {

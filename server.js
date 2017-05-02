@@ -12,6 +12,8 @@ const hbs = handlebars.create({
   defaultLayout: 'main'
 });
 
+console.log(`server has started on port ${PORT}`);
+
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
