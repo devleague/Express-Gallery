@@ -30,7 +30,7 @@ galleryRouter.route('/:id')
     getPhotoById(photoId)
       .then(photo => {
         console.log('photo ', photo);
-        res.render('photo', {photo});
+        // res.render('photo', {photo});
       })
       .catch(error => {
         console.log(error);

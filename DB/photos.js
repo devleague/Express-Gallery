@@ -22,6 +22,11 @@ const getAllPhotos = () => {
 
 const getPhotoById = (photoId) => {
 
+  return Post.findAll({
+    where: {
+      id: photoId
+    }
+  });
 };
 
 module.exports = {
