@@ -13,7 +13,7 @@ router.route('/')
     })
   .then(data => {
     //console.log(data);
-    res.send('gotem');
+    res.render('./partials/gallery_all');
     });
 
   })
@@ -27,6 +27,11 @@ router.route('/')
       description: req.body.description
     })
     .then(res.send('Created!'));
+  });
+
+router.route('/new')
+  .get((req,res)=> {
+    res.render('./partials/gallery_new');
   });
 
 router.route('/:id')
@@ -74,10 +79,13 @@ router.route('/:id')
 
   router.route('/:id/edit')
   .get((req,res) => {
-    res.send('edit id');
-  });
+    let path = (req.path.split('/'));
+    path.pop();
+    let newPath = path.join('');
+    console.log(newPath);
+    res.render('./partials/gallery_edit', {
+      id: newPath
+    });
+    }
+  );
 
-router.route('/new')
-  .get((req,res)=> {
-    res.send('New pics here');
-  });
