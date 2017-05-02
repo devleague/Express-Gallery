@@ -33,21 +33,33 @@ router.route('/:id')
   .get((req,res) => {
   console.log(typeof req.path);
   let path = req.path.split('/')[1];
-  console.log(path);
      db.Gallery.findAll({
       where: {
         id: path
       }
     })
   .then(data => {
-    console.log(data);
+    //console.log(data);
     res.send('gotem');
     });
-
   })
 
   .put((req, res) => {
-    res.send('edit id');
+    let path = req.path.split('/')[1];
+    db.Gallery.update({
+      title: req.body.title,
+      author: req.body.author,
+      link: req.body.link,
+      description: req.body.description
+    }, {
+      where: {
+        id: path
+      }
+    })
+    .then(data => {
+      //console.log('wat'+data);
+      res.send('posted');
+    });
   })
 
   .delete((req, res) => {
