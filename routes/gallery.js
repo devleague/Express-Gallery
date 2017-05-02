@@ -63,9 +63,14 @@ router.route('/:id')
   })
 
   .delete((req, res) => {
-    res.send('delete id');
+    let path = req.path.split('/')[1];
+    db.Gallery.destroy({
+      where: {
+        id: path
+      }
+    });
+    res.send('Deleted');
   });
-
 
   router.route('/:id/edit')
   .get((req,res) => {
