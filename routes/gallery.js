@@ -13,7 +13,7 @@ router.route('/')
     })
   .then(data => {
     //console.log(data);
-    res.send('gotem');
+    res.render('./partials/gallery_all');
     });
 
   })
@@ -79,6 +79,13 @@ router.route('/:id')
 
   router.route('/:id/edit')
   .get((req,res) => {
-    res.render('./partials/gallery_edit');
-  });
+    let path = (req.path.split('/'));
+    path.pop();
+    let newPath = path.join('');
+    console.log(newPath);
+    res.render('./partials/gallery_edit', {
+      id: newPath
+    });
+    }
+  );
 
