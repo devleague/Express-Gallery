@@ -10,7 +10,7 @@ const editPhoto = (editInfo, editId) => {
 
 };
 
-const removeProduct = (removeInfo) => {
+const removePhoto = (removeInfo) => {
 
 };
 

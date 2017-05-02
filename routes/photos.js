@@ -3,12 +3,13 @@
 const express = require('express');
 const galleryRouter = express.Router();
 const bodyParser = require('body-parser');
+const {addPhoto, editPhoto, removePhoto, getAllPhotos, getPhotoById} = require('../DB/photos.js');
 
 
 
 galleryRouter.route('/')
   .post((req, res) => {
-    addPhotos()
+    addPhoto()
     res.send('route works');
   });
 
