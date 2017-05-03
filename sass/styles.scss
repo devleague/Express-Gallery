@@ -1,0 +1,158 @@
+// Resets, clearfix
+@import "sass/partials/_reset.scss";
+@import "sass/partials/_clearfix.scss";
+
+// variables
+
+
+// media query ranges
+$small: "only screen and (min-width: 200px) and (max-width: 599px)";
+$medium: "only screen and (min-width: 600px) and (max-width: 899px)";
+$large: "only screen and (min-width: 1000px)";
+// Mixins
+@mixin small {
+  @media #{$small} {
+    @content;
+  }
+}
+@mixin medium {
+  @media #{$medium} {
+    @content;
+  }
+}
+@mixin large {
+  @media #{$large} {
+    @content;
+  }
+}
+
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  font-family: sans-serif;
+  color: gray;
+  h1 {
+    font-size: 40px;
+    color: gray;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+  }
+}
+
+.mainPage {
+  width: 80vw;
+  display: block;
+  margin: 0 auto;
+}
+
+.galleryPage {
+  width: 80vw;
+  display: block;
+  margin: 0 auto;
+}
+
+.mainPageHeader {
+  color: gray;
+  span {
+    letter-spacing: normal;
+  }
+}
+
+.galleryPageHeader {
+  margin-bottom: 30px;
+  span {
+    letter-spacing: normal;
+  }
+}
+
+.mainTitle {
+  display: inline-block;
+  padding: 10px;
+}
+
+.vertDivider {
+  display: inline-block;
+  width: 2px;
+  height: 40px;
+  background-color: gray;
+  position: relative;
+  margin-top: 10px;
+  margin-left: 10px;
+  z-index: 10;
+}
+
+.mainWelcome {
+  display: inline-block;
+  text-align: left;
+  padding: 10px;
+  max-width: 500px;
+  @include large {
+    border-left: 1px solid;
+  }
+  @include small {
+    display:none;
+  }
+}
+
+.galleryTitle {
+  padding: 10px;
+  float: left;
+}
+
+.galleryWelcome {
+  display: inline-block;
+  text-align: left;
+  max-width: 400px;
+  padding: 10px;
+  float: right;
+
+  @include large {
+    border-left: 1px solid;
+  }
+}
+
+.mainListing {
+  text-align: center;
+  width: 80vw;
+}
+
+.galleryListing {
+  text-align: center;
+  width: 80vw;
+}
+.imageContainer {
+  width: 25vw;
+  display: inline-block;
+  padding: 10px;
+
+  @include small {
+    display: block;
+    width: 60vw;
+  }
+  .frontPagePicture {
+    width: 25vw;
+    padding: 10px;
+
+    @include small {
+      display: block;
+      width: 60vw;
+    }
+  }
+}
+
+.firstImageContainer {
+  .frontPagePicture {
+    display: block;
+    width: 80vw;
+    height: 250px;
+    object-fit: cover;
+    margin: 0 auto;
+  }
+}
+
+.pictureInfo {
+  text-align: left;
+  padding-left: 10px;
+}

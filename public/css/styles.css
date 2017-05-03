@@ -1,0 +1,173 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0; }
+
+.clearfix {
+  display: inline-block; }
+
+/* start commented backslash hack \*/
+* html .clearfix {
+  height: 1%; }
+
+.clearfix {
+  display: block; }
+
+/* close commented backslash hack */
+html {
+  height: 100%; }
+
+body {
+  height: 100%;
+  font-family: sans-serif;
+  color: gray; }
+  body h1 {
+    font-size: 40px;
+    color: gray;
+    font-weight: bold;
+    letter-spacing: 0.05em; }
+
+.mainPage {
+  width: 80vw;
+  display: block;
+  margin: 0 auto; }
+
+.galleryPage {
+  width: 80vw;
+  display: block;
+  margin: 0 auto; }
+
+.mainPageHeader {
+  color: gray; }
+  .mainPageHeader span {
+    letter-spacing: normal; }
+
+.galleryPageHeader {
+  margin-bottom: 30px; }
+  .galleryPageHeader span {
+    letter-spacing: normal; }
+
+.mainTitle {
+  display: inline-block;
+  padding: 10px; }
+
+.vertDivider {
+  display: inline-block;
+  width: 2px;
+  height: 40px;
+  background-color: gray;
+  position: relative;
+  margin-top: 10px;
+  margin-left: 10px;
+  z-index: 10; }
+
+.mainWelcome {
+  display: inline-block;
+  text-align: left;
+  padding: 10px;
+  max-width: 500px; }
+  @media only screen and (min-width: 1000px) {
+    .mainWelcome {
+      border-left: 1px solid; } }
+  @media only screen and (min-width: 200px) and (max-width: 599px) {
+    .mainWelcome {
+      display: none; } }
+
+.galleryTitle {
+  padding: 10px;
+  float: left; }
+
+.galleryWelcome {
+  display: inline-block;
+  text-align: left;
+  max-width: 400px;
+  padding: 10px;
+  float: right; }
+  @media only screen and (min-width: 1000px) {
+    .galleryWelcome {
+      border-left: 1px solid; } }
+
+.mainListing {
+  text-align: center;
+  width: 80vw; }
+
+.galleryListing {
+  text-align: center;
+  width: 80vw; }
+
+.imageContainer {
+  width: 25vw;
+  display: inline-block;
+  padding: 10px; }
+  @media only screen and (min-width: 200px) and (max-width: 599px) {
+    .imageContainer {
+      display: block;
+      width: 60vw; } }
+  .imageContainer .frontPagePicture {
+    width: 25vw;
+    padding: 10px; }
+    @media only screen and (min-width: 200px) and (max-width: 599px) {
+      .imageContainer .frontPagePicture {
+        display: block;
+        width: 60vw; } }
+
+.firstImageContainer .frontPagePicture {
+  display: block;
+  width: 80vw;
+  height: 250px;
+  object-fit: cover;
+  margin: 0 auto; }
+
+.pictureInfo {
+  text-align: left;
+  padding-left: 10px; }
