@@ -1,0 +1,27 @@
+extends ../layout
+
+block content
+  div(id="photo_title")
+    h2= photo.author
+    h3= photo.link
+
+  article(class="photo" id="photos")
+    div(id="main_photo")
+      img(src= photo.link)
+      h3= photo.description
+      button(id="backBtn" class="btn btn-blue btn-border-o")|Back
+      if(isUser)
+        button(type="submit" id="edit" data-id=photo.id class="btn btn-blue btn-border-o")|Edit
+        button(type="submit" id="delete"  data-id=photo.id class="btn btn-blue btn-border-o")|Delete
+        p(class="errormessage" id="error")
+
+    div(class="side_photo")
+      each photo in otherPhotos
+        div(class="each_side_photo")
+          a(href='/gallery/' + photo.id)
+            img(src= photo.link)
+          p= photo.author
+          p= photo.link
+
+
+  script(src="/js/photo.js")

@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+  div(id="userAccess")
+    if(isLoggedIn)
+      button(id="new_photo" class="btn btn-blue btn-border-o") Add New Photo
+      button(id="logOut" class="btn btn-blue btn-border-o") Log Out
+    else
+      button(id="logIn" class="btn btn-blue btn-border-o") Log In
+      button(id="signUp" class="btn btn-blue btn-border-o") Sign Up
+
+  img(id="first_image" src="https://unsplash.it/1500/750")
+
+  hr
+  div(id="container")
+    each photo in photos
+      div(class="photo")
+        a(href='/gallery/' + photo.id)
+          img(src= photo.link)
+        p= photo.author
+        p= photo.link
+
+  script(src="/js/index.js")

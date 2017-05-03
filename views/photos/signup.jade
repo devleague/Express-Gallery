@@ -1,0 +1,10 @@
+extends ../layout
+
+block content
+  form(method="POST" class="form" action="/signUp")
+    h3 UserName
+    input(type='text' name="username")
+    h3 Password
+    input(type='password' name="password")
+    p.errormessage= errormessage
+    button#signUpBtn.btn.btn-blue.btn-border-o Sign Up

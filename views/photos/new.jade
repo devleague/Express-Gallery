@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  div(class="form")
+    h2 Add a Photo
+    p Author
+    input(id="author")
+    p Link
+    input(id="link")
+    p Description
+    textarea(id="description")
+    br
+    button(id="submitNewPhoto" class="btn btn-blue btn-border-o")|Submit
+    button(id="backBtn" class="btn btn-blue btn-border-o")|Back
+
+
+  script(src="/js/new.js")
+  script(src="/js/back.js")

@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+  div(class="form")
+    h2 Edit a Photo
+    p Author
+    input(id="author" value=photo.author)
+    p Link
+    input(id="link" value=photo.link)
+    p Description
+    textarea(id="description") #{photo.description}
+    div
+      button(id="editFieldsBtn" class="btn btn-blue btn-border-o" data-id=photo.id)|Submit Changes
+      button(id="backBtn" class="btn btn-blue btn-border-o")|Back
+
+  script(src="/js/edit.js")
+  script(src="/js/back.js")
