@@ -1,0 +1,12 @@
+extends ./../layout
+
+block content
+  form#editForm(method='POST' action="/gallery/#{Photo.id}")
+    input(type='hidden', name='_method', value='PUT')
+    p Author:
+      input(type="text", name="author", value='#{Photo.author}' autofocus)
+    p Link:
+      input(type="text", name="link", value='#{Photo.link}')
+    p Description:
+      input(type="text", name="description", value='#{Photo.description}')
+    input(type='submit' value='Submit Edit')

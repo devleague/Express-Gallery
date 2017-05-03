@@ -1,0 +1,19 @@
+doctype html
+html(lang="en")
+head
+  meta(charset="UTF-8")
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  title Express Gallery
+  link(rel="stylesheet", href="./../css/styles.css")
+body
+  .main
+    h1 _Woofitekt
+    div.nav
+      p
+        if isAuthenticated
+          a.button(href="/gallery/new") New Post
+          a.button(href="/logout") Logout
+        else
+          a.button(href="/users") Sign Up
+          a.button(href="/login") Login
+    block content

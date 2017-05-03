@@ -1,0 +1,22 @@
+extends ./../layout
+block content
+  #single-main
+    .single-feature
+      h3 #{Photo.author}
+      img.portrait(src="#{Photo.link}")
+      ul
+        li description: #{Photo.description}
+      ul
+        li
+          form(method="GET", action="/gallery/#{Photo.id}/edit")
+            button(type="submit", value="submit") Edit
+        li
+          form(name="delete-photo", method="POST", action="/gallery/#{Photo.id}")
+            input(type="hidden", name="_method", value="DELETE")
+            button(type="submit", value="submit") Delete
+        li
+          form(method="GET", action="/gallery/")
+            button(type="submit", value="submit") Back
+        li
+          form(method="GET", action="/gallery/new")
+            button(type="submit", value="submit") New Post

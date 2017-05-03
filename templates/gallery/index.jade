@@ -1,0 +1,12 @@
+extends ./../layout
+block content
+  each photo in Photos
+    .thumbnail
+      p
+        a(href="/gallery/#{photo.id}")
+          img.portrait(src="#{photo.link}")
+    ul
+      li #{photo.author}&nbsp;-&nbsp;
+        a(href="#{photo.source}") #{photo.source}
+  #footer
+    p &nbsp;

@@ -1,0 +1,11 @@
+extends ./../layout
+
+block content
+  form#newForm(method='POST')
+    p Link:
+      input(type="text", name="link", placeholder="URL of Image" autofocus)
+    p Source:
+      input(type="text", name="source", placeholder="URL of Source")
+    p Description:
+      input(type="text", name="description", placeholder="Description")
+    input(type='submit' value='Submit Photo')
