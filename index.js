@@ -6,6 +6,7 @@ const db = require('./models');
 const port = process.envPORT || 3000;
 const override = require('method-override');
 const bodyParser = require('body-parser');
+const loginRoutes = require('./routes/login');
 const galleryRoutes = require('./routes/gallery');
 const handlebars = require('express-handlebars');
 

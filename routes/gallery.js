@@ -29,7 +29,7 @@ router.route('/')
       link: req.body.link,
       description: req.body.description
     })
-    .then(res.redirect(301, '/gallery'));
+    .then(res.redirect('/gallery'));
   });
 
 router.route('/new')
@@ -91,7 +91,7 @@ router.route('/:id')
         id: path
       }
     });
-    res.redirect(301, '/gallery');
+    res.redirect('/gallery');
   });
 
   router.route('/:id/edit')
