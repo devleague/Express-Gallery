@@ -1,0 +1,55 @@
+body {
+  background-color: white; }
+
+#border {
+  border-style: double; }
+
+div {
+  align: center;
+  height: 100%;
+  background-color: #ff0000;
+  border-style: solid; }
+
+#top-of-gallery {
+  display: flex; }
+  #top-of-gallery #header {
+    flex: 1 1 75%;
+    border-top-style: dashed;
+    background-color: white; }
+  #top-of-gallery #about {
+    border-top-style: dashed;
+    flex: 1 1 25%;
+    background-color: white; }
+
+#url {
+  border-style: solid;
+  border-left-color: #00FFFF;
+  align: left; }
+
+#author {
+  border-style: solid;
+  border-left-color: #7FFF00;
+  align: left; }
+
+#description {
+  border-style: solid;
+  border-left-color: #00008B;
+  align: left; }
+
+#submit {
+  border-style: solid;
+  border-left-color: #8B008B;
+  align: left; }
+
+#galleryPhoto {
+  border-style: solid;
+  align: left;
+  width: 33%;
+  height: 33%; }
+
+#galleryPhoto:hover {
+  border-style: double;
+  align: left; }
+
+#picture {
+  display: flex; }
