@@ -1,0 +1,12 @@
+extends ./layout/layout.jade
+
+block title
+  Express-Gallery
+
+block content
+  ol
+    each pic in Galleries
+      li #{pic.description}
+        ul
+          img(src= '#{pic.link}')
+          p By: #{pic.author}

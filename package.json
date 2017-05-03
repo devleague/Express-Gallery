@@ -1,0 +1,32 @@
+{
+  "name": "express-gallery",
+  "version": "1.0.0",
+  "description": "Express Gallery",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JonAhnee/express-gallery.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JonAhnee/express-gallery/issues"
+  },
+  "homepage": "https://github.com/JonAhnee/express-gallery#readme",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.4",
+    "faker": "^3.0.1",
+    "jade": "^1.11.0",
+    "method-override": "^2.3.5",
+    "passport": "^0.3.2",
+    "passport-http": "^0.3.0",
+    "pg": "^4.4.3",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.18.0"
+  }
+}
