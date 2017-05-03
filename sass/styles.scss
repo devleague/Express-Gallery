@@ -1,0 +1,17 @@
+$background-color: #ff0000;
+$div: white;
+
+body {
+  background-color: $background-color;
+}
+
+div {
+  align: center;
+  height: 100%;
+  background-color: $div;
+
+  div {
+    border-style: double;
+    align: left;
+  }
+}

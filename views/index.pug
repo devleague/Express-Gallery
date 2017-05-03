@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    title Express Gallery
+  body
+    header
+      span= fullName || 'First Last'
+    h1 Welcome to the gallery!
+    | #{new Date().getHours()}
+    if new Date().getHours() >= 17
+      h2 Good Evening!
+    h2 The time is currently #{new Date()}
+    h3 You are currently visitor #{visitorCount}!
