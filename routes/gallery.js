@@ -17,7 +17,7 @@ router.route('/')
     gallery_object_array.push(data[i].dataValues);
     }
     console.log(gallery_object_array);
-    res.render('./partials/gallery_all', {gallery: gallery_object_array});
+    res.render( './partials/gallery_all', {gallery: gallery_object_array});
     });
 
   })
@@ -30,7 +30,7 @@ router.route('/')
       link: req.body.link,
       description: req.body.description
     })
-    .then(res.send('Created!'));
+    .then(res.redirect(301, '/gallery'));
   });
 
 router.route('/new')
@@ -78,7 +78,7 @@ router.route('/:id')
         id: path
       }
     });
-    res.send('Deleted');
+    res.redirect(301, '/gallery');
   });
 
   router.route('/:id/edit')

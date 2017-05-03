@@ -3,7 +3,17 @@
 {{#each gallery}}
 <h2>Title: {{title}}</h2>
 <h2>Author: {{author}}</h2>
-<h2>Link: {{link}}</h2>
+<img src ={{link}}>
+{{!-- <video width="300" height= '300' controls >
+  <source src='https://www.youtube.com/watch?v=2lai-UIvDZg' type="video/mp4">
+</video> --}}
 <h2>Description {{description}}</h2>
 <h2>id: {{id}}</h2>
+  <form method="GET" action="/gallery/{{id}}/edit" enctype="application/x-www-form-urlencoded">
+  <button type= "submit">EDIT</button>
+  </form>
 {{/each}}
+
+<form method="GET" action="/gallery/new" enctype="application/x-www-form-urlencoded">
+  <button type="submit">NEW</button>
+</form>

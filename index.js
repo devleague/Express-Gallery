@@ -9,12 +9,17 @@ const bodyParser = require('body-parser');
 const galleryRoutes = require('./routes/gallery');
 const handlebars = require('express-handlebars');
 
+
 const hbs = handlebars.create({
   extname: 'hbs',
   defaultLayout: 'main'
 });
 
 app.engine('hbs', hbs.engine);
+
+
+app.use(express.static('public'));
+
 
 app.set('view engine', 'hbs');
 
