@@ -12,8 +12,12 @@ router.route('/')
     db.Gallery.findAll({
     })
   .then(data => {
-    //console.log(data);
-    res.render('./partials/gallery_all');
+    let gallery_object_array =[];
+    for(var i = 0; i<data.length; i++){
+    gallery_object_array.push(data[i].dataValues);
+    }
+    console.log(gallery_object_array);
+    res.render('./partials/gallery_all', {gallery: gallery_object_array});
     });
 
   })
@@ -45,7 +49,7 @@ router.route('/:id')
     })
   .then(data => {
     //console.log(data);
-    res.send('gotem');
+    res.render('./partials/gallery_getId');
     });
   })
 
@@ -82,10 +86,18 @@ router.route('/:id')
     let path = (req.path.split('/'));
     path.pop();
     let newPath = path.join('');
-    console.log(newPath);
-    res.render('./partials/gallery_edit', {
-      id: newPath
-    });
+    db.Gallery.findAll({
+      where: { id: newPath}
+    })
+    .then(data =>{
+      let gallery_title = data[0].dataValues.title;
+      console.log(newPath);
+      console.log(gallery_title);
+      res.render('./partials/gallery_edit', {
+        id: newPath,
+        title: gallery_title
+        });
+      });
     }
   );
 

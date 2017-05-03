@@ -1,4 +1,6 @@
 <h1>Edit Art!</h1>
+===================
+<h2>TITLE: {{title}}</h2>
 
 
 <form method="POST" action="/gallery/{{id}}?_method=PUT" enctype="application/x-www-form-urlencoded">
@@ -6,5 +8,9 @@ title<input type="text" name="title">
 author<input type="text" name="author">
 link<input type="text" name="link">
 description<input type="text" name="description">
-<button type="submit">NEW ART!</button>
+  <button type="submit">EDI TART!</button>
+</form>
+
+<form method="POST" action="/gallery/{{id}}?_method=DELETE" enctype="application/x-www-form-urlencoded">
+  <button type= "submit">DELETE</button>
 </form>
