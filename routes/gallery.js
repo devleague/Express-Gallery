@@ -17,13 +17,12 @@ router.route('/')
     gallery_object_array.push(data[i].dataValues);
     }
     console.log(gallery_object_array);
-    res.render( './partials/gallery_all', {gallery: gallery_object_array});
+    res.render('./partials/gallery_all', {gallery: gallery_object_array});
     });
 
   })
 
   .post((req,res)=> {
-    // console.log(db);
     db.Gallery.create({
       title: req.body.title,
       author: req.body.author,
@@ -40,7 +39,6 @@ router.route('/new')
 
 router.route('/:id')
   .get((req,res) => {
-  console.log(typeof req.path);
   let path = req.path.split('/')[1];
      db.Gallery.findAll({
       where: {
@@ -48,8 +46,23 @@ router.route('/:id')
       }
     })
   .then(data => {
-    //console.log(data);
-    res.render('./partials/gallery_getId');
+    let title = data[0].dataValues.title;
+    console.log(title);
+    let author = data[0].dataValues.author;
+    let link = data[0].dataValues.link;
+    let description = data[0].dataValues.description;
+    if (data.length === 0){
+      res.send(404);
+    }
+    else{
+      console.log(path);
+      res.render('./partials/gallery_getId', {
+        title: title,
+        author: author,
+        link: link,
+        description: description
+      });
+     }
     });
   })
 
