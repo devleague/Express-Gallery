@@ -80,6 +80,26 @@ passport.use(new LocalStrategy (
   }
 ));
 
+passport.serializeUser(function(user, done) {
+  console.log('serializing');
+  return done(null, {
+    id: user.id,
+    username: user.username
+  });
+});
+
+passport.deserializeUser(function(user, done) {
+  console.log('deserializing');
+  User.findOne({
+    where: {
+      id: user.id
+    }
+  }).then(user => {
+    return done(null, user);
+  });
+});
+
+
 
 app.use('/gallery', galleryRoutes);
 app.use('/login', loginRoutes);
