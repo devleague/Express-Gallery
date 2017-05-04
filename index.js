@@ -13,7 +13,7 @@ const handlebars = require('express-handlebars');
 const RedisStore = require('connect-redis')(session);
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-
+const { User } = db;
 
 //password hashing
 const saltRounds = 10;
@@ -51,35 +51,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //passport local strategy
-passport.use(new LocalStrategy (
-  function(username, password, done) {
-    console.log('runs before serializing');
-    User.findOne({
-      where: {
-        username: username
-      }
-    })
-    .then ( user => {
-      if (user === null) {
-        console.log('user failed');
-        return done(null, false, {message: 'bad username'});
-      }
-      else {
-        bcrypt.compare(password, user.password)
-        .then(res => {
-          if (res) { return done(null, user); }
-          else {
-            return done(null, false, {message: 'bad password'});
-          }
-        });
-      }
-    })
-    .catch(err => {
-      console.log('error: ', err);
-    });
-  }
-));
-
 passport.serializeUser(function(user, done) {
   console.log('serializing');
 // ^ ---------- given from authentication strategy
@@ -102,8 +73,45 @@ passport.deserializeUser(function(user, done) {
   });
 });
 
+passport.use(new LocalStrategy (
+  function(username, password, done) {
+    console.log('runs before serializing');
+    User.findOne({
+      where: {
+        name: username
+      }
+    })
+    .then ( user => {
+      if (user === null) {
+        console.log('user failed');
+        return done(null, false, {message: 'bad username'});
+      }
+      else {
+        console.log(user, user.password);
+        bcrypt.compare(password, user.password)
+        .then(res => {
+          if (res) { return done(null, user); }
+          else {
+            return done(null, false, {message: 'bad password'});
+          }
+        });
+      }
+    })
+    .catch(err => {
+      console.log('error: ', err);
+    });
+  }
+));
+
+
+app.post('/login', passport.authenticate('local', {
+  successRedirect: '/gallery',
+  failureRedirect: '/user/new'
+}));
+
+
 app.use('/gallery', galleryRoutes);
-app.use('/login', loginRoutes);
+app.use('/user', loginRoutes);
 
 app.listen(3000, () => {
   console.log('server listening on 3000');

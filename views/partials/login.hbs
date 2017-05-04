@@ -1,13 +1,13 @@
 <h1>Sign-Up</h1>
-<form method="POST" action="/login" enctype="application/x-www-form-urlencoded">
-username<input type="text" name="name">
+<form method="POST" action="/user/new" enctype="application/x-www-form-urlencoded">
+username<input type="text" name="username">
 password<input type="password" name="password">
   <button type="submit">Submit</button>
 </form>
 
 <h1>Sign-In</h1>
-<form method="POST" action="/login/auth" enctype="application/x-www-form-urlencoded">
-username<input type="text" name="name">
+<form method="POST" action="/login" enctype="application/x-www-form-urlencoded">
+username<input type="text" name="username">
 password<input type="password" name="password">
   <button type="submit">Submit</button>
 </form>

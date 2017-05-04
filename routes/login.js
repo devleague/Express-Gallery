@@ -17,9 +17,9 @@ const { User } = require('../models');
 
 module.exports = router;
 
-router.route('/')
+router.route('/new')
   .get((req,res) => {
-    console.log('hit');
+    //console.log('hit');
     res.render('./partials/login');
   })
 
@@ -39,7 +39,3 @@ router.route('/')
   });
 });
 
-router.route('/new')
-  .post((req, res) => {
-    console.log(passport.authenticate('local', {successRedirect: '/gallery', failureRedirect: '/'}));
-  });
