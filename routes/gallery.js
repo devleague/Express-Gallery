@@ -16,7 +16,7 @@ router.route('/')
     for(var i = 0; i<data.length; i++){
     gallery_object_array.push(data[i].dataValues);
     }
-    console.log(gallery_object_array);
+    //console.log(gallery_object_array);
     res.render('./partials/gallery_all', {gallery: gallery_object_array});
     });
 
@@ -47,7 +47,7 @@ router.route('/:id')
     })
   .then(data => {
     let title = data[0].dataValues.title;
-    console.log(title);
+    // console.log(title);
     let author = data[0].dataValues.author;
     let link = data[0].dataValues.link;
     let description = data[0].dataValues.description;
@@ -55,7 +55,7 @@ router.route('/:id')
       res.send(404);
     }
     else{
-      console.log(path);
+      // console.log(path);
       res.render('./partials/gallery_getId', {
         title: title,
         author: author,
@@ -104,8 +104,8 @@ router.route('/:id')
     })
     .then(data =>{
       let gallery_title = data[0].dataValues.title;
-      console.log(newPath);
-      console.log(gallery_title);
+      // console.log(newPath);
+      // console.log(gallery_title);
       res.render('./partials/gallery_edit', {
         id: newPath,
         title: gallery_title
