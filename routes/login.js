@@ -33,7 +33,7 @@ router.route('/new')
       })
       .then( (user) => {
         console.log(user);
-        res.redirect('/login');
+        res.redirect('/gallery');
       });
     });
   });
