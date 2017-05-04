@@ -80,6 +80,27 @@ passport.use(new LocalStrategy (
   }
 ));
 
+passport.serializeUser(function(user, done) {
+  console.log('serializing');
+// ^ ---------- given from authentication strategy
+  // building the object to serialize to save
+  return done(null, {
+    id: user.id,
+    username: user.username
+  });
+});
+
+passport.deserializeUser(function(user, done) {
+  console.log('deserializing');
+  // ^ ---------- given from serializeUser
+  User.findOne({
+    where: {
+      id: user.id
+    }
+  }).then(user => {
+    return done(null, user); // <------- inserts into the request object
+  });
+});
 
 app.use('/gallery', galleryRoutes);
 app.use('/login', loginRoutes);
