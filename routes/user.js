@@ -19,12 +19,10 @@ module.exports = router;
 
 router.route('/new')
   .get((req,res) => {
-    //console.log('hit');
     res.render('./partials/login');
   })
 
   .post((req,res) =>{
-    console.log(req.body);
     bcrypt.genSalt(saltRounds, function(err, salt) {
     bcrypt.hash(req.body.password, salt, function(err, hash) {
       User.create({
@@ -38,4 +36,11 @@ router.route('/new')
     });
   });
 });
+
+router.route('/logout')
+  .get((req, res) =>{
+    console.log('hit logout');
+    req.logout();
+    res.redirect('/gallery');
+  });
 

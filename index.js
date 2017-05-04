@@ -7,7 +7,7 @@ const db = require('./models');
 const port = process.envPORT || 3000;
 const override = require('method-override');
 const bodyParser = require('body-parser');
-const loginRoutes = require('./routes/login');
+const userRoutes = require('./routes/user');
 const galleryRoutes = require('./routes/gallery');
 const handlebars = require('express-handlebars');
 const RedisStore = require('connect-redis')(session);
@@ -130,8 +130,11 @@ app.post('/login', passport.authenticate('local', {
 }));
 
 
+
+
+
 app.use('/gallery', galleryRoutes);
-app.use('/user', loginRoutes);
+app.use('/user', userRoutes);
 
 app.listen(3000, () => {
   console.log('server listening on 3000');

@@ -9,20 +9,43 @@ module.exports = router;
 
 router.route('/')
   .get((req, res)  =>{
+    let user;
+    console.log('USER ID:' +req.user);
     db.Gallery.findAll({
     })
   .then(data => {
+    if(req.user !== undefined){
+      user = {
+       id: req.user.dataValues.id,
+       name: req.user.dataValues.name
+      };
+    }
+    if(req.user === undefined) {
+      console.log('wat');
+       user = {
+        id: 'N/A',
+        name: 'Guest'
+      };
+    }
+    console.log(data);
     let gallery_object_array =[];
     for(var i = 0; i<data.length; i++){
     gallery_object_array.push(data[i].dataValues);
     }
-    //console.log(gallery_object_array);
-    res.render('./partials/gallery_all', {gallery: gallery_object_array});
+    res.render('./partials/gallery_all', {
+      gallery: gallery_object_array,
+      current: user
+    });
     });
 
   })
 
   .post((req,res)=> {
+    let loggedIn = req.isAuthenticated();
+    if(loggedIn){
+      console.log('logged in as fuck');
+    }
+    console.log('entered post');
     db.Gallery.create({
       title: req.body.title,
       author: req.body.author,
@@ -39,6 +62,8 @@ router.route('/new')
 
 router.route('/:id')
   .get((req,res) => {
+    //console.log(req.user.dataValues.id);
+    //console.log(req.user.dataValues.name);
   let path = req.path.split('/')[1];
      db.Gallery.findAll({
       where: {
