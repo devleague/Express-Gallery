@@ -13,7 +13,7 @@ const handlebars = require('express-handlebars');
 const RedisStore = require('connect-redis')(session);
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-
+const { User } = db;
 
 //password hashing
 const saltRounds = 10;
@@ -51,12 +51,34 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //passport local strategy
+passport.serializeUser(function(user, done) {
+  console.log('serializing');
+// ^ ---------- given from authentication strategy
+  // building the object to serialize to save
+  return done(null, {
+    id: user.id,
+    username: user.username
+  });
+});
+
+passport.deserializeUser(function(user, done) {
+  console.log('deserializing');
+  // ^ ---------- given from serializeUser
+  User.findOne({
+    where: {
+      id: user.id
+    }
+  }).then(user => {
+    return done(null, user); // <------- inserts into the request object
+  });
+});
+
 passport.use(new LocalStrategy (
   function(username, password, done) {
     console.log('runs before serializing');
     User.findOne({
       where: {
-        username: username
+        name: username
       }
     })
     .then ( user => {
@@ -65,6 +87,7 @@ passport.use(new LocalStrategy (
         return done(null, false, {message: 'bad username'});
       }
       else {
+        console.log(user, user.password);
         bcrypt.compare(password, user.password)
         .then(res => {
           if (res) { return done(null, user); }
@@ -81,8 +104,14 @@ passport.use(new LocalStrategy (
 ));
 
 
+app.post('/login', passport.authenticate('local', {
+  successRedirect: '/gallery',
+  failureRedirect: '/user/new'
+}));
+
+
 app.use('/gallery', galleryRoutes);
-app.use('/login', loginRoutes);
+app.use('/user', loginRoutes);
 
 app.listen(3000, () => {
   console.log('server listening on 3000');
