@@ -10,7 +10,7 @@ module.exports = router;
 router.route('/')
   .get((req, res)  =>{
     let user;
-    console.log('USER ID:' +req.user);
+    //console.log('USER ID:' +req.user);
     db.Gallery.findAll({
     })
   .then(data => {
@@ -21,13 +21,13 @@ router.route('/')
       };
     }
     if(req.user === undefined) {
-      console.log('wat');
+      //console.log('wat');
        user = {
         id: 'N/A',
         name: 'Guest'
       };
     }
-    console.log(data);
+    //console.log(data);
     let gallery_object_array =[];
     for(var i = 0; i<data.length; i++){
     gallery_object_array.push(data[i].dataValues);
@@ -43,14 +43,16 @@ router.route('/')
   .post((req,res)=> {
     let loggedIn = req.isAuthenticated();
     if(loggedIn){
-      console.log('logged in as fuck');
+      console.log('USER_ID: '+req.user.dataValues.id);
+      //let userId = req.user.dataValues.id;
     }
     console.log('entered post');
     db.Gallery.create({
       title: req.body.title,
       author: req.body.author,
       link: req.body.link,
-      description: req.body.description
+      description: req.body.description,
+      UserId: req.user.dataValues.id
     })
     .then(res.redirect('/gallery'));
   });

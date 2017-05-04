@@ -103,27 +103,6 @@ passport.use(new LocalStrategy (
   }
 ));
 
-// passport.serializeUser(function(user, done) {
-//   console.log('serializing');
-//   return done(null, {
-//     id: user.id,
-//     username: user.username
-//   });
-// });
-
-// passport.deserializeUser(function(user, done) {
-//   console.log('deserializing');
-//   User.findOne({
-//     where: {
-//       id: user.id
-//     }
-//   }).then(user => {
-//     return done(null, user);
-//   });
-// });
-
-
-
 app.post('/login', passport.authenticate('local', {
   successRedirect: '/gallery',
   failureRedirect: '/user/new'
@@ -138,7 +117,7 @@ app.use('/user', userRoutes);
 
 app.listen(3000, () => {
   console.log('server listening on 3000');
-  db.sequelize.sync();
+  db.sequelize.sync({forceSync: true});
 });
 
 module.exports = app;

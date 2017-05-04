@@ -8,6 +8,11 @@ module.exports = function(sequelize, DataTypes) {
       name: DataTypes.TEXT,
       password: DataTypes.TEXT,
   }, {
+    classMethods: {
+      associate: function(models){
+        User.hasMany(models.Gallery);
+      }
+    }
   });
   return User;
 };

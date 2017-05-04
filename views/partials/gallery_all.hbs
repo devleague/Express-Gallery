@@ -3,6 +3,11 @@ USER:{{current.name}}
 <form method="GET" action="/gallery/new" enctype="application/x-www-form-urlencoded">
   <button type="submit"> NEW </button>
 </form>
+
+<form method="GET" action="/user/new" enctype="application/x-www-form-urlencoded">
+  <button type="submit"> LOGIN/SIGN-UP </button>
+</form>
+
 <div id = 'content'>
 {{#each gallery}}
   <div id = 'insideContent'>

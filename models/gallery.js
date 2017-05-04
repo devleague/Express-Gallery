@@ -13,6 +13,11 @@ module.exports = function(sequelize, DataTypes) {
       },
       description: DataTypes.TEXT
   }, {
+    classMethods: {
+      associate: function(models){
+        Gallery.belongsTo(models.User);
+      }
+    }
 
   });
 
