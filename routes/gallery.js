@@ -149,7 +149,7 @@ router.route('/:id')
     })
     .then(data => {
       //console.log('wat'+data);
-      res.send('posted');
+      res.redirect('/gallery');
       });
   })
 
@@ -165,6 +165,7 @@ router.route('/:id')
 
   router.route('/:id/edit')
   .get((req,res) => {
+    console.log('hit id edit');
     let path = (req.path.split('/'));
     path.pop();
     let newPath = path.join('');
