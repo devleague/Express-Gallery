@@ -3,6 +3,8 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../models/');
+let currentUser;
+let currentImage;
 
 
 module.exports = router;
@@ -15,6 +17,7 @@ router.route('/')
     })
   .then(data => {
     if(req.user !== undefined){
+      currentUser = req.user.dataValues.id;
       user = {
        id: req.user.dataValues.id,
        name: req.user.dataValues.name
@@ -43,9 +46,8 @@ router.route('/')
   .post((req,res)=> {
     let loggedIn = req.isAuthenticated();
     if(loggedIn){
-      console.log('USER_ID: '+req.user.dataValues.id);
+      //console.log('USER_ID: '+req.user.dataValues.id);
       //let userId = req.user.dataValues.id;
-    }
     console.log('entered post');
     db.Gallery.create({
       title: req.body.title,
@@ -55,11 +57,36 @@ router.route('/')
       UserId: req.user.dataValues.id
     })
     .then(res.redirect('/gallery'));
+    } else {
+      res.redirect('/user/new');
+    }
   });
 
 router.route('/new')
   .get((req,res)=> {
     res.render('./partials/gallery_new');
+  });
+
+router.route('/owned')
+  .get((req,res) => {
+
+    db.Gallery.findAll({
+      where: {
+        UserId: currentUser
+      }
+    })
+    .then(data=>{
+      let galleryById = [];
+      for(var i=0; i< data.length; i++){
+        galleryById.push(data[i].dataValues);
+      }
+      console.log(galleryById);
+
+    res.render('./partials/gallery_owned', {
+      gallery: galleryById,
+    });
+      //current: user
+    });
   });
 
 router.route('/:id')
@@ -94,6 +121,21 @@ router.route('/:id')
   })
 
   .put((req, res) => {
+    let currentImageId;
+
+    console.log('are you working');
+
+    db.Gallery.findAll({
+      where: {
+        UserId: currentUser
+      }
+    })
+    .then(data =>{
+      console.log(data);
+    });
+
+
+
     let path = req.path.split('/')[1];
     db.Gallery.update({
       title: req.body.title,
@@ -108,7 +150,7 @@ router.route('/:id')
     .then(data => {
       //console.log('wat'+data);
       res.send('posted');
-    });
+      });
   })
 
   .delete((req, res) => {

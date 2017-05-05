@@ -117,7 +117,9 @@ app.use('/user', userRoutes);
 
 app.listen(3000, () => {
   console.log('server listening on 3000');
-  db.sequelize.sync({forceSync: true});
+  db.sequelize.sync(
+    //{forceSync: true}
+    );
 });
 
 module.exports = app;

@@ -1,5 +1,10 @@
 <h1>EDI TART ART GALLERY</h1>
 USER:{{current.name}}
+
+<form method = "GET" action="/gallery/owned" enctype="application/x-www-form-urlencoded">
+  <button>EDIT</button>
+</form>
+
 <form method="GET" action="/gallery/new" enctype="application/x-www-form-urlencoded">
   <button type="submit"> NEW </button>
 </form>
@@ -16,8 +21,9 @@ USER:{{current.name}}
 <p>Description {{description}}</p>
 <div id ='imageButton'>
 <img class = 'imageClass' src ={{link}}>
-  <form method="GET" action="/gallery/{{id}}/edit" enctype="application/x-www-form-urlencoded">
-  <button type= "submit">EDIT</button>
+  {{!-- <form method="GET" action="/gallery/{{id}}/edit" enctype="application/x-www-form-urlencoded"
+  >
+  <button type = "submit">EDIT</button> --}}
   </form>
   </div>
   </div>
