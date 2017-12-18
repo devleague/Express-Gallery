@@ -1,0 +1,28 @@
+<h1>EDI TART ART GALLERY</h1>
+USER:{{current.name}}
+
+<form method = "GET" action="/gallery/owned" enctype="application/x-www-form-urlencoded">
+  <button>My Pictures</button>
+</form>
+
+<form method="GET" action="/gallery/new" enctype="application/x-www-form-urlencoded">
+  <button type="submit"> NEW </button>
+</form>
+
+<form method="GET" action="/user/new" enctype="application/x-www-form-urlencoded">
+  <button type="submit"> LOGIN/SIGN-UP </button>
+</form>
+
+<div id = 'content'>
+{{#each gallery}}
+  <div id = 'insideContent'>
+<h2>Title: {{title}}</h2>
+<h4>Author: {{author}}</h4>
+<p>Description {{description}}</p>
+<div id ='imageButton'>
+<img class = 'imageClass' src ={{link}}>
+  </form>
+  </div>
+  </div>
+{{/each}}
+  </div>

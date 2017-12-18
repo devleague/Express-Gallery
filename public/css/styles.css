@@ -1,0 +1,28 @@
+#content {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: blue; }
+  #content #insideContent {
+    background-color: black;
+    color: red;
+    border: solid black 1px;
+    margin: 70px;
+    width: 500px; }
+    #content #insideContent #imageButton {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: blue;
+      margin: 45px; }
+
+.imageClass {
+  height: 300px;
+  width: 300px; }
+
+#byIdContent {
+  background-color: black;
+  color: red;
+  border: solid black 1px;
+  margin: 70px;
+  width: 500px; }
