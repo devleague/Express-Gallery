@@ -1,6 +1,6 @@
 const bookshelf = require('./bookshelf');
 
-const Users = bookshelf.Model.extend({
+const Gallery = bookshelf.Model.extend({
   tableName: 'classes',
   idAttribute: 'photo_id',
   hasTimestamps: true
