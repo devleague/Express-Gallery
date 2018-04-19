@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <% include ../partials/home %>
+</head>
+
+<body class='container'>
+    <header>
+        <% include ../partials/header %>
+    </header>
+    <main>
+        <div class="main">
+            <h1>The Classes of Warcraft</h1>
+            <div class="gallery">
+                <% photos.forEach(function(photo) { %>
+
+                    <img src=' <%= photo.link %>' class='class'>
+
+                    <% }); %>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+</body>
+
+</html>
