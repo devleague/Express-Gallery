@@ -19,7 +19,7 @@
                 <br>
                 <%= detail.desc %>
         </div>
-        </div>
+
 
         <div class='well'>
             <% photos.forEach(function(photos) { %>
@@ -28,7 +28,12 @@
 
                 <% }); %>
         </div>
-
+        <form action='/gallery/<%- photo.photo_id %>/edit' method="put">
+            <input type="submit" value="Edit" />
+        </form>
+        <form action='/gallery/<%- photo.photo_id %>' method="delete">
+            <input type="submit" value="Delete" />
+        </form>
     </main>
     <footer>
         <% include ../partials/footer %>

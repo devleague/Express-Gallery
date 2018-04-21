@@ -37,6 +37,7 @@ app.get('/', (req, res) => {
 app.get('/gallery/new', (req, res) => {
   res.render('pages/new');
 });
+
 // get /gallery/:id to see one photo, should include link to delete or edit photo
 app.get('/gallery/:id', (req, res) => {
   let photoId = parseInt(req.params.id);
@@ -58,6 +59,19 @@ app.get('/gallery/:id', (req, res) => {
     })
     .catch(err => {
       res.sendStatus(500);
+    });
+});
+app.get('/gallery/:id/edit', (req, res) => {
+  let photoId = parseInt(req.params.id);
+  knex
+    .select()
+    .from('classes')
+    .where('photo_id', photoId)
+    .then(photo => {
+      console.log(photo);
+      res.render('pages/edit', {
+        photo: photo[0]
+      });
     });
 });
 
@@ -86,11 +100,35 @@ app.post('/gallery', (req, res) => {
 });
 
 // get /gallery/:id/edit to edit a photo via form
-
-// put /gallery/:id update a photo
-
-// delete /gallery/:id to delete a photo
-
+app.put('/gallery/:id', (req, res) => {
+  let photoId = parseInt(req.params.id);
+  const updatedPhoto = {
+    author: req.body.Author,
+    class: req.body.Class,
+    link: req.body.Link,
+    desc: req.body.Description
+  };
+  Gallery.where({ photoId })
+    .fetch()
+    .then(photo => {
+      return photo.save(updatedPhoto);
+    })
+    .then(result => {
+      console.log('RESULT', result);
+      knex
+        .select()
+        .from('classes')
+        .then(photos => {
+          console.log(photo);
+          res.render('pages/index', { photos: photos, photo: photo });
+        });
+    })
+    .catch(err => {
+      console.log(err);
+      res.send(500);
+    });
+});
+// delete /gallery/:id to delete a photo // put /gallery/:id update a photo
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`);
 });
