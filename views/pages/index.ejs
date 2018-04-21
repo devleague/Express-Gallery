@@ -3,6 +3,7 @@
 
 <head>
     <% include ../partials/home %>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body class='container'>
@@ -14,8 +15,9 @@
             <h1>The Classes of Warcraft</h1>
             <div class="gallery">
                 <% photos.forEach(function(photo) { %>
-
-                    <img src=' <%= photo.link %>' class='class'>
+                    <a href='http://localhost:3003/gallery/<%- photo.photo_id %>'>
+                        <img src='<%- photo.link %>' class='class' />
+                    </a>
 
                     <% }); %>
             </div>

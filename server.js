@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //get / list of gallery photos
 app.get('/', (req, res) => {
   knex
-    .select('link')
+    .select()
     .from('classes')
     .then(photos => {
       //  res.send(photos);
@@ -32,7 +32,28 @@ app.get('/', (req, res) => {
 });
 
 // get /gallery/:id to see one photo, should include link to delete or edit photo
-
+app.get('/gallery/:id', (req, res) => {
+  let photoId = parseInt(req.params.id);
+  knex
+    .select()
+    .from('classes')
+    .where('photo_id', photoId)
+    .then(detail => {
+      knex
+        .select()
+        .from('classes')
+        .then(photos => {
+          //  console.log(detail);
+          res.render('pages/detail', {
+            detail: detail[0],
+            photos: photos
+          });
+        });
+    })
+    .catch(err => {
+      res.send(err);
+    });
+});
 // get /gallery/new to add a new gallery photo via form
 
 // post /gallery to create a new gallery photo

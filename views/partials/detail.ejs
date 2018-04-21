@@ -1,0 +1,82 @@
+<meta charset='UTF-8'>
+<title>The Classes - A Gallery</title>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<style>
+    @media(min-width: 250px) {
+        main {
+            display: grid;
+            grid-template-columns: 1fr 75px;
+            grid-template-rows: auto;
+        }
+        .main-photo {
+            max-width: 200px;
+            grid-column: 1;
+        }
+        .well {
+
+            grid-template-columns: 1fr;
+            grid-column: 2;
+        }
+
+        .well-image {
+            max-width: 75px;
+            max-height: 75px;
+            grid-column: 1;
+        }
+    }
+
+    @media(min-width: 500px) {
+        main {
+            display: grid;
+            grid-template-columns: 1fr 200px;
+            grid-template-rows: auto;
+        }
+        .main-photo {
+            max-width: 400px;
+            grid-column: span 1;
+        }
+        .well {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto;
+            grid-gap: 5px;
+            grid-column: 2;
+
+        }
+
+        .well-image {
+            max-width: 100%;
+            max-height: 100%;
+            margin: auto
+        }
+    }
+
+    @media(min-width: 700px) {
+        main {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            grid-template-rows: 1fr 350px;
+            grid-gap: 10px;
+        }
+        .main-photo {
+            min-width: 100%;
+            grid-column: 1;
+        }
+        .well {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto;
+            grid-gap: 5px;
+            grid-column: 1;
+        }
+
+        .well-image {
+            min-width: 100%;
+            min-height: 100%;
+            margin: auto
+        }
+    }
+
+    .well {
+        display: grid;
+    }
+</style>
