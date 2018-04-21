@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <% include ../partials/detail %>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Add a New Photo</title>
+</head>
+
+<body class='container'>
+
+    <header>
+        <% include ../partials/header %>
+    </header>
+    <main>
+
+        <form action="/gallery" method="post">
+            <label for="Author">Author: </label>
+            <input id="" type="text" name="Author" value="">
+            <br>
+            <label for="link">Web Link:</label>
+            <input type='text' name='Link' value="">
+            <br>
+            <label for='desc'>Description:</label>
+            <input type='text' name='Description' value=''>
+            <br>
+            <label for="class-type">Class Type (Optional):</label>
+            <input type='text' name='Class' value="">
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+
+
+    </main>
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+</body>
+
+</html>

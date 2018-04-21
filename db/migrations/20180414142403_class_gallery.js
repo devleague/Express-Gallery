@@ -2,9 +2,18 @@ exports.up = function(knex, Promise) {
   return knex.schema
     .createTable('classes', table => {
       table.increments('photo_id').primary();
-      table.string('class').notNullable();
-      table.string('link').notNullable();
-      //  table.string('author').notNullable();
+      table
+        .string('class')
+        .notNullable()
+        .defaultsTo('NPC');
+      table
+        .string('link')
+        .notNullable()
+        .defaultsTo('https://i.ytimg.com/vi/RqXkqOTU6Q4/hqdefault.jpg');
+      table
+        .string('author')
+        .notNullable()
+        .defaultsTo('Anon');
       table.text('desc').notNullable();
       table.timestamp('created_at').defaultTo(knex.fn.now());
       table.timestamp('updated_at').defaultTo(knex.fn.now());
