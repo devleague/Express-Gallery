@@ -5,7 +5,7 @@ module.exports = {
     client: 'pg',
     connection: {
       host: '127.0.0.1',
-      // user: 'gallery_user',
+      user: 'gallery_user',
       password: 'password',
       database: 'class_gallery_db'
     },
