@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <% include ../partials/detail %>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body class='container'>
+
+    <header>
+        <% include ../partials/header %>
+    </header>
+    <main>
+        <div class="main-photo-info">
+            <img src='<%= detail.link %>' class='main-photo'>
+            <br>
+            <%= detail.class %>
+                <br>
+                <%= detail.desc %>
+        </div>
+
+
+        <div class='well'>
+            <% photos.forEach(function(photos) { %>
+                <a href='http://localhost:3003/gallery/<%- photos.photo_id %>'>
+                    <div id='class-name'>
+                        <img src=' <%= photos.link %>' class='well-image' />
+
+                        <%=photos.class%>
+                    </div>
+                </a>
+                <% }); %>
+        </div>
+        <form action='/gallery/<%- detail.photo_id %>/edit' method="get">
+            <input type="submit" value="Edit" />
+        </form>
+        <form action='/gallery/<%= detail.photo_id %>delete' method="delete">
+            <input type="submit" value="Delete" />
+        </form>
+    </main>
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+</body>
+
+</html>

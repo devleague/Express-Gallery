@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <% include ../partials/home %>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body class='container'>
+    <header>
+        <% include ../partials/header %>
+    </header>
+    <main>
+        <div class="main">
+            <h1>The Classes of Warcraft</h1>
+            <div class="gallery">
+                <% photos.forEach(function(photo) { %>
+                    <a href='http://localhost:3003/gallery/<%- photo.photo_id %>'>
+                        <img src='<%- photo.link %>' class='class' />
+                        <div id='class-name'>
+                            <%=photo.class%>
+                        </div>
+                    </a>
+
+                    <% }); %>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+</body>
+
+</html>

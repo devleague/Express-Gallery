@@ -27,5 +27,5 @@ node_modules
 # Users Environment Variables
 .lock-wscript
 bower_components
-node_modules
+node_modules/
 *.DS_Store
