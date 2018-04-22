@@ -5,7 +5,14 @@
     <% include ../partials/detail %>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Edit a Photo</title>
-
+        <script>
+            function updatePhoto() {
+                const photoID = window.location.pathname.split('/')[2];
+                const photoURL = `http://localhost:3003/gallery/${photoID}`;
+                const formFinder = document.getElementById('edit_form')
+                edit_form.action = photoURL;
+            }
+        </script>
 </head>
 
 <body class='container'>
@@ -15,9 +22,9 @@
     </header>
     <main>
 
-        <form action=`#` method="put">
-            <label for="Author">Author: </label>
-            <input id="" type="text" name="Author" value="<%= photo.author %>">
+        <form onsubmit="updatePhoto()" method="put" id="edit_form">
+            <label for=" Author ">Author: </label>
+            <input id=" " type="text " name="Author " value="<%=photo.author %>">
             <br>
             <label for="link">Web Link:</label>
             <input type='text' name='Link' value='<%= photo.link %>'>

@@ -23,15 +23,19 @@
 
         <div class='well'>
             <% photos.forEach(function(photos) { %>
+                <a href='http://localhost:3003/gallery/<%- photos.photo_id %>'>
+                    <div id='class-name'>
+                        <img src=' <%= photos.link %>' class='well-image' />
 
-                <img src=' <%= photos.link %>' class='well-image'>
-
+                        <%=photos.class%>
+                    </div>
+                </a>
                 <% }); %>
         </div>
-        <form action='/gallery/<%- photo.photo_id %>/edit' method="put">
+        <form action='/gallery/<%- detail.photo_id %>/edit' method="get">
             <input type="submit" value="Edit" />
         </form>
-        <form action='/gallery/<%- photo.photo_id %>' method="delete">
+        <form action='/gallery/<%= detail.photo_id %>delete' method="delete">
             <input type="submit" value="Delete" />
         </form>
     </main>

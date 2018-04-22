@@ -1,20 +1,29 @@
 <meta charset='UTF-8'>
 <title>The Classes - A Gallery</title>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash|Oswald" rel="stylesheet">
+</head>
 <style>
     /* media queries */
 
-    @media only screen and (mmin-width: 250px) {
+    @media only screen and (min-width: 300px) {
 
         .gallery {
 
             grid-template-columns: 1fr;
             grid-gap: 1px;
-            max-width: 200px
+            max-width: 200px;
+            align-items: center;
         }
         .class {
             grid-column: span 1;
+            border-color: #9EBFB4;
+            border-style: groove;
+            max-height: 20px;
+            justify-self: center;
+            align-self: center;
+
 
         }
         h1 {
@@ -26,46 +35,78 @@
         .gallery {
 
             grid-template-columns: 1fr 1fr;
-            grid-gap: 3px;
-            max-width: 500px;
+            grid-gap: 10px;
+
         }
         .class {
-            grid-column: span 1;
+            grid-column: 1;
+            border-color: #9EBFB4;
+            border-style: groove;
+            max-height: 75px;
+            justify-self: center;
+            align-self: center;
 
         }
         h1 {
             grid-column: span 2;
+            font-size: 50px;
         }
     }
 
     @media only screen and (min-width: 700px) {
         .gallery {
 
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-gap: 5px;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-gap: 20px;
+
+
         }
         .class {
             grid-column: span 1;
+            border-color: #9EBFB4;
+            border-style: groove;
 
         }
         h1 {
             grid-column: span 4;
+
+
+            font-size: 100px;
+
         }
+        #class-name {
+            font-size: 35px;
+        }
+
     }
 
     /* generic styles */
 
     body {
         padding-top: 10px;
+        background-image: url('http://wow.zamimg.com/uploads/screenshots/normal/565257.jpg');
+        font-family: 'Berkshire Swash', cursive;
+        background-repeat: no-repeat;
+        background-color: black;
+
     }
 
     .class {
         max-width: 250px;
-        max-height: 250px;
-        padding: 10px;
+        min-height: 250px;
+        padding: 2px;
     }
 
     .gallery {
         display: grid;
+    }
+
+    h1 {
+        color: #FEDDBA;
+    }
+
+    #class-name {
+        color: #9EBFB4;
+        font-family: 'Oswald', sans-serif;
     }
 </style>

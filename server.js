@@ -108,18 +108,18 @@ app.put('/gallery/:id', (req, res) => {
     link: req.body.Link,
     desc: req.body.Description
   };
-  Gallery.where({ photoId })
+  Gallery.where('photo_id', photoId)
     .fetch()
     .then(photo => {
       return photo.save(updatedPhoto);
     })
-    .then(result => {
-      console.log('RESULT', result);
+    .then(photo => {
+      console.log('RESULT', photo);
       knex
         .select()
         .from('classes')
         .then(photos => {
-          console.log(photo);
+          console.log(photos);
           res.render('pages/index', { photos: photos, photo: photo });
         });
     })

@@ -1,12 +1,14 @@
 <meta charset='UTF-8'>
 <title>The Classes - A Gallery</title>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash|Oswald" rel="stylesheet">
+</head>
 <style>
     @media(min-width: 250px) {
         main {
             display: grid;
-            grid-template-columns: 1fr 75px;
+            grid-template-columns: 1fr;
             grid-template-rows: auto;
         }
         .main-photo {
@@ -16,7 +18,7 @@
         .well {
 
             grid-template-columns: 1fr;
-            grid-column: 2;
+            grid-column: 1;
         }
 
         .well-image {
@@ -37,7 +39,7 @@
             grid-column: span 1;
         }
         .well {
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             grid-template-rows: auto;
             grid-gap: 5px;
             grid-column: 2;
@@ -61,22 +63,46 @@
         .main-photo {
             min-width: 100%;
             grid-column: 1;
+            border-color: #9EBFB4;
+            border-style: groove;
         }
         .well {
             grid-template-columns: 1fr 1fr;
             grid-template-rows: auto;
             grid-gap: 5px;
-            grid-column: 1;
+            grid-column: 2;
+
+
         }
 
         .well-image {
             min-width: 100%;
             min-height: 100%;
-            margin: auto
+            margin: auto;
+
         }
     }
 
     .well {
         display: grid;
+    }
+
+    body {
+        padding-top: 10px;
+        background-image: url('http://wow.zamimg.com/uploads/screenshots/normal/568476.jpg');
+        font-family: 'Berkshire Swash', cursive;
+        background-repeat: no-repeat;
+        background-color: black;
+
+    }
+
+    #class-name {
+        color: #9EBFB4;
+        font-family: 'Oswald', sans-serif;
+    }
+
+    .main-photo-info {
+        color: #9EBFB4;
+        font-family: 'Oswald', sans-serif;
     }
 </style>
