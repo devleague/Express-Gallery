@@ -1,0 +1,11 @@
+version: '3'
+services:
+  this-app:
+    image: syamashige/express-gallery:${IMAGE_VERSION}
+    environment:
+      NODE_ENV: production
+
+  
+
+ 
+  

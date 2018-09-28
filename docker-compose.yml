@@ -1,0 +1,6 @@
+version: '3'
+services:
+  this-app:
+    build: .
+    image: syamashige/express-gallery:local
+
