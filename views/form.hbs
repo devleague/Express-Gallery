@@ -1,0 +1,15 @@
+<h1>Add New Post:</h1>
+<form action="/gallery/new" id="newPost" method="post">
+  <label>Author:
+    <input type="text" name="author" id="" required>
+  </label>
+  <br><br>
+  <label>Image:
+    <input type="url" name="link" id="" required>
+  </label>
+  <br><br>
+  <textarea name="description" form="newPost" placeholder="Enter description here..."></textarea>
+  <br><br>
+  <input type="submit" value="Submit">
+</form>
+<br> {{> footer}}

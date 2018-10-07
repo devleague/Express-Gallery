@@ -1,0 +1,21 @@
+{{#each galleryDetail}}
+<head>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<h1>Author: {{ author }}</h1>
+<br>
+<img src='{{ link }}'></a>
+<br>
+<h3>{{ description }}</h3>
+<br>
+<h3><a href='/gallery/{{ gallery_id }}/edit'>EDIT POST</a></h3>
+<br>
+
+<form action="/gallery/{{ gallery_id}}?_method=DELETE" method="post">
+  <input type="submit" value="Delete Post">
+</form>
+
+
+<br>
+<h3><a href='/'>BACK TO GALLERY</a></h3>
+{{/each}}

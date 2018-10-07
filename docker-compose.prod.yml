@@ -1,0 +1,6 @@
+version: '3'
+services:
+  express-gallery:
+    image: lyricnrhyme/express-gallery:${IMAGE_VERSION}
+    environment:
+      NODE_ENV: production
