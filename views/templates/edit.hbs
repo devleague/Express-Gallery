@@ -1,0 +1,22 @@
+{{>header}}
+
+<h1>Gallery Editor</h1>
+<form method="POST" action="/gallery/{{id}}?_method=PUT">
+  <label for="title">Title</label>
+  </br>
+  <input type="text" name="title" id="title" value="{{title}}">
+  </br>
+  <label for="link">Link</label>
+  </br>
+  <input type="text" name="link" id="link" value="{{link}}">
+  </br>
+  <label for="author">Author</label>
+  </br>
+  <input type="text" name="author" id="author" value="{{author}}">
+  </br>
+  <label for="description">Description</label>
+  </br>
+  <input name="description" id="description" value="{{description}}">
+  </br>
+  <input type="submit" value="Submit">
+</form>

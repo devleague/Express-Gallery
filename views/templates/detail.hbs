@@ -1,0 +1,21 @@
+{{>header}}
+
+<div id="main">
+  <div id="feature">
+    <h2 class="feature__author">{{title}} – {{author}}</h2>
+    <img class="feature__img" src="{{link}}">
+    <p class="feature__description">{{description}}</p>
+    <p class="feature__link"> Copyright {{author}}</p>
+  </div>
+
+  <div id="sidebar">
+    <ul class="sidebar__list">
+      {{#each secondaryPhotos}}
+      <li class="sidebar__item">
+        <img class="sidebar__img" src="{{link}}">
+        <h3 class="sidebar__detail">{{title}} – {{author}}</h3>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+</div>
