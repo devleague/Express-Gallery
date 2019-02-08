@@ -3,12 +3,14 @@ $logo-color: #00695C;
 $logo-hover-color: #00796B;
 $title-color: #c7c7c7;
 $bodycopy-color: #888888;
-// #7f7a80
+$break-small: 420px;
+
 html {
   width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url('/assets/topography.png');
 
   body {
     width: 75%;
@@ -23,19 +25,25 @@ html {
       justify-content: flex-end;
       margin-top: 4em;
 
-      .logout__button {
-        font-family: $main-font;
-        font-size: 1em;
-        font-weight: 800;
-        letter-spacing: 0.1em;
-        width: 5.8em;
-        background-color: #fff;
-        color: $bodycopy-color;
-        border: none;
+      @media screen and (max-width: $break-small) {
+        margin-top: 2em;
       }
 
-      .logout__button:hover {
-        color: $title-color;
+      form {
+        .logout__button {
+          font-family: $main-font;
+          font-size: 1em;
+          font-weight: 800;
+          letter-spacing: 0.1em;
+          width: 5.8em;
+          color: $bodycopy-color;
+          background: transparent;
+          border: none;
+        }
+  
+        .logout__button:hover {
+          color: $title-color;
+        }
       }
     }
 
@@ -49,11 +57,21 @@ html {
       padding-top: 10px;
       margin: 1em 0em 4em 0em;
 
+      @media screen and (max-width: $break-small) {
+        border-top: none;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0em 0em 1em 0em;
+        height: 4em;
+        padding-top: 0px;
+      }
+
       .logo-container {
         height: 100%;
         width: 60%;
         display: flex;
         align-items: center;
+        justify-content: center;
         
         .logo {
           font-family: $main-font;
@@ -63,6 +81,10 @@ html {
           padding: 5px;
           letter-spacing: 5px;
           margin: 0px;
+
+          @media screen and (max-width: $break-small) {
+            font-size: 2.2em;
+          }
         }
 
         a {
@@ -82,6 +104,10 @@ html {
         justify-content: center;
         align-items: center;
 
+        @media screen and (max-width: $break-small) {
+          display:none;
+        }
+
         .headline{
           padding: 5px 5px 5px 10px;
           font-family: $main-font;
@@ -94,10 +120,17 @@ html {
       }
     }
 
+    .flash {
+      color:#E57373;
+      font-family: $main-font;
+      font-weight: bold;
+    }
+
     .login {
       display: flex;
       flex-direction: column;
       border: 6px solid $bodycopy-color;
+      background: #fff;
       align-items: center;
       height: 20em;
       width: 40%;
@@ -170,6 +203,7 @@ html {
       display: flex;
       flex-direction: column;
       border: 6px solid $bodycopy-color;
+      background: #fff;
       align-items: center;
       height: 20em;
       width: 40%;
@@ -241,6 +275,7 @@ html {
       display: flex;
       flex-direction: column;
       border: 6px solid $bodycopy-color;
+      background: #fff;
       align-items: center;
       width: 40%;
       padding: 0.5em;
@@ -300,6 +335,7 @@ html {
       display: flex;
       flex-direction: column;
       border: 6px solid $bodycopy-color;
+      background: #fff;
       align-items: center;
       width: 40%;
       padding: 0.5em;
@@ -369,6 +405,10 @@ html {
         margin-bottom: 1em;
         padding-bottom: 1.5em;
         border-bottom: 1px solid $title-color;
+
+        @media screen and (max-width: $break-small) {
+          height: 200px;
+        }
       }
     }
 
@@ -379,6 +419,13 @@ html {
       flex-flow: row wrap;
       justify-content: space-between;
 
+      @media screen and (max-width: $break-small) {
+        flex-direction: column;
+        flex-flow: none;
+        border-bottom: 1px solid $title-color;
+        margin-bottom: 1em;
+      }
+
         .column {
           width: 30%;
           height: 300px;
@@ -386,6 +433,11 @@ html {
           flex-direction: column;
           justify-content: center;
           align-items: center;
+
+          @media screen and (max-width: $break-small) {
+            width: 100%;
+            height: 280px;
+          }
 
           a {
             height: 80%;
@@ -402,6 +454,11 @@ html {
             font-family: $main-font;
             color: $title-color;
           }
+
+          .column__detail:hover {
+            color: $logo-hover-color;
+            cursor: pointer;
+          }
         }
       }
 
@@ -411,6 +468,10 @@ html {
 
         #feature {
           width: 70%;
+
+          @media screen and (max-width: $break-small) {
+            width: 100%;
+          }
 
           .feature__author {
             font-family: $main-font;
@@ -422,6 +483,17 @@ html {
           .feature__img {
             height: 500px;
             margin-bottom: 1em;
+
+            @media screen and (max-width: $break-small) {
+              height: 250px;
+              margin-bottom: 0.3em;
+            }
+
+            .flash {
+              color:#E57373;
+              font-family: $main-font;
+              font-weight: bold;
+            }
           }
 
           .form-container {
@@ -432,12 +504,22 @@ html {
             width: 100%;
             height: 40px;
 
+            @media screen and (max-width: $break-small) {
+              flex-direction: column-reverse;
+              height: 60px;
+            }
+
             .feature__description {
               font-family: $main-font;
               color: $bodycopy-color;
+              width: 75%;
               font-size: 0.9em;
               margin-bottom: 0px;
               margin-top: 0em;
+
+              @media screen and (max-width: $break-small) {
+                align-self: flex-start;
+              }
             }
 
             .button-container {
@@ -449,6 +531,10 @@ html {
               align-items: center;
               margin-top: 0em;
 
+              @media screen and (max-width: $break-small) {
+                width: 100%;
+              }
+
               .edit_button {
                 font-family: $main-font;
                 font-weight: 800;
@@ -459,6 +545,11 @@ html {
                 color: #fff;
                 border: none;
                 margin: 0.1em;
+
+                @media screen and (max-width: $break-small) {
+                  width: 13em;
+                  height: 2.2em;
+                }
               }
 
               .edit_button:hover {
@@ -477,6 +568,11 @@ html {
                 color: #fff;
                 border: none;
                 margin: 0.1em;
+
+                @media screen and (max-width: $break-small) {
+                  width: 13em;
+                  height: 2.2em;
+                }
               }
 
               .delete_button:hover {
@@ -491,11 +587,19 @@ html {
             font-family: $main-font;
             color: $bodycopy-color;
             font-size: 0.9em;
+
+            @media screen and (max-width: $break-small) {
+              margin: 0.5em 0em 0.5em 0em;
+            }
           }
         }
 
         #sidebar {
           width: 30%;
+
+          @media screen and (max-width: $break-small) {
+            display: none;
+          }
 
           .sidebar__list {
             list-style: none;
@@ -527,6 +631,11 @@ html {
                 color: $title-color;
                 font-weight: 800;
                 margin: 0.5em 0em 1.5em 0em;
+              }
+
+              .sidebar__detail:hover {
+                color: $logo-hover-color;
+                cursor: pointer;
               }
             }
           }

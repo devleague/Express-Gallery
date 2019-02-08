@@ -2,7 +2,8 @@ html {
   width: 100vw;
   display: flex;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  background-image: url("/assets/topography.png"); }
   html body {
     width: 75%;
     display: flex;
@@ -14,16 +15,19 @@ html {
       display: flex;
       justify-content: flex-end;
       margin-top: 4em; }
-      html body #logout .logout__button {
+      @media screen and (max-width: 420px) {
+        html body #logout {
+          margin-top: 2em; } }
+      html body #logout form .logout__button {
         font-family: "IBM Plex Sans", sans-serif;
         font-size: 1em;
         font-weight: 800;
         letter-spacing: 0.1em;
         width: 5.8em;
-        background-color: #fff;
         color: #888888;
+        background: transparent;
         border: none; }
-      html body #logout .logout__button:hover {
+      html body #logout form .logout__button:hover {
         color: #c7c7c7; }
     html body #header {
       width: 100%;
@@ -34,11 +38,20 @@ html {
       border-top: 1px dotted #c7c7c7;
       padding-top: 10px;
       margin: 1em 0em 4em 0em; }
+      @media screen and (max-width: 420px) {
+        html body #header {
+          border-top: none;
+          flex-direction: column;
+          justify-content: center;
+          margin: 0em 0em 1em 0em;
+          height: 4em;
+          padding-top: 0px; } }
       html body #header .logo-container {
         height: 100%;
         width: 60%;
         display: flex;
-        align-items: center; }
+        align-items: center;
+        justify-content: center; }
         html body #header .logo-container .logo {
           font-family: "IBM Plex Sans", sans-serif;
           color: #00695C;
@@ -47,6 +60,9 @@ html {
           padding: 5px;
           letter-spacing: 5px;
           margin: 0px; }
+          @media screen and (max-width: 420px) {
+            html body #header .logo-container .logo {
+              font-size: 2.2em; } }
         html body #header .logo-container a {
           text-decoration: none; }
           html body #header .logo-container a .logo:hover {
@@ -58,6 +74,9 @@ html {
         display: flex;
         justify-content: center;
         align-items: center; }
+        @media screen and (max-width: 420px) {
+          html body #header .headline-container {
+            display: none; } }
         html body #header .headline-container .headline {
           padding: 5px 5px 5px 10px;
           font-family: "IBM Plex Sans", sans-serif;
@@ -66,10 +85,15 @@ html {
           color: #c7c7c7;
           border-left: 1px solid #c7c7c7;
           margin: 0px; }
+    html body .flash {
+      color: #E57373;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-weight: bold; }
     html body .login {
       display: flex;
       flex-direction: column;
       border: 6px solid #888888;
+      background: #fff;
       align-items: center;
       height: 20em;
       width: 40%;
@@ -123,6 +147,7 @@ html {
       display: flex;
       flex-direction: column;
       border: 6px solid #888888;
+      background: #fff;
       align-items: center;
       height: 20em;
       width: 40%;
@@ -175,6 +200,7 @@ html {
       display: flex;
       flex-direction: column;
       border: 6px solid #888888;
+      background: #fff;
       align-items: center;
       width: 40%;
       padding: 0.5em; }
@@ -219,6 +245,7 @@ html {
       display: flex;
       flex-direction: column;
       border: 6px solid #888888;
+      background: #fff;
       align-items: center;
       width: 40%;
       padding: 0.5em; }
@@ -271,12 +298,21 @@ html {
         margin-bottom: 1em;
         padding-bottom: 1.5em;
         border-bottom: 1px solid #c7c7c7; }
+        @media screen and (max-width: 420px) {
+          html body #feature .banner {
+            height: 200px; } }
     html body #grid {
       width: 100%;
       display: flex;
       flex-direction: row;
       flex-flow: row wrap;
       justify-content: space-between; }
+      @media screen and (max-width: 420px) {
+        html body #grid {
+          flex-direction: column;
+          flex-flow: none;
+          border-bottom: 1px solid #c7c7c7;
+          margin-bottom: 1em; } }
       html body #grid .column {
         width: 30%;
         height: 300px;
@@ -284,6 +320,10 @@ html {
         flex-direction: column;
         justify-content: center;
         align-items: center; }
+        @media screen and (max-width: 420px) {
+          html body #grid .column {
+            width: 100%;
+            height: 280px; } }
         html body #grid .column a {
           height: 80%;
           width: 100%; }
@@ -294,11 +334,17 @@ html {
           font-size: 0.8em;
           font-family: "IBM Plex Sans", sans-serif;
           color: #c7c7c7; }
+        html body #grid .column .column__detail:hover {
+          color: #00796B;
+          cursor: pointer; }
     html body #main {
       display: flex;
       width: 100%; }
       html body #main #feature {
         width: 70%; }
+        @media screen and (max-width: 420px) {
+          html body #main #feature {
+            width: 100%; } }
         html body #main #feature .feature__author {
           font-family: "IBM Plex Sans", sans-serif;
           font-size: 1em;
@@ -307,6 +353,14 @@ html {
         html body #main #feature .feature__img {
           height: 500px;
           margin-bottom: 1em; }
+          @media screen and (max-width: 420px) {
+            html body #main #feature .feature__img {
+              height: 250px;
+              margin-bottom: 0.3em; } }
+          html body #main #feature .feature__img .flash {
+            color: #E57373;
+            font-family: "IBM Plex Sans", sans-serif;
+            font-weight: bold; }
         html body #main #feature .form-container {
           display: flex;
           flex-direction: row;
@@ -314,12 +368,20 @@ html {
           align-items: center;
           width: 100%;
           height: 40px; }
+          @media screen and (max-width: 420px) {
+            html body #main #feature .form-container {
+              flex-direction: column-reverse;
+              height: 60px; } }
           html body #main #feature .form-container .feature__description {
             font-family: "IBM Plex Sans", sans-serif;
             color: #888888;
+            width: 75%;
             font-size: 0.9em;
             margin-bottom: 0px;
             margin-top: 0em; }
+            @media screen and (max-width: 420px) {
+              html body #main #feature .form-container .feature__description {
+                align-self: flex-start; } }
           html body #main #feature .form-container .button-container {
             display: flex;
             flex-direction: row;
@@ -328,6 +390,9 @@ html {
             justify-content: space-between;
             align-items: center;
             margin-top: 0em; }
+            @media screen and (max-width: 420px) {
+              html body #main #feature .form-container .button-container {
+                width: 100%; } }
             html body #main #feature .form-container .button-container .edit_button {
               font-family: "IBM Plex Sans", sans-serif;
               font-weight: 800;
@@ -338,6 +403,10 @@ html {
               color: #fff;
               border: none;
               margin: 0.1em; }
+              @media screen and (max-width: 420px) {
+                html body #main #feature .form-container .button-container .edit_button {
+                  width: 13em;
+                  height: 2.2em; } }
             html body #main #feature .form-container .button-container .edit_button:hover {
               border: 2px solid #888888;
               background-color: #fff;
@@ -352,6 +421,10 @@ html {
               color: #fff;
               border: none;
               margin: 0.1em; }
+              @media screen and (max-width: 420px) {
+                html body #main #feature .form-container .button-container .delete_button {
+                  width: 13em;
+                  height: 2.2em; } }
             html body #main #feature .form-container .button-container .delete_button:hover {
               border: 2px solid #E57373;
               background-color: #fff;
@@ -360,8 +433,14 @@ html {
           font-family: "IBM Plex Sans", sans-serif;
           color: #888888;
           font-size: 0.9em; }
+          @media screen and (max-width: 420px) {
+            html body #main #feature .feature__link {
+              margin: 0.5em 0em 0.5em 0em; } }
       html body #main #sidebar {
         width: 30%; }
+        @media screen and (max-width: 420px) {
+          html body #main #sidebar {
+            display: none; } }
         html body #main #sidebar .sidebar__list {
           list-style: none;
           padding: 31px 0px 0px 20px; }
@@ -385,3 +464,6 @@ html {
               color: #c7c7c7;
               font-weight: 800;
               margin: 0.5em 0em 1.5em 0em; }
+            html body #main #sidebar .sidebar__list .sidebar__item .sidebar__detail:hover {
+              color: #00796B;
+              cursor: pointer; }

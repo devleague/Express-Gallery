@@ -24,13 +24,15 @@ router.get('/', isAuthenticated, (req, res) => {
 });
 
 router.get('/login', (req, res) => {
+  if (req.isAuthenticated()) { return res.redirect('/gallery'); }
+
   res.status(200);
-  return res.render('./login');
+  return res.render('./login', { message: req.flash('error') });
 });
 
 router.get('/register', (req, res) => {
   res.status(200);
-  return res.render('./register');
+  return res.render('./register', { message: req.flash('error') });
 });
 
 router.get('/logout', (req, res) => {
@@ -45,36 +47,45 @@ router.get('/logout', (req, res) => {
 
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/gallery',
-  failureRedirect: '/login'
+  failureRedirect: '/login',
+  failureFlash: true
 }));
 
 router.post('/register', (req, res) => {
-  bcrypt.genSalt(saltRounds, (err, salt) => {
-    if (err) {
-      res.status(500);
-      res.send(err);
-    }
-
-    bcrypt.hash(req.body.password, salt, (err, hash) => {
-      if (err) {
-        res.status(500);
-        res.send(err);
+  User.where({ username: req.body.username }).fetch()
+    .then((dbUser) => {
+      if (dbUser) {
+        req.flash('error', 'That username already exists')
+        return res.redirect('/register');
       }
 
-      return new User({
-        username: req.body.username,
-        password: hash
-      })
-        .save()
-        .then((user) => {
-          console.log(user);
-          res.redirect('/login');
-        })
-        .catch((err) => {
-          return res.send('Error Creating account');
+      bcrypt.genSalt(saltRounds, (err, salt) => {
+        if (err) {
+          res.status(500);
+          res.send(err);
+        }
+
+        bcrypt.hash(req.body.password, salt, (err, hash) => {
+          if (err) {
+            res.status(500);
+            res.send(err);
+          }
+
+          return new User({
+            username: req.body.username,
+            password: hash
+          })
+            .save()
+            .then((user) => {
+              res.redirect('/login');
+            })
+            .catch((err) => {
+              req.flash('error', 'Error creating account')
+              return res.redirect('/register');
+            });
         });
+      });
     });
-  });
 });
 
 module.exports = router;

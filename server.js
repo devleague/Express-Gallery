@@ -7,6 +7,7 @@ const passport = require('passport');
 const bcrypt = require('bcryptjs');
 const redis = require('connect-redis')(session);
 const LocalStrategy = require('passport-local');
+const flash = require('connect-flash');
 const galleryRouter = require('./routes/gallery');
 const homeRouter = require('./routes/home');
 
@@ -34,6 +35,7 @@ app.engine('.hbs', exphbs({
 app.set('views', __dirname + '/views/templates');
 app.set('view engine', '.hbs');
 app.use(methodOverride('_method'));
+app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -62,12 +64,12 @@ passport.deserializeUser((user, done) => {
 passport.use(new LocalStrategy(function (username, password, done) {
   return new User({ username: username }).fetch()
     .then(dbUser => {
-      dbUser = dbUser.toJSON();
-
       if (dbUser === null) {
-        return done(null, false, { message: 'bad username or password' });
+        return done(null, false, { message: 'That username does not exist' });
       }
       else {
+        dbUser = dbUser.toJSON();
+
         bcrypt.compare(password, dbUser.password)
           .then((res) => {
             if (res) {

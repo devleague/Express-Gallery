@@ -1,7 +1,7 @@
 {{>header}}
 
 <div class="login">
-  <h1 class="header">Login:</h1>
+  <h1 class="header">Login</h1>
   <form action="/login" method="POST">
     <label for="username">Username:</label>
     <input type="text" name="username" autofocus />
@@ -11,3 +11,4 @@
   </form>
   <p class="check__account">Don't have an account? <span><a href="/register" class="switch__link">Register here</a></span></p>
 </div>
+<h3 class="flash">{{message}}</h3>
