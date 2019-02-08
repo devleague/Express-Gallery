@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const knex = require('../db/knex');
+const Gallery = require('../db/models/Gallery');
 
 /************************
  *  AUTH
@@ -16,13 +17,18 @@ function isAuthenticated(req, res, next) {
 ************************/
 
 router.get('/', (req, res) => {
-  knex('gallery')
-    .then((gallery) => {
-      const primaryPhoto = gallery[0];
-      const secondaryPhotos = gallery;
-      secondaryPhotos.slice(0, 1);
+
+  Gallery.fetchAll()
+    .then((photos) => {
+      const primaryPhoto = photos.models[0].attributes;
+      const secondaryPhotos = [];
+
+      for (let i = 1; i < photos.models.length; i++) {
+        secondaryPhotos.push(photos.models[i].attributes);
+      }
 
       const data = {
+        id: primaryPhoto.id,
         link: primaryPhoto.link,
         secondaryPhotos: secondaryPhotos
       }
@@ -51,6 +57,7 @@ router.get('/:id', (req, res) => {
     }
 
     const data = {
+      id: primaryPhoto.id,
       title: primaryPhoto.title,
       author: primaryPhoto.author,
       link: primaryPhoto.link,
@@ -64,20 +71,24 @@ router.get('/:id', (req, res) => {
 
 });
 
-router.get('/:id/edit', (req, res) => {
+router.get('/:id/edit', isAuthenticated, (req, res) => {
   let id = req.params.id;
 
-  const photo = knex('gallery').where({ id: `${id}` });
-  photo.then((found) => {
-    res.status(200);
-    return res.render('./edit', {
-      id: found[0].id,
-      title: found[0].title,
-      author: found[0].author,
-      link: found[0].link,
-      description: found[0].description,
+  Gallery.where({ id: id }).fetch()
+    .then((photo) => {
+      if (photo.attributes.user_id !== req.user.id) {
+        return res.redirect('/');
+      }
+
+      res.status(200);
+      return res.render('./edit', {
+        id: photo.attributes.id,
+        title: photo.attributes.title,
+        author: photo.attributes.author,
+        link: photo.attributes.link,
+        description: photo.attributes.description,
+      });
     });
-  });
 });
 
 
@@ -85,16 +96,21 @@ router.get('/:id/edit', (req, res) => {
  * POST
 ************************/
 
-router.post('/', (req, res) => {
+router.post('/', isAuthenticated, (req, res) => {
   const body = req.body;
 
-  knex('gallery').insert({ title: body.title, link: body.link, author: body.author, description: body.description })
+  Gallery.forge({
+    user_id: req.user.id,
+    title: body.title,
+    link: body.link,
+    author: body.author,
+    description: body.description
+  }).save(null, { method: 'insert' })
     .then(() => {
-      const newPhoto = knex('gallery').where({ title: body.title })
-
-      newPhoto.then((photo) => {
-        return res.redirect(`/gallery/${photo[0].id}`);
-      });
+      new Gallery({ title: body.title }).fetch()
+        .then((photo) => {
+          return res.redirect(`/gallery/${photo.id}`);
+        });
     });
 });
 
@@ -102,20 +118,27 @@ router.post('/', (req, res) => {
  *  PUT
 ************************/
 
-router.put('/:id', (req, res) => {
+router.put('/:id', isAuthenticated, (req, res) => {
   const body = req.body;
   const id = req.params.id;
 
-  knex('gallery')
-    .where({ id: id })
-    .update({
-      title: body.title,
-      author: body.author,
-      link: body.link,
-      description: body.description
-    })
-    .then(() => {
-      return res.redirect(`./${id}`);
+  Gallery.where({ id: id }).fetch()
+    .then((photo) => {
+      if (photo.attributes.user_id !== req.user.id) {
+        return res.redirect('/');
+      }
+
+      new Gallery({ id: id })
+        .save({
+          user_id: req.user.id,
+          title: body.title,
+          link: body.link,
+          author: body.author,
+          description: body.description
+        }, { patch: true })
+        .then(() => {
+          return res.redirect(`/gallery/${photo.id}`);
+        });
     });
 });
 
@@ -123,14 +146,20 @@ router.put('/:id', (req, res) => {
  *  DELETE
 ************************/
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', isAuthenticated, (req, res) => {
   const id = req.params.id
 
-  knex('gallery')
-    .where({ id: id })
-    .del()
-    .then(() => {
-      return res.redirect('/gallery');
+  Gallery.where({ id: id }).fetch()
+    .then((photo) => {
+      if (photo.attributes.user_id !== req.session.passport.user.id) {
+        return res.redirect('/');
+      }
+
+      new Gallery({ id: id })
+        .destroy()
+        .then(() => {
+          return res.redirect(`/gallery`);
+        });
     });
 });
 

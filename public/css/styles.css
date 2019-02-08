@@ -9,6 +9,22 @@ html {
     flex-direction: column;
     justify-content: space-between;
     align-items: center; }
+    html body #logout {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 4em; }
+      html body #logout .logout__button {
+        font-family: "IBM Plex Sans", sans-serif;
+        font-size: 1em;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        width: 5.8em;
+        background-color: #fff;
+        color: #888888;
+        border: none; }
+      html body #logout .logout__button:hover {
+        color: #c7c7c7; }
     html body #header {
       width: 100%;
       height: 6em;
@@ -17,7 +33,7 @@ html {
       align-items: center;
       border-top: 1px dotted #c7c7c7;
       padding-top: 10px;
-      margin: 4em 0em 4em 0em; }
+      margin: 1em 0em 4em 0em; }
       html body #header .logo-container {
         height: 100%;
         width: 60%;
@@ -25,12 +41,17 @@ html {
         align-items: center; }
         html body #header .logo-container .logo {
           font-family: "IBM Plex Sans", sans-serif;
-          color: #7f7a80;
+          color: #00695C;
           font-size: 4.5em;
           font-weight: 800;
           padding: 5px;
           letter-spacing: 5px;
           margin: 0px; }
+        html body #header .logo-container a {
+          text-decoration: none; }
+          html body #header .logo-container a .logo:hover {
+            color: #00796B;
+            cursor: pointer; }
       html body #header .headline-container {
         height: 100%;
         width: 30%;
@@ -45,6 +66,199 @@ html {
           color: #c7c7c7;
           border-left: 1px solid #c7c7c7;
           margin: 0px; }
+    html body .login {
+      display: flex;
+      flex-direction: column;
+      border: 6px solid #888888;
+      align-items: center;
+      height: 20em;
+      width: 40%;
+      padding: 0.5em; }
+      html body .login .header {
+        font-family: "IBM Plex Sans", sans-serif;
+        font-size: 2em;
+        font-weight: 400;
+        color: #888888; }
+      html body .login form {
+        width: 90%;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center; }
+        html body .login form label {
+          font-family: "IBM Plex Sans", sans-serif;
+          font-size: 1em;
+          font-weight: 400;
+          color: #888888;
+          align-self: flex-start; }
+        html body .login form input {
+          width: 100%;
+          height: 15%;
+          border: 2px solid #c7c7c7;
+          margin-bottom: 2em;
+          padding-left: 0.8em;
+          color: #888888;
+          font-family: "IBM Plex Sans", sans-serif;
+          font-size: 0.8em; }
+        html body .login form button {
+          height: 15%;
+          width: 30%;
+          background-color: #00695C;
+          border: none;
+          color: #fff;
+          font-family: "IBM Plex Sans", sans-serif;
+          font-size: 1em; }
+        html body .login form button:hover {
+          background-color: #00796B;
+          cursor: pointer; }
+      html body .login .check__account {
+        font-family: "IBM Plex Sans", sans-serif;
+        color: #888888;
+        font-size: 0.8em; }
+      html body .login .switch__link {
+        color: #00695C;
+        font-weight: 600; }
+    html body .register {
+      display: flex;
+      flex-direction: column;
+      border: 6px solid #888888;
+      align-items: center;
+      height: 20em;
+      width: 40%;
+      padding: 0.5em; }
+      html body .register .header {
+        font-family: "IBM Plex Sans", sans-serif;
+        font-size: 2em;
+        font-weight: 400;
+        color: #888888; }
+      html body .register form {
+        width: 90%;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center; }
+        html body .register form label {
+          font-family: "IBM Plex Sans", sans-serif;
+          font-size: 1em;
+          font-weight: 400;
+          color: #888888;
+          align-self: flex-start; }
+        html body .register form input {
+          width: 100%;
+          height: 15%;
+          border: 2px solid #c7c7c7;
+          margin-bottom: 2em;
+          padding-left: 0.8em;
+          color: #888888;
+          font-family: "IBM Plex Sans", sans-serif;
+          font-size: 0.8em; }
+        html body .register form button {
+          height: 15%;
+          width: 30%;
+          background-color: #00695C;
+          border: none;
+          color: #fff;
+          font-family: "IBM Plex Sans", sans-serif;
+          font-size: 1em; }
+        html body .register form button:hover {
+          background-color: #00796B; }
+      html body .register .check__account {
+        font-family: "IBM Plex Sans", sans-serif;
+        color: #888888;
+        font-size: 0.8em; }
+      html body .register .switch__link {
+        color: #00695C;
+        font-weight: 600; }
+    html body .edit {
+      display: flex;
+      flex-direction: column;
+      border: 6px solid #888888;
+      align-items: center;
+      width: 40%;
+      padding: 0.5em; }
+      html body .edit .header {
+        font-family: "IBM Plex Sans", sans-serif;
+        font-size: 2em;
+        font-weight: 400;
+        color: #888888; }
+      html body .edit form {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center; }
+        html body .edit form label {
+          font-family: "IBM Plex Sans", sans-serif;
+          font-size: 1em;
+          font-weight: 400;
+          color: #888888;
+          align-self: flex-start; }
+        html body .edit form input {
+          width: 100%;
+          height: 40px;
+          border: 2px solid #c7c7c7;
+          margin-bottom: 2.2em;
+          padding-left: 0.8em;
+          color: #888888;
+          font-family: "IBM Plex Sans", sans-serif;
+          font-size: 0.8em; }
+        html body .edit form input[type=submit] {
+          width: 40%;
+          height: 40px;
+          background-color: #00695C;
+          border: none;
+          color: #fff;
+          font-family: "IBM Plex Sans", sans-serif;
+          font-size: 1em; }
+        html body .edit form input[type=submit]:hover {
+          background-color: #00796B;
+          cursor: pointer; }
+    html body .new {
+      display: flex;
+      flex-direction: column;
+      border: 6px solid #888888;
+      align-items: center;
+      width: 40%;
+      padding: 0.5em; }
+      html body .new .header {
+        font-family: "IBM Plex Sans", sans-serif;
+        font-size: 2em;
+        font-weight: 400;
+        color: #888888; }
+      html body .new form {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center; }
+        html body .new form label {
+          font-family: "IBM Plex Sans", sans-serif;
+          font-size: 1em;
+          font-weight: 400;
+          color: #888888;
+          align-self: flex-start; }
+        html body .new form input {
+          width: 100%;
+          height: 40px;
+          border: 2px solid #c7c7c7;
+          margin-bottom: 2.2em;
+          padding-left: 0.8em;
+          color: #888888;
+          font-family: "IBM Plex Sans", sans-serif;
+          font-size: 0.8em; }
+        html body .new form input[type=submit] {
+          width: 40%;
+          height: 40px;
+          background-color: #00695C;
+          border: none;
+          color: #fff;
+          font-family: "IBM Plex Sans", sans-serif;
+          font-size: 1em; }
+        html body .new form input[type=submit]:hover {
+          background-color: #00796B;
+          cursor: pointer; }
     html body #feature {
       width: 100%;
       height: 40%;
@@ -54,7 +268,9 @@ html {
       html body #feature .banner {
         width: 100%;
         height: 500px;
-        margin-bottom: 1.5em; }
+        margin-bottom: 1em;
+        padding-bottom: 1.5em;
+        border-bottom: 1px solid #c7c7c7; }
     html body #grid {
       width: 100%;
       display: flex;
@@ -68,9 +284,12 @@ html {
         flex-direction: column;
         justify-content: center;
         align-items: center; }
-        html body #grid .column .column__img {
+        html body #grid .column a {
           height: 80%;
           width: 100%; }
+          html body #grid .column a .column__img {
+            height: 100%;
+            width: 100%; }
         html body #grid .column .column__detail {
           font-size: 0.8em;
           font-family: "IBM Plex Sans", sans-serif;
@@ -86,13 +305,61 @@ html {
           color: #c7c7c7;
           font-weight: 800; }
         html body #main #feature .feature__img {
-          height: 400px; }
-        html body #main #feature .feature__description,
+          height: 500px;
+          margin-bottom: 1em; }
+        html body #main #feature .form-container {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          height: 40px; }
+          html body #main #feature .form-container .feature__description {
+            font-family: "IBM Plex Sans", sans-serif;
+            color: #888888;
+            font-size: 0.9em;
+            margin-bottom: 0px;
+            margin-top: 0em; }
+          html body #main #feature .form-container .button-container {
+            display: flex;
+            flex-direction: row;
+            width: 20%;
+            height: 90%;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0em; }
+            html body #main #feature .form-container .button-container .edit_button {
+              font-family: "IBM Plex Sans", sans-serif;
+              font-weight: 800;
+              letter-spacing: 0.1em;
+              width: 5.8em;
+              border-radius: 0px;
+              background-color: #888888;
+              color: #fff;
+              border: none;
+              margin: 0.1em; }
+            html body #main #feature .form-container .button-container .edit_button:hover {
+              border: 2px solid #888888;
+              background-color: #fff;
+              color: #888888; }
+            html body #main #feature .form-container .button-container .delete_button {
+              font-family: "IBM Plex Sans", sans-serif;
+              font-weight: 800;
+              letter-spacing: 0.1em;
+              width: 5.8em;
+              border-radius: 0px;
+              background-color: #E57373;
+              color: #fff;
+              border: none;
+              margin: 0.1em; }
+            html body #main #feature .form-container .button-container .delete_button:hover {
+              border: 2px solid #E57373;
+              background-color: #fff;
+              color: #E57373; }
         html body #main #feature .feature__link {
           font-family: "IBM Plex Sans", sans-serif;
           color: #888888;
-          font-size: 0.9em;
-          margin-bottom: 0px; }
+          font-size: 0.9em; }
       html body #main #sidebar {
         width: 30%; }
         html body #main #sidebar .sidebar__list {
@@ -106,9 +373,12 @@ html {
             flex-direction: column;
             align-items: flex-start;
             justify-content: flex-start; }
-            html body #main #sidebar .sidebar__list .sidebar__item .sidebar__img {
+            html body #main #sidebar .sidebar__list .sidebar__item a {
               width: 100%;
               height: 80%; }
+              html body #main #sidebar .sidebar__list .sidebar__item a .sidebar__img {
+                width: 100%;
+                height: 100%; }
             html body #main #sidebar .sidebar__list .sidebar__item .sidebar__detail {
               font-family: "IBM Plex Sans", sans-serif;
               font-size: 0.85em;

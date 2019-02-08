@@ -4,12 +4,13 @@ const exphbs = require('express-handlebars');
 const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
 const passport = require('passport');
+const bcrypt = require('bcryptjs');
+const redis = require('connect-redis')(session);
 const LocalStrategy = require('passport-local');
 const galleryRouter = require('./routes/gallery');
 const homeRouter = require('./routes/home');
 
 const User = require('./db/models/User');
-const Gallery = require('./db/models/Gallery');
 const ENV = process.env.NODE_ENV || 'development';
 const PORT = process.env.PORT || 3000;
 const SESSION_SECRET = process.env.SESSION_SECRET || 'bulbasaur';
@@ -19,6 +20,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(session({
+  store: new redis({ url: 'redis://localhost:6379', logErrors: true }),
   secret: SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
@@ -64,10 +66,16 @@ passport.use(new LocalStrategy(function (username, password, done) {
 
       if (dbUser === null) {
         return done(null, false, { message: 'bad username or password' });
-      } else if (password === user.password) {
-        return done(null, user);
-      } else {
-        return done(null, false, { message: 'bad username or password' });
+      }
+      else {
+        bcrypt.compare(password, dbUser.password)
+          .then((res) => {
+            if (res) {
+              return done(null, dbUser);
+            } else {
+              return done(null, false, { message: 'bad username or password' });
+            }
+          });
       }
     })
     .catch(err => {
@@ -77,7 +85,6 @@ passport.use(new LocalStrategy(function (username, password, done) {
 
 app.use('/gallery', galleryRouter);
 app.use('/', homeRouter);
-
 
 const server = app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);

@@ -1,8 +1,9 @@
 $main-font: 'IBM Plex Sans', sans-serif;
-$logo-color: #7f7a80;
+$logo-color: #00695C;
+$logo-hover-color: #00796B;
 $title-color: #c7c7c7;
 $bodycopy-color: #888888;
-
+// #7f7a80
 html {
   width: 100vw;
   display: flex;
@@ -16,6 +17,28 @@ html {
     justify-content: space-between;
     align-items: center;
 
+    #logout {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 4em;
+
+      .logout__button {
+        font-family: $main-font;
+        font-size: 1em;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        width: 5.8em;
+        background-color: #fff;
+        color: $bodycopy-color;
+        border: none;
+      }
+
+      .logout__button:hover {
+        color: $title-color;
+      }
+    }
+
     #header {
       width: 100%;
       height: 6em;
@@ -24,7 +47,7 @@ html {
       align-items: center;
       border-top: 1px dotted $title-color;
       padding-top: 10px;
-      margin: 4em 0em 4em 0em;
+      margin: 1em 0em 4em 0em;
 
       .logo-container {
         height: 100%;
@@ -40,6 +63,15 @@ html {
           padding: 5px;
           letter-spacing: 5px;
           margin: 0px;
+        }
+
+        a {
+          text-decoration: none;
+
+          .logo:hover {
+            color: $logo-hover-color;
+            cursor: pointer;
+          }
         }
       }
 
@@ -62,6 +94,268 @@ html {
       }
     }
 
+    .login {
+      display: flex;
+      flex-direction: column;
+      border: 6px solid $bodycopy-color;
+      align-items: center;
+      height: 20em;
+      width: 40%;
+      padding: 0.5em;
+
+    
+      .header {
+        font-family: $main-font;
+        font-size: 2em;
+        font-weight: 400;
+        color: $bodycopy-color;
+      }
+
+      form {
+        width: 90%;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+
+        label {
+          font-family: $main-font;
+          font-size: 1em;
+          font-weight: 400;
+          color: $bodycopy-color;  
+          align-self: flex-start;
+        }
+
+        input {
+          width: 100%;
+          height: 15%;
+          border: 2px solid $title-color;
+          margin-bottom: 2em;
+          padding-left: 0.8em;
+          color: $bodycopy-color;
+          font-family: $main-font;
+          font-size: 0.8em;
+        }
+
+        button {
+          height: 15%;
+          width: 30%;
+          background-color: $logo-color;
+          border: none;
+          color: #fff;
+          font-family: $main-font;
+          font-size: 1em;
+        }
+
+        button:hover {
+          background-color: $logo-hover-color;
+          cursor: pointer;
+        }
+      }
+
+      .check__account {
+        font-family: $main-font;
+        color: $bodycopy-color;
+        font-size: 0.8em;
+      }
+
+      .switch__link {
+        color: $logo-color;
+        font-weight: 600;
+      }
+    }
+
+    .register {
+      display: flex;
+      flex-direction: column;
+      border: 6px solid $bodycopy-color;
+      align-items: center;
+      height: 20em;
+      width: 40%;
+      padding: 0.5em;
+
+    
+      .header {
+        font-family: $main-font;
+        font-size: 2em;
+        font-weight: 400;
+        color: $bodycopy-color;
+      }
+
+      form {
+        width: 90%;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+
+        label {
+          font-family: $main-font;
+          font-size: 1em;
+          font-weight: 400;
+          color: $bodycopy-color;  
+          align-self: flex-start;
+        }
+
+        input {
+          width: 100%;
+          height: 15%;
+          border: 2px solid $title-color;
+          margin-bottom: 2em;
+          padding-left: 0.8em;
+          color: $bodycopy-color;
+          font-family: $main-font;
+          font-size: 0.8em;
+        }
+
+        button {
+          height: 15%;
+          width: 30%;
+          background-color: $logo-color;
+          border: none;
+          color: #fff;
+          font-family: $main-font;
+          font-size: 1em;
+        }
+
+        button:hover {
+          background-color: $logo-hover-color;
+        }
+      }
+
+      .check__account {
+        font-family: $main-font;
+        color: $bodycopy-color;
+        font-size: 0.8em;
+      }
+
+      .switch__link {
+        color: $logo-color;
+        font-weight: 600;
+      }
+    }
+
+    .edit {
+      display: flex;
+      flex-direction: column;
+      border: 6px solid $bodycopy-color;
+      align-items: center;
+      width: 40%;
+      padding: 0.5em;
+
+    
+      .header {
+        font-family: $main-font;
+        font-size: 2em;
+        font-weight: 400;
+        color: $bodycopy-color;
+      }
+
+      form {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+
+        label {
+          font-family: $main-font;
+          font-size: 1em;
+          font-weight: 400;
+          color: $bodycopy-color;  
+          align-self: flex-start;
+        }
+
+        input {
+          width: 100%;
+          height: 40px;
+          border: 2px solid $title-color;
+          margin-bottom: 2.2em;
+          padding-left: 0.8em;
+          color: $bodycopy-color;
+          font-family: $main-font;
+          font-size: 0.8em;
+        }
+
+        input[type=submit] {
+          width: 40%;
+          height: 40px;
+          background-color: $logo-color;
+          border: none;
+          color: #fff;
+          font-family: $main-font;
+          font-size: 1em;
+        }
+
+        input[type=submit]:hover {
+          background-color: $logo-hover-color;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .new {
+      display: flex;
+      flex-direction: column;
+      border: 6px solid $bodycopy-color;
+      align-items: center;
+      width: 40%;
+      padding: 0.5em;
+
+    
+      .header {
+        font-family: $main-font;
+        font-size: 2em;
+        font-weight: 400;
+        color: $bodycopy-color;
+      }
+
+      form {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+
+        label {
+          font-family: $main-font;
+          font-size: 1em;
+          font-weight: 400;
+          color: $bodycopy-color;  
+          align-self: flex-start;
+        }
+
+        input {
+          width: 100%;
+          height: 40px;
+          border: 2px solid $title-color;
+          margin-bottom: 2.2em;
+          padding-left: 0.8em;
+          color: $bodycopy-color;
+          font-family: $main-font;
+          font-size: 0.8em;
+        }
+
+        input[type=submit] {
+          width: 40%;
+          height: 40px;
+          background-color: $logo-color;
+          border: none;
+          color: #fff;
+          font-family: $main-font;
+          font-size: 1em;
+        }
+
+        input[type=submit]:hover {
+          background-color: $logo-hover-color;
+          cursor: pointer;
+        }
+      }
+    }
+
+
     #feature {
       width: 100%;
       height: 40%;
@@ -72,7 +366,9 @@ html {
       .banner {
         width: 100%;
         height: 500px;
-        margin-bottom: 1.5em;
+        margin-bottom: 1em;
+        padding-bottom: 1.5em;
+        border-bottom: 1px solid $title-color;
       }
     }
 
@@ -91,9 +387,14 @@ html {
           justify-content: center;
           align-items: center;
 
-          .column__img {
+          a {
             height: 80%;
             width: 100%;
+
+            .column__img {
+              height: 100%;
+              width: 100%;
+            }
           }
 
           .column__detail {
@@ -119,15 +420,77 @@ html {
           }
 
           .feature__img {
-            height: 400px;
+            height: 500px;
+            margin-bottom: 1em;
           }
 
-          .feature__description,
+          .form-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 40px;
+
+            .feature__description {
+              font-family: $main-font;
+              color: $bodycopy-color;
+              font-size: 0.9em;
+              margin-bottom: 0px;
+              margin-top: 0em;
+            }
+
+            .button-container {
+              display: flex;
+              flex-direction: row;
+              width: 20%;
+              height: 90%;
+              justify-content: space-between;
+              align-items: center;
+              margin-top: 0em;
+
+              .edit_button {
+                font-family: $main-font;
+                font-weight: 800;
+                letter-spacing: 0.1em;
+                width: 5.8em;
+                border-radius: 0px;
+                background-color: $bodycopy-color;
+                color: #fff;
+                border: none;
+                margin: 0.1em;
+              }
+
+              .edit_button:hover {
+                border: 2px solid $bodycopy-color;
+                background-color: #fff;
+                color: $bodycopy-color;
+              }
+
+              .delete_button {
+                font-family: $main-font;
+                font-weight: 800;
+                letter-spacing: 0.1em;
+                width: 5.8em;
+                border-radius: 0px;
+                background-color: #E57373;
+                color: #fff;
+                border: none;
+                margin: 0.1em;
+              }
+
+              .delete_button:hover {
+                border: 2px solid #E57373;
+                background-color: #fff;
+                color: #E57373;
+              }
+            }
+          }
+
           .feature__link {
             font-family: $main-font;
             color: $bodycopy-color;
             font-size: 0.9em;
-            margin-bottom: 0px;
           }
         }
 
@@ -147,10 +510,15 @@ html {
               align-items: flex-start;
               justify-content: flex-start;
 
-              .sidebar__img {
+              a {
                 width: 100%;
                 height: 80%;
-            
+
+                .sidebar__img {
+                  width: 100%;
+                  height: 100%;
+                }
+  
               }
 
               .sidebar__detail {

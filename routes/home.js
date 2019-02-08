@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const knex = require('../db/knex');
+const passport = require('passport');
+const User = require('../db/models/User');
+const bcrypt = require('bcryptjs');
+
+const saltRounds = 12;
 
 /************************
  *  AUTH
@@ -15,46 +19,62 @@ function isAuthenticated(req, res, next) {
  *  GET
 ************************/
 
-app.get('/', isAuthenticated, (req, res) => {
+router.get('/', isAuthenticated, (req, res) => {
   res.redirect('/gallery');
 });
 
-app.get('/login', (req, res) => {
+router.get('/login', (req, res) => {
   res.status(200);
   return res.render('./login');
 });
 
-app.get('/register', (req, res) => {
+router.get('/register', (req, res) => {
   res.status(200);
   return res.render('./register');
 });
 
-app.get('/logout', (req, res) => {
+router.get('/logout', (req, res) => {
   req.logout();
-  res.sendStatus(200);
+  res.status(200);
+  res.redirect('/login')
 });
 
 /************************
  * POST
 ************************/
 
-app.post('/login', passport.authenticate('local', {
+router.post('/login', passport.authenticate('local', {
   successRedirect: '/gallery',
   failureRedirect: '/login'
 }));
 
-app.post('/register', (req, res) => {
-  return new User({
-    username: req.body.username,
-    password: req.body.password
-  })
-    .save()
-    .then((user) => {
-      res.redirect('/login.html');
-    })
-    .catch((err) => {
-      return res.send('Error Creating account');
+router.post('/register', (req, res) => {
+  bcrypt.genSalt(saltRounds, (err, salt) => {
+    if (err) {
+      res.status(500);
+      res.send(err);
+    }
+
+    bcrypt.hash(req.body.password, salt, (err, hash) => {
+      if (err) {
+        res.status(500);
+        res.send(err);
+      }
+
+      return new User({
+        username: req.body.username,
+        password: hash
+      })
+        .save()
+        .then((user) => {
+          console.log(user);
+          res.redirect('/login');
+        })
+        .catch((err) => {
+          return res.send('Error Creating account');
+        });
     });
+  });
 });
 
 module.exports = router;

@@ -4,7 +4,13 @@
   <div id="feature">
     <h2 class="feature__author">{{title}} – {{author}}</h2>
     <img class="feature__img" src="{{link}}">
-    <p class="feature__description">{{description}}</p>
+    <div class="form-container">
+      <p class="feature__description">{{description}}</p>
+      <div class="button-container">
+        <form method="GET" action="/gallery/{{id}}/edit"><input class="edit_button" type="submit" value="Edit"></form>
+        <form method="POST" action="/gallery/{{id}}?_method=DELETE"><input class="delete_button" type="submit" value="Delete"></form>
+      </div>
+    </div>
     <p class="feature__link"> Copyright {{author}}</p>
   </div>
 
@@ -12,7 +18,7 @@
     <ul class="sidebar__list">
       {{#each secondaryPhotos}}
       <li class="sidebar__item">
-        <img class="sidebar__img" src="{{link}}">
+        <a href="/gallery/{{id}}"><img class="sidebar__img" src="{{link}}"></a>
         <h3 class="sidebar__detail">{{title}} – {{author}}</h3>
       </li>
       {{/each}}
