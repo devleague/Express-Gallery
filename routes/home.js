@@ -73,7 +73,8 @@ router.post('/register', (req, res) => {
 
           return new User({
             username: req.body.username,
-            password: hash
+            password: hash,
+            role_id: 2
           })
             .save()
             .then((user) => {

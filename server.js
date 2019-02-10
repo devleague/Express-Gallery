@@ -21,11 +21,11 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(session({
-  store: new redis({ url: 'redis://localhost:6379', logErrors: true }),
+  store: new redis({ url: 'redis://redis-server:6379', logErrors: true }),
   secret: SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: ENV === 'production' }
+  //cookie: { secure: ENV === 'production' }
 }));
 app.use(express.static('public'));
 app.engine('.hbs', exphbs({
@@ -43,17 +43,22 @@ app.use(passport.session());
 passport.serializeUser((user, done) => {
   return done(null, {
     id: user.id,
-    username: user.username
+    username: user.username,
+    role_id: user.role_id
   });
 });
 
 passport.deserializeUser((user, done) => {
   new User({ id: user.id }).fetch()
     .then(dbUser => {
+      if (dbUser === null) {
+        return done();
+      }
       dbUser = dbUser.toJSON();
       return done(null, {
         id: dbUser.id,
-        username: dbUser.username
+        username: dbUser.username,
+        role_id: dbUser.role_id
       });
     })
     .catch((err) => {
@@ -91,3 +96,5 @@ app.use('/', homeRouter);
 const server = app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);
 });
+
+module.exports = server;

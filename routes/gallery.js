@@ -82,10 +82,10 @@ router.get('/:id', (req, res) => {
 
 router.get('/:id/edit', isAuthenticated, (req, res) => {
   let id = req.params.id;
-
+  console.log(typeof req.user.role_id);
   Gallery.where({ id: id }).fetch()
     .then((photo) => {
-      if (photo.attributes.user_id !== req.user.id) {
+      if (photo.attributes.user_id !== req.user.id && req.user.role_id !== 1) {
         req.flash('error', 'You cannot edit photos that aren\'t yours');
         return res.redirect(`/gallery/${id}`);
       }
@@ -134,7 +134,7 @@ router.put('/:id', isAuthenticated, (req, res) => {
 
   Gallery.where({ id: id }).fetch()
     .then((photo) => {
-      if (photo.attributes.user_id !== req.user.id) {
+      if (photo.attributes.user_id !== req.user.id && req.user.role_id !== 1) {
         req.flash('error', 'You cannot edit photos that aren\'t yours');
         return res.redirect(`/gallery/${id}`);
       }
@@ -162,7 +162,7 @@ router.delete('/:id', isAuthenticated, (req, res) => {
 
   Gallery.where({ id: id }).fetch()
     .then((photo) => {
-      if (photo.attributes.user_id !== req.session.passport.user.id) {
+      if (photo.attributes.user_id !== req.session.passport.user.id && req.user.role_id !== 1) {
         req.flash('error', 'You cannot delete photos that aren\'t yours');
         return res.redirect(`/gallery/${id}`);
       }
