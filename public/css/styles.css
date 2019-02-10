@@ -103,6 +103,11 @@ html {
       height: 20em;
       width: 40%;
       padding: 0.5em; }
+      @media screen and (max-width: 420px) {
+        html body .login {
+          height: 25em;
+          width: 90%;
+          justify-content: center; } }
       html body .login .header {
         font-family: "IBM Plex Sans", sans-serif;
         font-size: 2em;
@@ -130,6 +135,9 @@ html {
           color: #888888;
           font-family: "IBM Plex Sans", sans-serif;
           font-size: 0.8em; }
+          @media screen and (max-width: 420px) {
+            html body .login form input {
+              height: 12%; } }
         html body .login form button {
           height: 15%;
           width: 30%;
@@ -157,6 +165,11 @@ html {
       height: 20em;
       width: 40%;
       padding: 0.5em; }
+      @media screen and (max-width: 420px) {
+        html body .register {
+          height: 25em;
+          width: 90%;
+          justify-content: center; } }
       html body .register .header {
         font-family: "IBM Plex Sans", sans-serif;
         font-size: 2em;
@@ -184,6 +197,9 @@ html {
           color: #888888;
           font-family: "IBM Plex Sans", sans-serif;
           font-size: 0.8em; }
+          @media screen and (max-width: 420px) {
+            html body .register form input {
+              height: 12%; } }
         html body .register form button {
           height: 15%;
           width: 30%;
@@ -209,6 +225,11 @@ html {
       align-items: center;
       width: 40%;
       padding: 0.5em; }
+      @media screen and (max-width: 420px) {
+        html body .edit {
+          height: 30em;
+          width: 90%;
+          justify-content: center; } }
       html body .edit .header {
         font-family: "IBM Plex Sans", sans-serif;
         font-size: 2em;
@@ -254,6 +275,11 @@ html {
       align-items: center;
       width: 40%;
       padding: 0.5em; }
+      @media screen and (max-width: 420px) {
+        html body .new {
+          height: 30em;
+          width: 90%;
+          justify-content: center; } }
       html body .new .header {
         font-family: "IBM Plex Sans", sans-serif;
         font-size: 2em;
