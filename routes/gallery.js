@@ -82,7 +82,7 @@ router.get('/:id', (req, res) => {
 
 router.get('/:id/edit', isAuthenticated, (req, res) => {
   let id = req.params.id;
-  console.log(typeof req.user.role_id);
+
   Gallery.where({ id: id }).fetch()
     .then((photo) => {
       if (photo.attributes.user_id !== req.user.id && req.user.role_id !== 1) {
