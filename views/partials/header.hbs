@@ -1,6 +1,10 @@
+{{#if user}}
+<div id="logout"> </div>
+{{else}}
 <div id="logout">
   <form method="GET" action="/logout"><input class="logout__button" type="submit" value="Logout"></form>
 </div>
+{{/if}}
 <div id="header">
   <div class="logo-container">
     <a href="/">

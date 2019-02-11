@@ -27,12 +27,18 @@ router.get('/login', (req, res) => {
   if (req.isAuthenticated()) { return res.redirect('/gallery'); }
 
   res.status(200);
-  return res.render('./login', { message: req.flash('error') });
+  return res.render('./login', {
+    message: req.flash('error'),
+    user: true
+  });
 });
 
 router.get('/register', (req, res) => {
   res.status(200);
-  return res.render('./register', { message: req.flash('error') });
+  return res.render('./register', {
+    message: req.flash('error'),
+    user: true
+  });
 });
 
 router.get('/logout', (req, res) => {
