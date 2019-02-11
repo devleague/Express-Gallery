@@ -543,7 +543,6 @@ html {
 
             @media screen and (max-width: $break-small) {
               flex-direction: column-reverse;
-              height: 80px;
             }
 
             .feature__description {
@@ -556,6 +555,8 @@ html {
 
               @media screen and (max-width: $break-small) {
                 align-self: flex-start;
+                width: 100%;
+
               }
             }
 
@@ -570,6 +571,7 @@ html {
 
               @media screen and (max-width: $break-small) {
                 width: 100%;
+                margin: 0.5em 0em 0.5em 0em;
               }
 
               .edit_button {
@@ -626,7 +628,7 @@ html {
             font-size: 0.9em;
 
             @media screen and (max-width: $break-small) {
-              margin: 0.5em 0em 0.5em 0em;
+              margin: 0.8em 0em 0.8em 0em;
             }
           }
         }

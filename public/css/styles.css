@@ -400,8 +400,7 @@ html {
           width: 100%; }
           @media screen and (max-width: 420px) {
             html body #main #feature .form-container {
-              flex-direction: column-reverse;
-              height: 80px; } }
+              flex-direction: column-reverse; } }
           html body #main #feature .form-container .feature__description {
             font-family: "IBM Plex Sans", sans-serif;
             color: #888888;
@@ -411,7 +410,8 @@ html {
             margin-top: 0em; }
             @media screen and (max-width: 420px) {
               html body #main #feature .form-container .feature__description {
-                align-self: flex-start; } }
+                align-self: flex-start;
+                width: 100%; } }
           html body #main #feature .form-container .button-container {
             display: flex;
             flex-direction: row;
@@ -422,7 +422,8 @@ html {
             margin-top: 0em; }
             @media screen and (max-width: 420px) {
               html body #main #feature .form-container .button-container {
-                width: 100%; } }
+                width: 100%;
+                margin: 0.5em 0em 0.5em 0em; } }
             html body #main #feature .form-container .button-container .edit_button {
               font-family: "IBM Plex Sans", sans-serif;
               font-weight: 800;
@@ -465,7 +466,7 @@ html {
           font-size: 0.9em; }
           @media screen and (max-width: 420px) {
             html body #main #feature .feature__link {
-              margin: 0.5em 0em 0.5em 0em; } }
+              margin: 0.8em 0em 0.8em 0em; } }
       html body #main #sidebar {
         width: 30%; }
         @media screen and (max-width: 420px) {
